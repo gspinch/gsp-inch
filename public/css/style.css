@@ -599,14 +599,8 @@ button { font: inherit; color: inherit; }
 .scene .footer__bottom { margin-top: 0; font: 500 16px/1.4 var(--grotesk); opacity: 1; color: var(--paper); }
 .scene .footer__bottom a { color: inherit; text-underline-offset: 4px; }
 /* мини-марки на письме */
-.letter__stamps { position: relative; filter: drop-shadow(0 3px 4px rgba(43,38,32,.28)); display: flex; gap: 22px; margin-top: 36px; padding-left: 6px; }
-.letter__mini { width: 150px; height: 180px; padding: 10px 10px 30px; rotate: var(--r); background: #f1e6cd; filter: none; }
-.letter__mini figcaption { font-size: 11px; left: 12px; right: 12px; bottom: 9px; }
 @media (max-width: 640px) {
   .scene .contact.band { background-position: 0 0, 45% bottom; padding-bottom: 300px; }
-  .letter__stamps { gap: 14px; margin-top: 24px; }
-  .letter__mini { width: 120px; height: 146px; padding: 8px 8px 24px; }
-  .letter__mini figcaption { font-size: 8px; }
 }
 
 
@@ -624,11 +618,10 @@ button { font: inherit; color: inherit; }
 
 /* анкета: заголовок белым прямо на картинке, письмо — только форма */
 .contact__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: clamp(28px, 5vw, 72px); align-items: start; max-width: 1100px; margin: 0 auto; }
-.contact__intro { container-type: inline-size; min-width: 0; color: #fff; padding-top: 20px; text-shadow: 0 2px 6px rgba(0,0,0,.45), 0 0 24px rgba(0,0,0,.3); }
+.contact__intro { container-type: inline-size; min-width: 0; color: #fff; padding-top: 20px; }
 .contact__intro .h2 { font-size: min(60px, 10.5cqi); }
-.contact__intro .hand--lg { color: #fff; margin-top: 14px; font-size: clamp(26px, 2.6vw, 34px); font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,.7), 0 2px 10px rgba(0,0,0,.6), 0 0 26px rgba(0,0,0,.45); }
+.contact__intro .hand--lg { color: #fff; margin-top: 14px; font-size: clamp(26px, 2.6vw, 34px); font-weight: 700; }
 .contact__intro .letter__tg { color: #fff; }
-.contact__intro .letter__stamps { text-shadow: none; }
 .letter { display: block; max-width: none; margin: 0; padding: clamp(28px, 4vw, 44px); }
 .letter .letter__to { margin-bottom: 22px; padding-right: 110px; }
 .letter .form { margin-top: 0; }
