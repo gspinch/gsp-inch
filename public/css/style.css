@@ -596,7 +596,7 @@ button { font: inherit; color: inherit; }
 .contact .container { position: relative; z-index: 2; }
 .letter { box-shadow: 0 34px 60px -28px rgba(20,45,90,.55); }
 .scene .footer { background: var(--green-dk); box-shadow: none; margin-top: 0; padding: 26px 0; color: var(--paper); }
-.scene .footer__bottom { margin-top: 0; font: 500 16px/1.4 var(--grotesk); opacity: 1; color: var(--paper); }
+.scene .footer__bottom { align-items: center; margin-top: 0; font: 500 16px/1.4 var(--grotesk); opacity: 1; color: var(--paper); }
 .scene .footer__bottom a { color: inherit; text-underline-offset: 4px; }
 /* мини-марки на письме */
 @media (max-width: 640px) {
@@ -615,3 +615,5 @@ button { font: inherit; color: inherit; }
   .flip-sheet__back { border-radius: 0 0 16px 16px; }
   .flip-sheet__front { box-shadow: -10px 0 24px -14px rgba(43,38,32,.4); }
 }
+.socials:empty { display: none; }
+.socials .icon { width: 20px; height: 20px; }

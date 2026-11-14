@@ -1,6 +1,13 @@
 <footer class="footer">
   <div class="container footer__bottom">
     <span>© <%= new Date().getFullYear() %> GSP·INCH</span>
+    <div class="socials">
+      <% [['telegram','Telegram'],['whatsapp','WhatsApp'],['instagram','Instagram'],['tiktok','TikTok'],['youtube','YouTube']].forEach(([k, label]) => {
+           if (s[k] && s[k] !== 'https://t.me/') { %>
+        <a href="<%= s[k] %>" target="_blank" rel="noopener" aria-label="<%= label %>" data-goal="social_<%= k %>"><%- icon(k) %></a>
+      <% } }) %>
+      <% if (s.email) { %><a href="mailto:<%= s.email %>" aria-label="E-mail"><%- icon('mail') %></a><% } %>
+    </div>
     <a href="/privacy"><%= t('privacy') %></a>
   </div>
 </footer>
