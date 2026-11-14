@@ -127,25 +127,27 @@
         <figure class="scrap scrap--wide" style="--r:-3deg" aria-hidden="true"><span class="tape tape--blue"></span><img src="/img/wall.jpg" alt="" loading="lazy"></figure>
       </div>
       <div class="services__grid">
-        <% const arts = [
-              [['s-hongbao', 18, 14, 70, 108, -10], ['s-cloud', 4, 92, 96, 52, 0], ['s-cat', 98, 4, 112, 132, 6]],
-              [['s-lantern', 14, 0, 52, 92, -6], ['s-jiayou', 62, 18, 136, 72, -4], ['s-candy', 20, 92, 110, 56, 8], ['s-orange', 140, 80, 66, 66, 10]],
-              [['s-knot', 8, 0, 54, 86, 0], ['s-cookie', 52, 28, 140, 108, -6], ['s-flower', 160, 4, 48, 48, 14]]
-            ]; services.forEach((x, i) => { const tone = tones[i % 3]; const full = L(x, 'title') + (L(x, 'subtitle') ? ' (' + L(x, 'subtitle') + ')' : ''); const feats = L(x, 'features').split('\n').map(f => f.trim()).filter(Boolean); %>
-        <article class="pkg pkg--<%= tone %> reveal" data-from="up" style="--d:<%= i * 110 %>ms">
-          <span class="pkg__no mono">№0<%= i + 1 %></span>
-          <div class="pkg__art">
-            <% if (x.photo) { %><img src="<%= x.photo %>" alt="" loading="lazy"><% } else { %><svg viewBox="0 0 220 150" aria-hidden="true"><% arts[i % 3].forEach(([id, x, y, w, h, r]) => { %><use href="#<%= id %>" x="<%= x %>" y="<%= y %>" width="<%= w %>" height="<%= h %>" transform="rotate(<%= r %> <%= x + w / 2 %> <%= y + h / 2 %>)"/><% }) %></svg><% } %>
-          </div>
-          <h3 class="pkg__title"><%= L(x, 'title') %></h3>
-          <% if (L(x, 'subtitle')) { %><p class="hand pkg__sub"><%= L(x, 'subtitle') %></p><% } %>
-          <p class="pkg__desc"><%= L(x, 'description') %></p>
-          <% if (feats.length) { %>
-          <ul class="pkg__list"><% feats.forEach(f => { %><li><svg class="htick" aria-hidden="true"><use href="#htick"/></svg><%= f %></li><% }) %></ul>
-          <% } %>
-          <div class="pkg__foot">
-            <span class="price mono"><%= L(x, 'price') %></span>
-            <a href="#contacts" class="btn btn--ink btn--sm" data-pick="<%= full %>" data-goal="service_pick"><%= t('pick') %> <%- icon('arrow') %></a>
+        <% const scenes = ['/img/scene-1.jpg', '/img/scene-2.jpg', '/img/scene-3.jpg'];
+           services.forEach((x, i) => { const full = L(x, 'title') + (L(x, 'subtitle') ? ' (' + L(x, 'subtitle') + ')' : ''); const feats = L(x, 'features').split('\n').map(f => f.trim()).filter(Boolean); %>
+        <article class="pkg <%= i % 2 ? 'pkg--top' : '' %> reveal" data-from="up" style="--d:<%= i * 110 %>ms">
+          <div class="pkg__in">
+            <div class="pkg__scene"><img src="<%= x.photo || scenes[i % 3] %>" alt="" loading="lazy"></div>
+            <div class="pkg__body">
+              <div class="pkg__top">
+                <svg class="pkg__mark" viewBox="0 0 28 20" aria-hidden="true"><path d="M1 9 14 2l13 7M5 16l9-5 9 5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                <span class="pkg__no">0<%= i + 1 %></span>
+              </div>
+              <h3 class="pkg__title"><%= L(x, 'title') %></h3>
+              <% if (L(x, 'subtitle')) { %><p class="pkg__sub"><%= L(x, 'subtitle') %></p><% } %>
+              <p class="pkg__desc"><%= L(x, 'description') %></p>
+              <% if (feats.length) { %>
+              <ul class="pkg__list"><% feats.forEach(f => { %><li><%= f %></li><% }) %></ul>
+              <% } %>
+              <div class="pkg__foot">
+                <span class="pkg__price"><%= L(x, 'price') %></span>
+                <a href="#contacts" class="pkg__pick" data-pick="<%= full %>" data-goal="service_pick"><%= t('pick') %> <%- icon('arrow') %></a>
+              </div>
+            </div>
           </div>
         </article>
         <% }) %>
