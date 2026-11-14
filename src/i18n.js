@@ -44,7 +44,7 @@ const dict = {
     reviews_h: 'Отзывы', book_label: 'дневник отзывов', book_hint: 'истории студентов, которые уже учатся в Китае. тяните за закладки →',
     entry_no: 'запись №', prev_review: 'Предыдущий отзыв', next_review: 'Следующий отзыв', reviews_tabs_aria: 'Отзывы',
 
-    faq_h: 'Частые вопросы', panda_alt: 'Панда отдыхает на камне среди бамбука', panda_caption: 'сосед по кампусу (почти)',
+    faq_h: 'Частые вопросы', faq_img_alt: 'Ворота кампуса и цветущая магнолия', panda_caption: 'сосед по кампусу (почти)',
     fortune_hint: 'нажми на печенье — там предсказание', fortune_aria: 'Разломить печенье с предсказанием',
     fortunes: [['你能行', '«У тебя получится»'], ['梦想成真', '«Мечта сбудется — уже в этом году»'], ['加油', '«Вперёд! Грант ближе, чем кажется»'],
       ['一路顺风', '«Попутного ветра — и в дороге, и в учёбе»'], ['心想事成', '«Всё задуманное сбудется»'], ['前途无量', '«Впереди огромные возможности»'],
@@ -111,7 +111,7 @@ const dict = {
     reviews_h: 'Reviews', book_label: 'review diary', book_hint: 'stories from students who already study in China. pull the bookmarks →',
     entry_no: 'entry no.', prev_review: 'Previous review', next_review: 'Next review', reviews_tabs_aria: 'Reviews',
 
-    faq_h: 'FAQ', panda_alt: 'A panda resting on a rock among bamboo', panda_caption: 'campus neighbour (almost)',
+    faq_h: 'FAQ', faq_img_alt: 'Campus gate and a blooming magnolia', panda_caption: 'campus neighbour (almost)',
     fortune_hint: 'tap the cookie — there’s a fortune inside', fortune_aria: 'Crack open the fortune cookie',
     fortunes: [['你能行', '“You can do it”'], ['梦想成真', '“Your dream comes true — this year”'], ['加油', '“Keep going! The scholarship is closer than it seems”'],
       ['一路顺风', '“Fair winds — on the road and in your studies”'], ['心想事成', '“Everything you wish for will come true”'], ['前途无量', '“Great opportunities lie ahead”'],
