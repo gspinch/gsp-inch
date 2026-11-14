@@ -21,7 +21,6 @@
   --grotesk: 'Onest', 'Helvetica Neue', Arial, sans-serif;
   --mono: 'PT Mono', 'Courier New', ui-monospace, monospace;
   --hand: 'Caveat', 'Segoe Print', 'Comic Sans MS', cursive;
-  --cn-serif: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
   --peach: #f7d4c3;
   --cn: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', 'Kaiti SC', 'Noto Serif SC', serif;
   --radius: 18px;
@@ -165,7 +164,7 @@ button { font: inherit; color: inherit; }
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: clamp(28px, 3.5vw, 36px); }
 
 .collage { position: relative; aspect-ratio: 1 / 1.02; max-width: 580px; width: 100%; justify-self: center; }
-.collage__cn { position: absolute; inset: -6% -2% auto auto; font-family: var(--cn-serif); font-weight: 300; font-size: clamp(150px, 20vw, 280px); line-height: .9; color: var(--green); opacity: .14; writing-mode: vertical-rl; pointer-events: none; }
+.collage__cn { position: absolute; inset: -6% -2% auto auto; font-size: clamp(150px, 20vw, 280px); line-height: .9; color: var(--green); opacity: .16; writing-mode: vertical-rl; pointer-events: none; }
 .collage .stamp { position: absolute; left: 4%; top: 8%; width: 52%; aspect-ratio: 3 / 4; }
 .collage__me { position: absolute; right: 2%; top: 2%; width: 44%; }
 .collage__me img { aspect-ratio: 4 / 5; object-position: 50% 40%; }
@@ -203,14 +202,14 @@ button { font: inherit; color: inherit; }
 .note span:last-child { font: 14px/1.4 var(--mono); color: var(--ink); }
 
 /* ---------- бегущая лента-скотч ---------- */
-.marquee { margin-top: clamp(20px, 3vw, 40px); background: var(--green-dk); color: #e8e2cc; rotate: -1.6deg; width: 104%; margin-left: -2%; overflow: hidden; padding: 12px 0; font: 15px/1 var(--mono); text-transform: uppercase; box-shadow: var(--shadow); }
+.marquee { margin-top: clamp(56px, 7vw, 90px); background: var(--green-dk); color: #e8e2cc; rotate: -1.6deg; width: 104%; margin-left: -2%; overflow: hidden; padding: 12px 0; font: 15px/1 var(--mono); text-transform: uppercase; box-shadow: var(--shadow); }
 .marquee__track { display: flex; width: max-content; animation: ticker 38s linear infinite; }
 .marquee__track span { white-space: nowrap; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 /* ---------- заголовки разделов ---------- */
 .sec-head { position: relative; display: flex; align-items: flex-end; gap: 10px 24px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 44px); }
-.sec-head__cn { position: absolute; left: -10px; bottom: -10px; font-family: var(--cn-serif); font-weight: 300; font-size: clamp(90px, 13vw, 170px); line-height: .8; color: var(--green); opacity: .16; z-index: -1; white-space: nowrap; pointer-events: none; }
+.sec-head__cn { position: absolute; left: -10px; bottom: -6px; font-size: clamp(90px, 13vw, 170px); line-height: .8; color: var(--blue-2); opacity: .32; z-index: -1; white-space: nowrap; pointer-events: none; }
 .sec-head .h2 { position: relative; }
 .sec-head__meta { font-size: 13px; color: var(--ink-2); text-transform: uppercase; letter-spacing: .08em; padding-bottom: 8px; }
 
@@ -526,34 +525,4 @@ button { font: inherit; color: inherit; }
   .letter__head { padding-top: 80px; }
   .form .btn { justify-self: stretch; }
   .footer__top { flex-direction: column; align-items: flex-start; }
-}
-
-/* ---------- атмосфера: бумага, акварель, ботаника, горы ---------- */
-/* зерно рисовой бумаги поверх всей страницы */
-body::after { content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .1; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .38 0 0 0 0 .28 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.hero, .section, .contact { isolation: isolate; }
-/* акварельные размывы: несколько пятен разной плотности, сильно размытые */
-.wash { position: absolute; z-index: -1; pointer-events: none; width: var(--w, 560px); height: calc(var(--w, 560px) * .7); border-radius: 46% 54% 60% 40% / 50% 42% 58% 50%;
-  background: radial-gradient(40% 50% at 35% 45%, var(--c) 0 40%, transparent 70%), radial-gradient(45% 40% at 65% 60%, var(--c) 0 30%, transparent 75%), radial-gradient(60% 60% at 50% 50%, var(--c2, var(--c)) 0 20%, transparent 80%);
-  filter: blur(28px); opacity: var(--o, .6); }
-.wash--sage { --c: #cde9a2; --c2: #e2f2c6; } .wash--celadon { --c: #bfe0f5; --c2: #dcedf9; } .wash--peach { --c: #f9d7c6; --c2: #fbe8de; } .wash--mist { --c: #cfe8f3; --c2: #e6f3ee; }
-.bot { position: absolute; z-index: -1; pointer-events: none; color: var(--green); opacity: .13; }
-.bot--hero { width: 300px; height: 400px; left: -70px; top: -40px; rotate: 160deg; }
-.bot--pine { width: 380px; height: 220px; color: #2f3a33; opacity: .55; filter: url(#ink-soft); }
-.about .bot--pine { right: -40px; top: 10px; }
-.faq .bot--pine { left: -60px; bottom: -40px; rotate: 180deg; scale: 1 -1; opacity: .35; }
-.bot--bamboo { width: 160px; height: 400px; }
-.services .bot--bamboo { right: -20px; top: 40px; opacity: .1; }
-.results .bot--leafy { width: 300px; height: 400px; right: -60px; top: -30px; rotate: -30deg; opacity: .1; }
-.mountains { display: block; width: 100%; height: clamp(90px, 14vw, 200px); margin-top: clamp(32px, 5vw, 64px); }
-.contact .bot--leafy { width: 420px; height: 560px; color: #fff; opacity: .45; }
-.contact .bot--l1 { left: -110px; top: -60px; rotate: 150deg; }
-.contact .bot--l2 { right: -120px; bottom: -80px; rotate: -20deg; }
-.contact .mountains--contact { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; z-index: 0; height: clamp(80px, 12vw, 170px); opacity: .7; }
-.contact .container { position: relative; z-index: 1; }
-@media (max-width: 640px) {
-  .bot--pine { width: 240px; height: 140px; }
-  .contact .bot--leafy { width: 260px; height: 350px; }
-  .wash { --w: 340px !important; }
 }
