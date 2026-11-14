@@ -158,7 +158,7 @@ button { font: inherit; color: inherit; }
 .collage__cn { position: absolute; inset: -6% -2% auto auto; font-size: clamp(150px, 20vw, 280px); line-height: .9; color: var(--green); opacity: .16; writing-mode: vertical-rl; pointer-events: none; }
 .collage .stamp { position: absolute; left: 4%; top: 8%; width: 52%; aspect-ratio: 3 / 4; }
 .collage__me { position: absolute; right: 2%; top: 2%; width: 44%; }
-.collage__me img { aspect-ratio: 4 / 5; object-position: 50% 20%; }
+.collage__me img { aspect-ratio: 4 / 5; object-position: 50% 40%; }
 .ticket { position: absolute; left: 14%; bottom: 4%; width: 66%; display: flex; background: var(--blue); rotate: var(--r); box-shadow: var(--shadow); border-radius: 10px; overflow: hidden; z-index: 4;
   -webkit-mask: radial-gradient(circle 9px at 74% 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 9px at 74% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
   mask: radial-gradient(circle 9px at 74% 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 9px at 74% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat; }
@@ -215,7 +215,7 @@ button { font: inherit; color: inherit; }
 
 .about__grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
 .about__photo { max-width: 420px; justify-self: center; width: 100%; }
-.about__photo img { aspect-ratio: 4 / 5; object-position: 50% 20%; }
+.about__photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; }
 .about__seal { position: absolute; right: -28px; bottom: 70px; width: 92px; height: 92px; font-size: 32px; --r: -12deg; }
 .about__text .hand--lg { margin: 10px 0 20px; }
 .about__story { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.65; max-width: 600px; }
@@ -381,23 +381,22 @@ button { font: inherit; color: inherit; }
 .letter__head .h2 { font-size: clamp(30px, 3.6vw, 46px); }
 .letter__head .hand--lg { margin-top: 14px; }
 .letter__tg { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-blue); margin-top: 6px; }
-.form { position: relative; z-index: 3; display: grid; gap: 18px; align-content: start; align-self: start; margin-top: clamp(0px, 7vw, 90px);
-  background: #fff; border: 2px solid var(--ink); border-radius: 18px; padding: 26px; box-shadow: 5px 5px 0 var(--ink); }
-.form label { display: grid; gap: 7px; }
-.form label > span { font: 600 14px/1.3 var(--grotesk); color: var(--ink); }
-.form label i { font-style: normal; font-weight: 400; color: var(--muted); }
+.form { position: relative; z-index: 3; display: grid; gap: 20px; align-content: start; align-self: start; margin-top: clamp(0px, 7vw, 90px); }
+.form label { display: grid; gap: 4px; }
+.form label > span { font: 700 25px/1.1 var(--hand); color: var(--ink-blue); padding-left: 4px; }
+.form label i { font-style: normal; font-weight: 500; color: var(--muted); font-size: 21px; }
 .form input:not([type=checkbox]), .form select, .form textarea {
-  width: 100%; font: 400 16px/1.4 var(--grotesk); color: var(--ink); background: var(--paper);
-  border: 1.5px solid var(--line); border-radius: 12px; padding: 13px 14px; resize: vertical; -webkit-appearance: none; appearance: none;
-  transition: border-color .2s, background .2s, box-shadow .2s;
+  width: 100%; font: 400 16px/1.4 var(--grotesk); color: var(--ink); background: #fffef9;
+  border: 2px solid var(--ink); border-radius: 10px; padding: 12px 14px; resize: vertical; -webkit-appearance: none; appearance: none;
+  box-shadow: 3px 3px 0 var(--ink); transition: box-shadow .15s, transform .15s, background .2s;
 }
 .form ::placeholder { color: var(--muted); opacity: 1; }
-.form select { background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b2620' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 18px; padding-right: 42px; }
-.form input:hover, .form select:hover, .form textarea:hover { border-color: #bfb4a0; }
-.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--ink-blue); background-color: #fff; box-shadow: 0 0 0 4px rgba(147,173,239,.35); }
-.form .check { display: flex; gap: 10px; align-items: flex-start; font: 400 13px/1.45 var(--grotesk); color: var(--ink-2); }
+.form select { background: #fffef9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b2620' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 18px; padding-right: 42px; }
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; background-color: #fff; box-shadow: 4px 4px 0 var(--lime-2); transform: translate(-1px, -1px); }
+.form .check { display: flex; gap: 10px; align-items: flex-start; }
+.form .check > span { font: 400 13px/1.45 var(--grotesk); color: var(--ink-2); padding: 0; }
 .form .check input { width: 18px; height: 18px; margin: 1px 0 0; flex: none; accent-color: var(--green); }
-.form .btn { justify-self: stretch; margin-top: 4px; }
+.form .btn { justify-self: start; margin-top: 2px; }
 .form__msg:empty { display: none; }
 .form__msg, .form__ok { margin: 0; font: 500 14px/1.4 var(--grotesk); background: var(--lime); padding: 10px 14px; border-radius: 10px; }
 .form.is-loading .btn { opacity: .6; pointer-events: none; }
@@ -514,7 +513,6 @@ button { font: inherit; color: inherit; }
   .letter__stamp { width: 70px; height: 86px; right: 16px; top: 22px; }
   .postmark { right: 60px; top: 40px; width: 92px; height: 92px; font-size: 8px; padding: 16px; }
   .letter__head { padding-top: 80px; }
-  .form { padding: 20px; box-shadow: 4px 4px 0 var(--ink); }
+  .form .btn { justify-self: stretch; }
   .footer__top { flex-direction: column; align-items: flex-start; }
 }
-.form .check > span { font: 400 13px/1.45 var(--grotesk); color: var(--ink-2); }
