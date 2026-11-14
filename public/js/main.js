@@ -172,11 +172,11 @@
     const text = fortune.querySelector('.fortune__text');
     let last = -1;
     const pick = () => { let k; do { k = Math.floor(Math.random() * list.length); } while (list.length > 1 && k === last); last = k; return list[k]; };
-    fortune.querySelector('.fortune__cookie').addEventListener('click', () => {
+    fortune.querySelector('.fortune__stage').addEventListener('click', () => {
       if (fortune.classList.contains('is-open')) {
         // закрываем печенье и разламываем новое
         fortune.classList.remove('is-open');
-        setTimeout(open, 380);
+        setTimeout(open, 600);
       } else open();
     });
     function open() {

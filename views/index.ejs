@@ -294,22 +294,25 @@
         </figure>
         <svg class="stk faq__knot" aria-hidden="true"><use href="#s-knot"/></svg>
         <div class="fortune reveal" data-from="up" data-fortune data-list="<%= JSON.stringify(t('fortunes')) %>">
-          <button class="fortune__cookie" type="button" aria-label="<%= t('fortune_aria') %>" data-goal="fortune_cookie">
-            <svg viewBox="0 0 200 120" aria-hidden="true">
-              <g class="fortune__half fortune__half--l">
-                <path d="M100 30C66 18 22 34 14 74c-3 16 12 26 30 18 20-9 34-14 56-12Z" fill="#f2b84b" stroke="#d99a2b" stroke-width="3" stroke-linejoin="round"/>
-                <path d="M34 60c10-14 30-22 52-22" fill="none" stroke="#ffe0a0" stroke-width="6" stroke-linecap="round"/>
-              </g>
-              <g class="fortune__half fortune__half--r">
-                <path d="M100 30c34-12 78 4 86 44 3 16-12 26-30 18-20-9-34-14-56-12Z" fill="#f2b84b" stroke="#d99a2b" stroke-width="3" stroke-linejoin="round"/>
-                <path d="M100 80c14 2 26 6 40 12" fill="none" stroke="#d99a2b" stroke-width="3" stroke-linecap="round"/>
-              </g>
+          <button class="fortune__stage" type="button" aria-label="<%= t('fortune_aria') %>" data-goal="fortune_cookie">
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ck-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6c77b"/><stop offset=".6" stop-color="#e7a656"/><stop offset="1" stop-color="#d48d3a"/></linearGradient></defs></svg>
+            <span class="fortune__slip" aria-live="polite"><span class="cn fortune__cn"></span><span class="fortune__text"></span></span>
+            <svg class="fortune__half fortune__half--l" viewBox="0 0 120 140" aria-hidden="true">
+              <path d="M96 6C70 20 22 72 6 116c-4 12 4 20 18 18 36-2 66-2 92-4 2-40-6-90-20-124Z" fill="url(#ck-g)"/>
+              <path d="M96 6c12 34 22 84 20 124h-12c0-38-6-80-16-114Z" fill="#c9832e"/>
+              <path d="M98 14c9 32 15 74 14 112" fill="none" stroke="#e7a95a" stroke-width="3" stroke-dasharray="3 4"/>
+              <path d="M40 70c10-16 24-32 40-44" fill="none" stroke="#ffe1a6" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+              <circle cx="40" cy="104" r="1.6" fill="#b8742a"/><circle cx="62" cy="88" r="1.4" fill="#b8742a"/><circle cx="30" cy="122" r="1.4" fill="#b8742a"/><circle cx="74" cy="114" r="1.6" fill="#b8742a"/>
             </svg>
+            <svg class="fortune__half fortune__half--r" viewBox="0 0 120 140" aria-hidden="true"><g transform="translate(120 0) scale(-1 1)">
+              <path d="M96 6C70 20 22 72 6 116c-4 12 4 20 18 18 36-2 66-2 92-4 2-40-6-90-20-124Z" fill="url(#ck-g)"/>
+              <path d="M96 6c12 34 22 84 20 124h-12c0-38-6-80-16-114Z" fill="#c9832e"/>
+              <path d="M98 14c9 32 15 74 14 112" fill="none" stroke="#e7a95a" stroke-width="3" stroke-dasharray="3 4"/>
+              <path d="M40 70c10-16 24-32 40-44" fill="none" stroke="#ffe1a6" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+              <circle cx="40" cy="104" r="1.6" fill="#b8742a"/><circle cx="62" cy="88" r="1.4" fill="#b8742a"/><circle cx="30" cy="122" r="1.4" fill="#b8742a"/><circle cx="74" cy="114" r="1.6" fill="#b8742a"/>
+            </g></svg>
+            <span class="fortune__crumbs" aria-hidden="true"><i style="--x:-46px;--d:0s"></i><i style="--x:-20px;--d:.05s"></i><i style="--x:8px;--d:.02s"></i><i style="--x:30px;--d:.08s"></i><i style="--x:54px;--d:.04s"></i><i style="--x:-64px;--d:.1s"></i></span>
           </button>
-          <div class="fortune__slip" aria-live="polite">
-            <span class="cn fortune__cn"></span>
-            <span class="mono fortune__text"></span>
-          </div>
           <p class="hand fortune__hint"><%= t('fortune_hint') %></p>
         </div>
       </div>
