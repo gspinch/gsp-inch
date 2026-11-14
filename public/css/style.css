@@ -621,3 +621,31 @@ button { font: inherit; color: inherit; }
 .footer .socials a:hover { opacity: 1; transform: translateY(-2px); }
 .footer .socials .icon { width: 32px; height: 32px; }
 .footer .socials { gap: 14px; }
+
+/* ---------- крупнее основной текст на компьютере ---------- */
+@media (min-width: 961px) {
+  body { font-size: 18px; }
+  .hero__lead { font-size: 21px; }
+  .about__story { font-size: 21px; }
+  .checklist li { font-size: 17.5px; line-height: 36px; }
+  .note span:last-child { font-size: 16px; }
+  .pkg__sub { font-size: 14.5px; }
+  .pkg__desc { font-size: 16.5px; }
+  .pkg__list { font-size: 16px; gap: 9px; }
+  .pkg__price { font-size: 21px; }
+  .pkg__pick { font-size: 16px; }
+  .step__title { font-size: 26px; }
+  .step__text { font-size: 16.5px; }
+  .case__program { font-size: 16.5px; }
+  .case__text p:last-child { font-size: 18px; }
+  .report dd { font-size: 15.5px; }
+  .entry__prog { font-size: 15px; }
+  .qa summary { font-size: 18.5px; padding: 20px 24px; }
+  .qa__a p { font-size: 16.5px; }
+  .fortune__text { font-size: 15px; }
+  .fortune__hint { font-size: 23px; }
+  .form input:not([type=checkbox]), .form select, .form textarea { font-size: 17px; }
+  .form__legal { font-size: 14px; }
+  .letter__to { font-size: 13.5px; }
+  .navchip { font-size: 15px; }
+}
