@@ -203,7 +203,7 @@ button { font: inherit; color: inherit; }
 
 /* ---------- бегущая лента-скотч ---------- */
 .marquee { margin-top: clamp(56px, 7vw, 90px); background: var(--green-dk); color: #e8e2cc; rotate: -1.6deg; width: 104%; margin-left: -2%; overflow: hidden; padding: 12px 0; font: 15px/1 var(--mono); text-transform: uppercase; box-shadow: var(--shadow); }
-.marquee__track { display: flex; width: max-content; animation: ticker 38s linear infinite; }
+.marquee__track { display: flex; width: max-content; animation: ticker 110s linear infinite; }
 .marquee__track span { white-space: nowrap; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
