@@ -419,7 +419,7 @@ button { font: inherit; color: inherit; }
   background-image: repeating-linear-gradient(transparent 0 33px, rgba(53,80,160,.1) 33px 34px); }
 .letter::before { content: ''; position: absolute; inset: 0 0 auto; height: 8px; background: repeating-linear-gradient(-45deg, var(--red) 0 14px, #fffdf6 14px 28px, var(--ink-blue) 28px 42px, #fffdf6 42px 56px); border-radius: 6px 6px 0 0; }
 .letter__stamp { position: absolute; right: 26px; top: 26px; width: 92px; height: 112px; rotate: 6deg; }
-.letter__hb { position: absolute; width: 70px; height: 92px; left: -26px; bottom: 40px; rotate: -14deg; z-index: 2; }
+.letter__hb { position: absolute; width: 150px; height: 196px; left: clamp(60px, 15%, 190px); bottom: clamp(40px, 6vw, 80px); rotate: -12deg; z-index: 2; }
 .postmark { position: absolute; right: 90px; top: 58px; width: 116px; height: 116px; border: 2px solid rgba(53,80,160,.55); border-radius: 50%; display: grid; place-items: center; text-align: center; font-size: 10px; color: rgba(53,80,160,.7); rotate: -16deg; padding: 22px; line-height: 1.6; pointer-events: none; }
 .letter__head { padding-top: 70px; }
 .letter__to { font-size: 12px; text-transform: uppercase; color: var(--ink-2); border-bottom: 1.5px dashed var(--line); padding-bottom: 10px; margin-bottom: 18px; }
@@ -539,7 +539,7 @@ button { font: inherit; color: inherit; }
   .collage__orange { width: 60px; height: 60px; }
   .collage__grant { width: 130px; height: 68px; right: 0; bottom: -2%; }
   .about__flower { width: 56px; height: 56px; left: -10px; }
-  .letter__hb { width: 54px; height: 70px; left: -12px; }
+  .letter__hb { display: none; }
   .ticket { width: 84%; left: 6%; }
   .notes { grid-template-columns: 1fr; gap: 20px; }
   .ftab { padding: 11px 18px 15px; font-size: 12px; }
