@@ -414,6 +414,8 @@ button { font: inherit; color: inherit; }
 .form .check > span { font: 400 13px/1.45 var(--grotesk); color: var(--ink-2); padding: 0; }
 .form .check input { width: 18px; height: 18px; margin: 1px 0 0; flex: none; accent-color: var(--green); }
 .form .btn { justify-self: start; margin-top: 2px; }
+.form__legal { margin: -6px 0 0; font: 400 12.5px/1.45 var(--grotesk); color: var(--ink-2); max-width: 420px; }
+.form__legal a { color: inherit; }
 .form__msg:empty { display: none; }
 .form__msg, .form__ok { margin: 0; font: 500 14px/1.4 var(--grotesk); background: var(--lime); padding: 10px 14px; border-radius: 10px; }
 .form.is-loading .btn { opacity: .6; pointer-events: none; }

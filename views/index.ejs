@@ -348,8 +348,8 @@
           <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="utm">
           <input type="hidden" name="lang" value="<%= lang %>">
-          <label class="check" for="f-agree"><input id="f-agree" type="checkbox" required checked> <span><%- t('f_agree_html') %></span></label>
           <button class="btn btn--lime" type="submit"><%= t('f_submit') %> <%- icon('send') %></button>
+          <p class="form__legal"><%- t('f_agree_html') %></p>
           <p class="form__msg" role="status" aria-live="polite"></p>
         </form>
         <span class="seal seal--sent" aria-hidden="true">已发送<small><%= t('sent_stamp') %></small></span>
