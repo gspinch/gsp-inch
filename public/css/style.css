@@ -617,3 +617,6 @@ button { font: inherit; color: inherit; }
 }
 .socials:empty { display: none; }
 .socials .icon { width: 20px; height: 20px; }
+.footer .socials a { background: none; border: 0; color: var(--paper); width: 36px; height: 36px; opacity: .85; transition: opacity .2s, transform .2s; }
+.footer .socials a:hover { opacity: 1; transform: translateY(-2px); }
+.footer .socials .icon { width: 24px; height: 24px; }
