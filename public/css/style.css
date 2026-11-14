@@ -1,6 +1,12 @@
 /* Концепция: дневник студентки в Китае — тетрадь в клетку, папки с язычками,
    полароиды на скрепках, скотч, марки, печати 录取 и стикеры. */
 :root {
+  /* перфорация марки: полукруглые вырезы по каждой стороне, шаг сам подстраивается под размер */
+  --perf: radial-gradient(circle 6px at 50% 0, transparent 97%, #000) top left / 16px 10px,
+          radial-gradient(circle 6px at 50% 100%, transparent 97%, #000) bottom left / 16px 10px,
+          radial-gradient(circle 6px at 0 50%, transparent 97%, #000) top left / 10px 16px,
+          radial-gradient(circle 6px at 100% 50%, transparent 97%, #000) top right / 10px 16px,
+          linear-gradient(#000 0 0) center / calc(100% - 20px) calc(100% - 20px);
   --paper: #f6f3ea;
   --paper-2: #ebe6d6;
   --card: #fdfbf5;
@@ -98,8 +104,8 @@ button { font: inherit; color: inherit; }
 .stamp {
   position: relative; margin: 0; padding: 10px 10px 30px; background: #fffdf8; rotate: var(--r, 0deg);
   /* перфорация */
-  -webkit-mask: radial-gradient(circle 5px at 50% 50%, transparent 98%, #000) -7px -7px / 14px 14px, linear-gradient(#000 0 0) 7px 7px / calc(100% - 14px) calc(100% - 14px) no-repeat;
-  mask: radial-gradient(circle 5px at 50% 50%, transparent 98%, #000) -7px -7px / 14px 14px, linear-gradient(#000 0 0) 7px 7px / calc(100% - 14px) calc(100% - 14px) no-repeat;
+  -webkit-mask: var(--perf); -webkit-mask-repeat: round no-repeat, round no-repeat, no-repeat round, no-repeat round, no-repeat;
+  mask: var(--perf); mask-repeat: round no-repeat, round no-repeat, no-repeat round, no-repeat round, no-repeat;
   filter: drop-shadow(0 10px 14px rgba(43,38,32,.25));
 }
 .stamp img { width: 100%; height: 100%; object-fit: cover; }
@@ -245,8 +251,8 @@ button { font: inherit; color: inherit; }
 .pkg { position: relative; filter: drop-shadow(0 14px 22px rgba(43,38,32,.18)); transition: transform .35s var(--ease), filter .35s; }
 .pkg:hover { transform: translateY(-6px); filter: drop-shadow(0 22px 30px rgba(43,38,32,.24)); }
 .pkg__in { height: 100%; display: flex; flex-direction: column; background: #f8f5ec; padding: 12px;
-  -webkit-mask: radial-gradient(circle 6px at 50% 50%, transparent 97%, #000) 0 0 / 16px 16px round, linear-gradient(#000 0 0) 8px 8px / calc(100% - 16px) calc(100% - 16px) no-repeat;
-  mask: radial-gradient(circle 6px at 50% 50%, transparent 97%, #000) 0 0 / 16px 16px round, linear-gradient(#000 0 0) 8px 8px / calc(100% - 16px) calc(100% - 16px) no-repeat; }
+  -webkit-mask: var(--perf); -webkit-mask-repeat: round no-repeat, round no-repeat, no-repeat round, no-repeat round, no-repeat;
+  mask: var(--perf); mask-repeat: round no-repeat, round no-repeat, no-repeat round, no-repeat round, no-repeat; }
 .pkg__scene { order: 2; height: 210px; overflow: hidden; margin-top: 4px; }
 .pkg--top .pkg__scene { order: 0; margin: 0 0 4px; }
 .pkg__scene img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) contrast(1.02); transition: transform .8s var(--ease); }
