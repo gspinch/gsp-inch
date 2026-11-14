@@ -419,8 +419,8 @@ button { font: inherit; color: inherit; }
   background-image: repeating-linear-gradient(transparent 0 33px, rgba(53,80,160,.1) 33px 34px); }
 .letter::before { content: ''; position: absolute; inset: 0 0 auto; height: 8px; background: repeating-linear-gradient(-45deg, var(--red) 0 14px, #fffdf6 14px 28px, var(--ink-blue) 28px 42px, #fffdf6 42px 56px); border-radius: 6px 6px 0 0; }
 
-.postmark { position: absolute; left: 268px; top: -34px; z-index: 4; width: 116px; height: 116px; border: 2px solid rgba(53,80,160,.55); border-radius: 50%; display: grid; place-items: center; text-align: center; font-size: 10px; color: rgba(53,80,160,.7); rotate: -16deg; padding: 22px; line-height: 1.6; pointer-events: none; }
-.letter__head { padding-top: 10px; }
+.postmark { position: absolute; right: 30px; top: 26px; z-index: 4; width: 116px; height: 116px; border: 2px solid rgba(53,80,160,.55); border-radius: 50%; display: grid; place-items: center; text-align: center; font-size: 10px; color: rgba(53,80,160,.7); rotate: -16deg; padding: 22px; line-height: 1.6; pointer-events: none; }
+.letter__head { padding-top: 60px; }
 .letter__to { font-size: 12px; text-transform: uppercase; color: var(--ink-2); border-bottom: 1.5px dashed var(--line); padding-bottom: 10px; margin-bottom: 18px; }
 .letter__head .h2 { font-size: clamp(30px, 3.6vw, 46px); }
 .letter__head .hand--lg { margin-top: 14px; }
@@ -560,8 +560,8 @@ button { font: inherit; color: inherit; }
   .fortune { margin-right: 0; }
   .faq__knot { left: -14px; width: 76px; height: 124px; }
   .qa__a { padding-left: 20px; }
-  .postmark { left: 212px; top: -26px; width: 92px; height: 92px; font-size: 8px; padding: 16px; }
-  .letter__head { padding-top: 6px; }
+  .postmark { right: 16px; top: 20px; width: 92px; height: 92px; font-size: 8px; padding: 16px; }
+  .letter__head { padding-top: 70px; }
   .form .btn { justify-self: stretch; }
   .footer__top { flex-direction: column; align-items: flex-start; }
 }
@@ -614,19 +614,4 @@ button { font: inherit; color: inherit; }
   .book { perspective: 1600px; }
   .flip-sheet__back { border-radius: 0 0 16px 16px; }
   .flip-sheet__front { box-shadow: -10px 0 24px -14px rgba(43,38,32,.4); }
-}
-
-/* анкета: заголовок белым прямо на картинке, письмо — только форма */
-.contact__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: clamp(28px, 5vw, 72px); align-items: start; max-width: 1100px; margin: 0 auto; }
-.contact__intro { container-type: inline-size; min-width: 0; color: var(--ink); padding-top: 20px; }
-.contact__intro .h2 { font-size: min(60px, 9.4cqi); }
-.contact__intro .hand--lg { color: var(--ink-blue); margin-top: 14px; font-size: clamp(26px, 2.6vw, 34px); font-weight: 700; }
-.contact__intro .letter__tg { color: var(--ink-blue); }
-.letter { display: block; max-width: none; margin: 0; padding: clamp(28px, 4vw, 44px); }
-.letter .letter__to { margin-bottom: 22px; padding-right: 110px; }
-.letter .form { margin-top: 0; }
-.letter .postmark { left: auto; right: 22px; top: 18px; width: 96px; height: 96px; font-size: 8.5px; padding: 18px; }
-@media (max-width: 960px) {
-  .contact__grid { grid-template-columns: 1fr; }
-  .contact__intro { padding-top: 0; }
 }
