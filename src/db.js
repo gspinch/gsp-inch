@@ -53,7 +53,7 @@ const entities = {
       { name: 'description', label: 'Краткое описание', type: 'textarea' },
       { name: 'features', label: 'Что входит (каждый пункт с новой строки)', type: 'textarea' },
       { name: 'price', label: 'Цена', type: 'text', hint: 'Напр.: 5 990 юаней' },
-      { name: 'photo', label: 'Картинка', type: 'image' },
+      { name: 'photo', label: 'Картинка (если не загружать — будет фирменная иллюстрация)', type: 'image' },
       { name: 'sort', label: 'Порядок (меньше — выше)', type: 'number' },
       { name: 'published', label: 'Показывать на сайте', type: 'checkbox' },
     ],
@@ -159,13 +159,13 @@ function seed(table, rows) {
 seed('services', [
   { title: 'Полное сопровождение', subtitle: 'грант / степень', description: 'От стратегии и подготовки документов до зачисления.',
     features: 'Всё из пакета «Сопровождение»\nПодбор программ на грант\nОптимизация документов под требования\nПодготовка к интервью и консультации\nСопровождение до получения приглашения',
-    price: '5 990 юаней', photo: '/img/service-1.jpg', sort: 1, published: 1 },
+    price: '5 990 юаней', photo: '', sort: 1, published: 1 },
   { title: 'Сопровождение', subtitle: 'платный языковой год', description: 'Подбор университетов, подготовка и подача документов, сопровождение до зачисления.',
     features: 'Подбор от 5 университетов (стратегия 2+3)\nПодготовка всех документов (ML, CV, рекомендации)\nПодача заявок и отслеживание статуса\nПодготовка к интервью\nПоддержка до зачисления',
-    price: '3 990 юаней', photo: '/img/service-2.jpg', sort: 2, published: 1 },
+    price: '3 990 юаней', photo: '', sort: 2, published: 1 },
   { title: 'Индивидуальная консультация', subtitle: '', description: 'Разбор вашего кейса, стратегия поступления и ответы на все вопросы.',
     features: 'Анализ вашего кейса и целей\nРазбор до 5 университетов\nОценка шансов поступления\nПлан подготовки и список документов\nОтветы на все вопросы (1,5–2 часа)',
-    price: '990 юаней', photo: '/img/service-3.jpg', sort: 3, published: 1 },
+    price: '990 юаней', photo: '', sort: 3, published: 1 },
 ]);
 
 seed('results', [

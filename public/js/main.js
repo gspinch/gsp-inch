@@ -54,22 +54,19 @@
     });
   }
 
-  // ---------- маршрут: поезд едет по линии вместе со скроллом ----------
-  const metro = document.querySelector('.metro');
-  if (metro) {
-    const stations = [...metro.querySelectorAll('.metro__stations li')];
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const r = metro.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const p = Math.min(1, Math.max(0, (vh * .85 - r.top) / (r.height + vh * .35)));
-      metro.style.setProperty('--p', p.toFixed(3));
-      stations.forEach((li, i) => li.classList.toggle('is-reached', p >= i / (stations.length - 1) - .02));
-    };
-    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+  // ---------- подсветка текущего раздела в меню ----------
+  const spyLinks = [...document.querySelectorAll('[data-spy]')];
+  if (spyLinks.length && 'IntersectionObserver' in window) {
+    const map = new Map(spyLinks.map((l) => [l.dataset.spy, l]));
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        spyLinks.forEach((l) => l.removeAttribute('aria-current'));
+        const l = map.get(en.target.id); if (l) l.setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    map.forEach((l, id) => { const sec = document.getElementById(id); if (sec) spy.observe(sec); });
+    ['hero', 'contacts'].forEach((id) => { const sec = document.getElementById(id); if (sec) spy.observe(sec); });
   }
 
   // ---------- вкладки (досье результатов и книжка отзывов) ----------
@@ -124,15 +121,7 @@
     book.querySelectorAll('[data-dir]').forEach((b) => b.addEventListener('click', () => ctl && ctl.show(+b.dataset.dir)));
   }
 
-  // ---------- услуги: лист «что входит» выезжает из папки ----------
-  document.querySelectorAll('.file__toggle').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const file = btn.closest('.file');
-      const open = file.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open);
-      if (open) goal('service_open', { service: file.querySelector('.file__title').textContent });
-    });
-  });
+  // ---------- услуги: «Выбрать» подставляет пакет в форму ----------
   document.querySelectorAll('[data-pick]').forEach((a) => {
     a.addEventListener('click', () => {
       const sel = document.querySelector('#lead-form select[name=package]');

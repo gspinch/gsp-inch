@@ -34,7 +34,7 @@
 
 <main>
   <!-- ═══ HERO: первая страница дневника ═══ -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="container hero__inner">
       <div class="hero__text">
         <p class="mono eyebrow" data-typed>Дневник поступления · запись №2027</p>
@@ -55,8 +55,8 @@
         </figure>
         <figure class="polaroid collage__me drop" style="--r:6deg;--d:.4s">
           <svg class="clip" aria-hidden="true"><use href="#clip"/></svg>
-          <img src="/img/kamila.jpg" alt="Камила — ментор по поступлению в Китай" width="690" height="1029">
-          <figcaption class="hand">это я — 9-й год в Китае</figcaption>
+          <img src="/img/result-1.jpg" alt="Кампус китайского университета весной" width="429" height="273">
+          <figcaption class="hand">твой будущий кампус?</figcaption>
         </figure>
         <div class="ticket drop" style="--r:-4deg;--d:.65s">
           <div class="ticket__main">
@@ -96,35 +96,20 @@
       <div class="sec-head reveal">
         <span class="cn sec-head__cn" aria-hidden="true">关于我</span>
         <h2 class="h2">Обо мне</h2>
-        <span class="mono sec-head__meta">стр. 02 · guānyú wǒ</span>
+        <span class="mono sec-head__meta">guānyú wǒ · кто будет вас вести</span>
       </div>
-
-      <div class="folder reveal" data-from="up">
-        <div class="folder__tabs" aria-hidden="true">
-          <span class="ftab ftab--blue">обо мне</span>
-          <span class="ftab ftab--lime">камила</span>
-          <span class="ftab ftab--paper">2017 → 2026</span>
-        </div>
-        <div class="folder__body about__grid">
-          <div class="about__text">
-            <h3 class="h3">Привет, я Камила!</h3>
-            <p class="hand hand--lg">ментор по поступлению в Китай</p>
-            <p>С 2017 года живу и учусь в Китае. Прошла путь от языковых курсов до магистратуры на полном гранте. Помогаю поступать в университеты Китая честно, осознанно и без лишних затрат.</p>
-            <ul class="chips">
-              <li class="chip chip--blue">HSK 5 · HSKK 70</li>
-              <li class="chip chip--lime">100+ поступивших</li>
-              <li class="chip chip--paper">магистратура на полном гранте</li>
-            </ul>
-            <a href="<%= tg || '#contacts' %>" class="btn btn--ink" data-goal="about_more" <%- tg ? 'target="_blank" rel="noopener"' : '' %>>Узнать мой путь <%- icon('arrow') %></a>
-          </div>
-
-          <figure class="polaroid about__photo reveal" data-from="right" style="--r:4deg">
-            <span class="tape tape--lime"></span>
-            <img src="/img/mist.jpg" alt="Пагода в тумане" loading="lazy">
-            <figcaption class="hand">тот самый туман над пагодой</figcaption>
-          </figure>
-
-          <div class="checklist reveal" data-from="up">
+      <div class="about__grid">
+        <figure class="polaroid about__photo reveal" data-from="left" style="--r:-3deg">
+          <svg class="clip" aria-hidden="true"><use href="#clip"/></svg>
+          <img src="/img/kamila.jpg" alt="Камила — ментор по поступлению в Китай" width="690" height="1029" loading="lazy">
+          <figcaption class="hand">Камила · 9-й год в Китае</figcaption>
+          <span class="seal about__seal" aria-hidden="true">导师</span>
+        </figure>
+        <div class="about__text reveal" data-from="right">
+          <h3 class="h3">Привет, я Камила!</h3>
+          <p class="hand hand--lg">ментор по поступлению в Китай</p>
+          <p class="about__story">С 2017 года живу и учусь в Китае. Прошла путь от языковых курсов до <mark class="hl hl--lime">магистратуры на полном гранте</mark> и сдала <mark class="hl hl--blue">HSK 5 и HSKK на 70 баллов</mark>. Помогаю поступать в университеты Китая честно, осознанно и без лишних затрат.</p>
+          <div class="checklist">
             <p class="checklist__title hand">почему со мной?</p>
             <ul>
               <% ['Честная и прозрачная работа','Индивидуальная стратегия','Опыт учёбы в Китае изнутри','Поддержка на всех этапах','Фокус на результат, а не на количество'].forEach((t, i) => { %>
@@ -138,7 +123,7 @@
     </div>
   </section>
 
-  <!-- ═══ УСЛУГИ: папки с выезжающими листами ═══ -->
+  <!-- ═══ УСЛУГИ ═══ -->
   <section class="section services" id="services">
     <div class="container">
       <div class="sec-head reveal">
@@ -147,68 +132,58 @@
         <span class="mono sec-head__meta">подберём формат под вашу цель</span>
       </div>
       <div class="services__grid">
-        <% services.forEach((x, i) => { const tone = tones[i % 3]; const full = x.title + (x.subtitle ? ' (' + x.subtitle + ')' : ''); const feats = x.features.split('\n').map(f => f.trim()).filter(Boolean); %>
-        <article class="file file--<%= tone %> reveal" data-from="up" style="--d:<%= i * 90 %>ms">
-          <span class="file__tab mono">пакет 0<%= i + 1 %></span>
-          <% if (feats.length) { %>
-          <div class="file__sheet" id="sheet-<%= i %>">
-            <div class="file__sheet-in">
-              <p class="mono file__sheet-title">что входит:</p>
-              <ul><% feats.forEach(f => { %><li><svg class="htick" aria-hidden="true"><use href="#htick"/></svg><%= f %></li><% }) %></ul>
-              <a href="#contacts" class="btn btn--ink btn--sm" data-pick="<%= full %>">Выбрать этот пакет</a>
-            </div>
+        <% const arts = ['ill-grad', 'ill-book', 'ill-tea']; services.forEach((x, i) => { const tone = tones[i % 3]; const full = x.title + (x.subtitle ? ' (' + x.subtitle + ')' : ''); const feats = x.features.split('\n').map(f => f.trim()).filter(Boolean); %>
+        <article class="pkg pkg--<%= tone %> reveal" data-from="up" style="--d:<%= i * 110 %>ms">
+          <span class="pkg__no mono">№0<%= i + 1 %></span>
+          <div class="pkg__art">
+            <% if (x.photo) { %><img src="<%= x.photo %>" alt="" loading="lazy"><% } else { %><svg aria-hidden="true"><use href="#<%= arts[i % 3] %>"/></svg><% } %>
           </div>
+          <h3 class="pkg__title"><%= x.title %></h3>
+          <% if (x.subtitle) { %><p class="hand pkg__sub"><%= x.subtitle %></p><% } %>
+          <p class="pkg__desc"><%= x.description %></p>
+          <% if (feats.length) { %>
+          <ul class="pkg__list"><% feats.forEach(f => { %><li><svg class="htick" aria-hidden="true"><use href="#htick"/></svg><%= f %></li><% }) %></ul>
           <% } %>
-          <div class="file__front">
-            <% if (x.photo) { %><div class="file__photo"><img src="<%= x.photo %>" alt="" loading="lazy"></div><% } %>
-            <h3 class="file__title"><%= x.title %></h3>
-            <% if (x.subtitle) { %><p class="hand file__sub"><%= x.subtitle %></p><% } %>
-            <p class="file__desc"><%= x.description %></p>
-            <div class="file__foot">
-              <span class="price mono"><%= x.price %></span>
-              <% if (feats.length) { %>
-              <button class="file__toggle mono" type="button" aria-expanded="false" aria-controls="sheet-<%= i %>" data-goal="service_open">что входит <%- icon('plus') %></button>
-              <% } %>
-            </div>
+          <div class="pkg__foot">
+            <span class="price mono"><%= x.price %></span>
+            <a href="#contacts" class="btn btn--ink btn--sm" data-pick="<%= full %>" data-goal="service_pick">Выбрать <%- icon('arrow') %></a>
           </div>
         </article>
         <% }) %>
-        <aside class="sticky reveal" data-from="right" style="--r:2deg">
-          <span class="tape tape--blue"></span>
-          <p class="hand sticky__title">Не знаете, с чего начать?</p>
-          <p class="hand">запишитесь на консультацию — разберём ваш кейс и составим пошаговый план</p>
-          <svg class="harrow" aria-hidden="true"><use href="#harrow"/></svg>
-          <a href="#contacts" class="btn btn--ink btn--sm" data-goal="cta_services">Записаться <%- icon('arrow-up-right') %></a>
-        </aside>
       </div>
+      <aside class="nudge reveal" data-from="up">
+        <span class="tape tape--blue"></span>
+        <p class="hand nudge__title">Не знаете, с чего начать?</p>
+        <p class="hand nudge__text">запишитесь на консультацию — разберём ваш кейс и составим пошаговый план</p>
+        <svg class="harrow nudge__arrow" aria-hidden="true"><use href="#harrow"/></svg>
+        <a href="#contacts" class="btn btn--lime" data-goal="cta_services">Записаться <%- icon('arrow-up-right') %></a>
+      </aside>
     </div>
   </section>
 
-  <!-- ═══ МАРШРУТ: схема метро ═══ -->
-  <section class="section route" id="steps">
+  <!-- ═══ ЭТАПЫ: заметки на развороте ═══ -->
+  <section class="section steps" id="steps">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="cn sec-head__cn" aria-hidden="true">路线</span>
-        <h2 class="h2">Маршрут поступления</h2>
-        <span class="mono sec-head__meta">линия «2+3» · 5 станций · от первого запроса до зачисления</span>
+        <span class="cn sec-head__cn" aria-hidden="true">步骤</span>
+        <h2 class="h2">Этапы работы</h2>
+        <span class="mono sec-head__meta">от первого запроса до зачисления</span>
       </div>
-      <div class="metro reveal" data-from="up">
-        <div class="metro__line" aria-hidden="true">
-          <span class="metro__fill"></span>
-          <svg class="metro__train"><use href="#train"/></svg>
-        </div>
-        <ol class="metro__stations">
-          <% [['分析','Анализ кейса и целей',''],['选校','Подбор университетов','стратегия 2+3'],['文件','Подготовка документов','ML, CV, рекомендации'],['申请','Подача заявок и сопровождение',''],['录取','Зачисление и дальнейшая поддержка','']].forEach(([cn, t, sub], i) => { %>
-          <li style="--i:<%= i %>">
-            <span class="metro__dot" aria-hidden="true"></span>
-            <span class="mono metro__no">站 0<%= i + 1 %></span>
-            <span class="cn metro__cn" aria-hidden="true"><%= cn %></span>
-            <b><%= t %></b>
-            <% if (sub) { %><small class="mono"><%= sub %></small><% } %>
-          </li>
-          <% }) %>
-        </ol>
-      </div>
+      <ol class="steps__list">
+        <% [['分析','Анализ кейса и целей','Разбираем образование, уровень языка, бюджет и цели. Честно оцениваем шансы.'],
+            ['选校','Подбор университетов','Стратегия 2+3: два вуза мечты и три надёжных варианта под ваш профиль.'],
+            ['文件','Подготовка документов','Мотивационное письмо, CV и рекомендации — под требования каждого вуза.'],
+            ['申请','Подача заявок','Подаём заявки, следим за статусами и готовим к интервью.'],
+            ['录取','Зачисление','Получаем приглашение — и остаёмся на связи после зачисления.']].forEach(([cn, t, d], i) => { %>
+        <li class="step step--<%= ['blue','paper','lime','paper','blue'][i] %> reveal" data-from="up" style="--d:<%= i * 120 %>ms; --r:<%= [-2, 1.5, -1, 2, -1.5][i] %>deg">
+          <span class="tape tape--<%= ['lime','blue','paper','lime','blue'][i] %>"></span>
+          <span class="step__num">0<%= i + 1 %></span>
+          <span class="cn step__cn" aria-hidden="true"><%= cn %></span>
+          <h3 class="step__title"><%= t %></h3>
+          <p class="step__text"><%= d %></p>
+        </li>
+        <% }) %>
+      </ol>
     </div>
   </section>
 
