@@ -264,10 +264,10 @@ button { font: inherit; color: inherit; }
 .price::before { content: ''; position: absolute; left: 9px; top: 50%; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); translate: 0 -50%; }
 
 .nudge { position: relative; margin: 44px auto 0; max-width: 900px; background: #f5ecb4; padding: 30px 34px; box-shadow: var(--shadow); rotate: -.8deg;
-  display: grid; grid-template-columns: 1fr auto; grid-template-areas: "title btn" "text btn"; gap: 4px 30px; align-items: center; }
+  display: grid; grid-template-columns: 1fr auto auto; grid-template-areas: "title arrow btn" "text arrow btn"; gap: 4px 18px; align-items: center; }
 .nudge__title { grid-area: title; font-size: 38px; font-weight: 700; margin: 0; }
 .nudge__text { grid-area: text; font-size: 24px; margin: 0; }
-.nudge__arrow { position: absolute; right: 210px; bottom: 6px; width: 80px; height: 40px; color: var(--red); }
+.nudge__arrow { grid-area: arrow; width: 84px; height: 42px; color: var(--red); align-self: center; rotate: 8deg; }
 .nudge .btn { grid-area: btn; }
 .harrow { width: 80px; height: 40px; color: var(--red); }
 
