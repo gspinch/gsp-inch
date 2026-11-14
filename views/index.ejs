@@ -323,9 +323,8 @@
   <!-- ═══ ЗАЯВКА: письмо ═══ -->
   <section class="contact band band--mid" id="contacts">
     <div class="container">
-      <div class="letter reveal" data-from="up">
-        <div class="letter__head">
-          <p class="mono letter__to"><%= t('letter_to') %></p>
+      <div class="contact__grid">
+        <div class="contact__intro reveal" data-from="left">
           <h2 class="h2"><%= t('contact_h') %></h2>
           <p class="hand hand--lg"><%= t('contact_sub') %></p>
           <% if (tg) { %>
@@ -334,9 +333,11 @@
           <div class="letter__stamps" aria-hidden="true">
             <figure class="stamp letter__mini" style="--r:-6deg"><img src="/img/stamp-willow.jpg" alt=""><figcaption class="mono">中国 <b>¥8</b></figcaption></figure>
             <figure class="stamp letter__mini" style="--r:5deg"><img src="/img/stamp-night.jpg" alt=""><figcaption class="mono">中国 <b>¥12</b></figcaption></figure>
-            <span class="postmark mono" aria-hidden="true">GSP·INCH ✶ 2027 ✶ 留学 ✶</span>
           </div>
         </div>
+      <div class="letter reveal" data-from="up">
+        <span class="postmark mono" aria-hidden="true">GSP·INCH ✶ 2027 ✶ 留学 ✶</span>
+        <p class="mono letter__to"><%= t('letter_to') %></p>
         <form class="form" id="lead-form" action="/api/lead" method="post" novalidate data-msg-invalid="<%= t('js_invalid') %>" data-msg-ok="<%= t('js_ok') %>" data-msg-fail="<%= t('js_fail') %>">
           <% if (sent) { %><p class="form__ok" role="status"><%= t('f_sent_ok') %></p><% } %>
           <label for="f-name"><span><%= t('f_name') %></span><input id="f-name" name="name" required maxlength="100" autocomplete="name" placeholder="<%= t('f_name_ph') %>"></label>
@@ -356,6 +357,7 @@
           <p class="form__msg" role="status" aria-live="polite"></p>
         </form>
         <span class="seal seal--sent" aria-hidden="true">已发送<small><%= t('sent_stamp') %></small></span>
+      </div>
       </div>
     </div>
   </section>
