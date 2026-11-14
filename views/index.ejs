@@ -135,9 +135,6 @@
           <div class="pkg__in">
             <div class="pkg__scene"><img src="<%= x.photo || scenes[i % 3] %>" alt="" loading="lazy"></div>
             <div class="pkg__body">
-              <div class="pkg__top">
-                <span class="pkg__no">0<%= i + 1 %></span>
-              </div>
               <h3 class="pkg__title"><%= L(x, 'title') %></h3>
               <% if (L(x, 'subtitle')) { %><p class="pkg__sub"><%= L(x, 'subtitle') %></p><% } %>
               <p class="pkg__desc"><%= L(x, 'description') %></p>
