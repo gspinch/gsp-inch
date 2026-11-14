@@ -2,7 +2,7 @@
   <div class="container footer__bottom">
     <span>© <%= new Date().getFullYear() %> GSP·INCH</span>
     <div class="socials">
-      <% [['telegram','Telegram'],['whatsapp','WhatsApp'],['instagram','Instagram'],['tiktok','TikTok'],['youtube','YouTube']].forEach(([k, label]) => {
+      <% [['telegram','Telegram'],['whatsapp','WhatsApp'],['instagram','Instagram'],['tiktok','TikTok']].forEach(([k, label]) => {
            if (s[k] && s[k] !== 'https://t.me/') { %>
         <a href="<%= s[k] %>" target="_blank" rel="noopener" aria-label="<%= label %>" data-goal="social_<%= k %>"><%- icon(k) %></a>
       <% } }) %>
