@@ -630,3 +630,9 @@ button { font: inherit; color: inherit; }
   .contact__grid { grid-template-columns: 1fr; }
   .contact__intro { padding-top: 0; }
 }
+
+/* анкета: сверху продолжаем небо картинки ровным цветом — заголовок лежит на спокойном фоне */
+.scene .contact.band { background-color: #6fbaea; }
+.scene .contact.band::before { content: ''; position: absolute; inset: 0 0 auto; height: min(560px, 62%); z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, #6fbaea 0%, #6fbaea 55%, rgba(111,186,234,0) 100%); }
+.contact__intro .hand--lg { color: var(--ink); opacity: .85; }
