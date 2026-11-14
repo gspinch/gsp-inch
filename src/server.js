@@ -38,6 +38,14 @@ app.use(cookieSession({
 }));
 
 app.locals.SITE_URL = SITE_URL;
+// все HTML-страницы сайта (кроме админки) проходят через типограф
+const typograph = require('./typograph');
+app.use((req, res, next) => {
+  if (req.path.startsWith('/admin')) return next();
+  const render = res.render.bind(res);
+  res.render = (view, opts) => render(view, opts, (err, html) => (err ? next(err) : res.send(typograph(html))));
+  next();
+});
 app.locals.icon = require('./icons');
 // Иероглифы из шаблонов — подгружаем шрифт-кисть только для них (экономия трафика)
 app.locals.cnText = (() => {
@@ -103,7 +111,7 @@ app.post('/api/lead', async (req, res) => {
 
   const lead = {
     name, contact,
-    package: String(b.package || '').slice(0, 100),
+    package: String(b.package || '').replace(/\u00A0/g, ' ').slice(0, 100),
     message: String(b.message || '').slice(0, 2000),
     utm: [b.lang === 'en' ? 'lang=en' : '', String(b.utm || '')].filter(Boolean).join(' · ').slice(0, 500),
   };

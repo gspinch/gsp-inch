@@ -168,7 +168,8 @@
   document.querySelectorAll('[data-pick]').forEach((a) => {
     a.addEventListener('click', () => {
       const sel = document.querySelector('#lead-form select[name=package]');
-      if (sel) [...sel.options].forEach((o) => { if (o.text === a.dataset.pick) sel.value = o.value; });
+      const norm = (x) => x.replace(/\u00A0/g, ' ').trim();
+      if (sel) [...sel.options].forEach((o) => { if (norm(o.text) === norm(a.dataset.pick)) sel.value = o.value; });
     });
   });
 
