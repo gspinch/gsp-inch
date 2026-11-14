@@ -18,9 +18,9 @@
         <small class="a-muted">JPG, PNG, WEBP или HEIC до 10 МБ — фото автоматически сожмётся.</small>
       </div>
     <% } else if (f.type === 'textarea') { %>
-      <label class="a-field"><span><%= f.label %><%= f.required ? ' *' : '' %></span><textarea name="<%= f.name %>" rows="5"><%= v %></textarea></label>
+      <label class="a-field <%= f.en ? 'a-field--en' : '' %>"><span><%= f.label %><%= f.required ? ' *' : '' %></span><textarea name="<%= f.name %>" rows="5"><%= v %></textarea></label>
     <% } else { %>
-      <label class="a-field"><span><%= f.label %><%= f.required ? ' *' : '' %></span>
+      <label class="a-field <%= f.en ? 'a-field--en' : '' %>"><span><%= f.label %><%= f.required ? ' *' : '' %></span>
         <input type="<%= f.type === 'number' ? 'number' : 'text' %>" name="<%= f.name %>" value="<%= v %>">
         <% if (f.hint) { %><small class="a-muted"><%= f.hint %></small><% } %>
       </label>

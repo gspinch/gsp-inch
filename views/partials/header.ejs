@@ -1,18 +1,22 @@
 <header class="header" id="top">
   <div class="container header__inner">
-    <a href="/" class="logo" aria-label="GSP·INCH — на главную">
+    <a href="<%= base %>" class="logo" aria-label="<%= t('home_aria') %>">
       <span class="logo__mark">GSP<i>·</i>INCH</span>
-      <span class="logo__sub"><span class="cn">留学日记</span> дневник поступления</span>
+      <span class="logo__sub"><span class="cn">留学日记</span> <%= t('logo_sub') %></span>
     </a>
-    <nav class="nav" id="nav" aria-label="Основное меню">
-      <a href="/#about" class="navchip navchip--blue" data-spy="about">Обо мне</a>
-      <a href="/#services" class="navchip navchip--lime" data-spy="services">Услуги</a>
-      <a href="/#steps" class="navchip navchip--green" data-spy="steps">Этапы</a>
-      <a href="/#results" class="navchip navchip--red" data-spy="results">Результаты</a>
-      <a href="/#reviews" class="navchip navchip--blue" data-spy="reviews">Отзывы</a>
-      <a href="/#faq" class="navchip navchip--lime" data-spy="faq">FAQ</a>
-      <a href="/#contacts" class="btn btn--lime btn--sm nav__cta" data-goal="cta_header">Консультация <%- icon('arrow-up-right') %></a>
+    <nav class="nav" id="nav" aria-label="<%= t('menu_aria') %>">
+      <a href="<%= base %>#about" class="navchip navchip--blue" data-spy="about"><%= t('nav_about') %></a>
+      <a href="<%= base %>#services" class="navchip navchip--lime" data-spy="services"><%= t('nav_services') %></a>
+      <a href="<%= base %>#steps" class="navchip navchip--green" data-spy="steps"><%= t('nav_steps') %></a>
+      <a href="<%= base %>#results" class="navchip navchip--red" data-spy="results"><%= t('nav_results') %></a>
+      <a href="<%= base %>#reviews" class="navchip navchip--blue" data-spy="reviews"><%= t('nav_reviews') %></a>
+      <a href="<%= base %>#faq" class="navchip navchip--lime" data-spy="faq"><%= t('nav_faq') %></a>
+      <a href="<%= base %>#contacts" class="btn btn--lime btn--sm nav__cta" data-goal="cta_header"><%= t('nav_cta') %> <%- icon('arrow-up-right') %></a>
     </nav>
-    <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><%- icon('menu') %></button>
+    <div class="langs" role="group" aria-label="<%= t('lang_switch') %>">
+      <a href="/" hreflang="ru" lang="ru" <%- lang === 'ru' ? 'aria-current="true"' : '' %> data-goal="lang_ru">RU</a>
+      <a href="/en" hreflang="en" lang="en" <%- lang === 'en' ? 'aria-current="true"' : '' %> data-goal="lang_en">EN</a>
+    </div>
+    <button class="burger" id="burger" type="button" aria-label="<%= t('menu_open') %>" aria-expanded="false" aria-controls="nav"><%- icon('menu') %></button>
   </div>
 </header>

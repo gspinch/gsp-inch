@@ -62,3 +62,4 @@ fieldset.a-form { border: 1px solid var(--line); }
 .a-login__card { width: min(360px, 100%); padding: 28px; display: grid; gap: 16px; }
 .a-login label { display: grid; gap: 6px; font-size: 14px; }
 @media (max-width: 640px) { .a-top { padding: 10px 14px; } .a-main { padding: 20px 14px 60px; } .a-right { width: 100%; justify-content: space-between; } }
+.a-field--en { padding-left: 12px; border-left: 3px solid #bccbf7; }

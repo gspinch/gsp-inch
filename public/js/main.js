@@ -143,7 +143,7 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const msg = form.querySelector('.form__msg');
-    if (!form.checkValidity()) { msg.textContent = 'Укажите имя и контакт для связи — без них я не смогу ответить.'; form.reportValidity(); return; }
+    if (!form.checkValidity()) { msg.textContent = form.dataset.msgInvalid; form.reportValidity(); return; }
     form.classList.add('is-loading'); msg.textContent = '';
     try {
       const r = await fetch(form.action, {
@@ -153,11 +153,11 @@
       const data = await r.json();
       if (!data.ok) throw new Error(data.error);
       form.reset();
-      msg.textContent = 'Письмо отправлено! Я свяжусь с вами в ближайшее время.';
+      msg.textContent = form.dataset.msgOk;
       form.closest('.letter').classList.add('is-sent');
       goal('lead');
     } catch (err) {
-      msg.textContent = err.message || 'Не удалось отправить. Напишите, пожалуйста, в Telegram.';
+      msg.textContent = err.message || form.dataset.msgFail;
     } finally { form.classList.remove('is-loading'); }
   });
 })();

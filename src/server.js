@@ -48,17 +48,25 @@ app.locals.cnText = (() => {
 })();
 
 // ---------------- Публичная часть ----------------
-app.get('/', (req, res) => {
-  const s = getSettings();
-  res.render('index', {
-    s,
-    services: listPublished('services'),
-    results: listPublished('results'),
-    reviews: listPublished('reviews'),
-    faq: listPublished('faq'),
-    sent: req.query.sent === '1',
-  });
-});
+const i18n = require('./i18n');
+app.use((req, res, next) => { Object.assign(res.locals, i18n('ru')); next(); });
+
+function renderHome(lang) {
+  return (req, res) => {
+    Object.assign(res.locals, i18n(lang));
+    const s = getSettings();
+    res.render('index', {
+      s,
+      services: listPublished('services'),
+      results: listPublished('results'),
+      reviews: listPublished('reviews'),
+      faq: listPublished('faq'),
+      sent: req.query.sent === '1',
+    });
+  };
+}
+app.get('/', renderHome('ru'));
+app.get(['/en', '/en/'], renderHome('en'));
 
 app.get('/privacy', (req, res) => res.render('privacy', { s: getSettings() }));
 
@@ -71,6 +79,7 @@ app.get('/sitemap.xml', (req, res) => {
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE_URL}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>${SITE_URL}/en</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>${SITE_URL}/privacy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>`);
 });
@@ -96,11 +105,11 @@ app.post('/api/lead', async (req, res) => {
     name, contact,
     package: String(b.package || '').slice(0, 100),
     message: String(b.message || '').slice(0, 2000),
-    utm: String(b.utm || '').slice(0, 500),
+    utm: [b.lang === 'en' ? 'lang=en' : '', String(b.utm || '')].filter(Boolean).join(' · ').slice(0, 500),
   };
   db.prepare('INSERT INTO leads (name, contact, package, message, utm) VALUES (@name, @contact, @package, @message, @utm)').run(lead);
   notifyTelegram(lead).catch((e) => console.error('Telegram:', e.message));
-  return wantsJson ? res.json({ ok: true }) : res.redirect('/?sent=1#contacts');
+  return wantsJson ? res.json({ ok: true }) : res.redirect(`${b.lang === 'en' ? '/en' : '/'}?sent=1#contacts`);
 });
 
 async function notifyTelegram(lead) {

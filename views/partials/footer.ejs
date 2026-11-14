@@ -1,6 +1,6 @@
 <footer class="footer">
   <div class="container footer__top">
-    <p class="footer__cheer"><svg class="footer__sticker" aria-hidden="true"><use href="#s-jiayou"/></svg><span class="hand">«цзяю!» — так в Китае желают удачи</span></p>
+    <p class="footer__cheer"><svg class="footer__sticker" aria-hidden="true"><use href="#s-jiayou"/></svg><span class="hand"><%= t('cheer') %></span></p>
     <div class="socials">
       <% [['telegram','Telegram'],['instagram','Instagram'],['tiktok','TikTok'],['youtube','YouTube'],['whatsapp','WhatsApp']].forEach(([k, label]) => {
            if (s[k] && s[k] !== 'https://t.me/') { %>
@@ -10,17 +10,17 @@
     </div>
   </div>
   <div class="container footer__inner">
-    <a href="/" class="logo">
+    <a href="<%= base %>" class="logo">
       <span class="logo__mark">GSP<i>·</i>INCH</span>
-      <span class="logo__sub"><span class="cn">留学日记</span> дневник поступления</span>
+      <span class="logo__sub"><span class="cn">留学日记</span> <%= t('logo_sub') %></span>
     </a>
-    <nav class="footer__nav" aria-label="Меню в подвале">
-      <a href="/#about">Обо мне</a><a href="/#services">Услуги</a><a href="/#steps">Этапы</a>
-      <a href="/#results">Результаты</a><a href="/#reviews">Отзывы</a><a href="/#faq">FAQ</a><a href="/#contacts">Контакты</a>
+    <nav class="footer__nav" aria-label="<%= t('footer_menu') %>">
+      <a href="<%= base %>#about"><%= t('nav_about') %></a><a href="<%= base %>#services"><%= t('nav_services') %></a><a href="<%= base %>#steps"><%= t('nav_steps') %></a>
+      <a href="<%= base %>#results"><%= t('nav_results') %></a><a href="<%= base %>#reviews"><%= t('nav_reviews') %></a><a href="<%= base %>#faq"><%= t('nav_faq') %></a><a href="<%= base %>#contacts"><%= t('nav_contacts') %></a>
     </nav>
   </div>
   <div class="container footer__bottom">
     <span>© <%= new Date().getFullYear() %> GSP·INCH</span>
-    <a href="/privacy">Политика конфиденциальности</a>
+    <a href="/privacy"><%= t('privacy') %></a>
   </div>
 </footer>
