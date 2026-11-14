@@ -1,13 +1,6 @@
 <footer class="footer">
-  <div class="container footer__inner">
-    <a href="/" class="logo">
-      <span class="logo__mark">GSP<i>·</i>INCH</span>
-      <span class="logo__sub">Поступление в Китай</span>
-    </a>
-    <nav class="footer__nav" aria-label="Меню в подвале">
-      <a href="/#about">Обо мне</a><a href="/#services">Услуги</a><a href="/#steps">Этапы</a>
-      <a href="/#results">Результаты</a><a href="/#faq">FAQ</a><a href="/#contacts">Контакты</a>
-    </nav>
+  <div class="container footer__top">
+    <p class="footer__cheer"><span class="cn">加油！</span><span class="hand">«цзяю!» — так в Китае желают удачи</span></p>
     <div class="socials">
       <% [['telegram','Telegram'],['instagram','Instagram'],['tiktok','TikTok'],['youtube','YouTube'],['whatsapp','WhatsApp']].forEach(([k, label]) => {
            if (s[k] && s[k] !== 'https://t.me/') { %>
@@ -15,6 +8,16 @@
       <% } }) %>
       <% if (s.email) { %><a href="mailto:<%= s.email %>" aria-label="E-mail"><%- icon('mail') %></a><% } %>
     </div>
+  </div>
+  <div class="container footer__inner">
+    <a href="/" class="logo">
+      <span class="logo__mark">GSP<i>·</i>INCH</span>
+      <span class="logo__sub"><span class="cn">留学日记</span> дневник поступления</span>
+    </a>
+    <nav class="footer__nav" aria-label="Меню в подвале">
+      <a href="/#about">Обо мне</a><a href="/#services">Услуги</a><a href="/#steps">Маршрут</a>
+      <a href="/#results">Результаты</a><a href="/#reviews">Отзывы</a><a href="/#faq">FAQ</a><a href="/#contacts">Контакты</a>
+    </nav>
   </div>
   <div class="container footer__bottom">
     <span>© <%= new Date().getFullYear() %> GSP·INCH</span>

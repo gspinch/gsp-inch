@@ -39,6 +39,13 @@ app.use(cookieSession({
 
 app.locals.SITE_URL = SITE_URL;
 app.locals.icon = require('./icons');
+// Иероглифы из шаблонов — подгружаем шрифт-кисть только для них (экономия трафика)
+app.locals.cnText = (() => {
+  const dir = path.join(__dirname, '..', 'views');
+  const all = fs.readdirSync(dir, { recursive: true }).filter((f) => f.endsWith('.ejs'))
+    .map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('');
+  return [...new Set(all.match(/[\u4e00-\u9fff！]/g) || [])].join('');
+})();
 
 // ---------------- Публичная часть ----------------
 app.get('/', (req, res) => {

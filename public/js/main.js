@@ -1,4 +1,6 @@
 (() => {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // ---------- аналитика: цели ----------
   function goal(name, params) {
     try { if (window.ym && window.METRIKA_ID) window.ym(window.METRIKA_ID, 'reachGoal', name, params); } catch (e) {}
@@ -11,9 +13,8 @@
 
   // ---------- шапка и меню ----------
   const header = document.querySelector('.header');
-  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 10);
+  const onScroll = () => header && header.classList.toggle('is-scrolled', window.scrollY > 10);
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
-
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
   if (burger) {
@@ -26,77 +27,122 @@
     });
   }
 
-  // ---------- появление при скролле ----------
-  const io = 'IntersectionObserver' in window && new IntersectionObserver((entries) => {
-    entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
-  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach((el) => (io ? io.observe(el) : el.classList.add('is-visible')));
+  // ---------- печатная машинка ----------
+  const typed = document.querySelector('[data-typed]');
+  if (typed && !reduced) {
+    const text = typed.textContent;
+    typed.textContent = ''; typed.classList.add('is-typing');
+    let i = 0;
+    const tick = () => {
+      typed.textContent = text.slice(0, ++i);
+      if (i < text.length) setTimeout(tick, 38 + Math.random() * 60);
+      else setTimeout(() => typed.classList.remove('is-typing'), 1600);
+    };
+    setTimeout(tick, 300);
+  }
 
-  // ---------- карусели ----------
-  document.querySelectorAll('[data-carousel]').forEach((c) => {
-    const track = c.querySelector('.carousel__track');
-    const dots = c.querySelector('.dots');
-    const items = [...track.children];
-    const pages = () => Math.max(1, Math.round(track.scrollWidth / track.clientWidth));
-    const go = (i) => track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
-    const current = () => Math.round(track.scrollLeft / track.clientWidth);
+  // ---------- «выезжающие» блоки: прячем только то, что ниже первого экрана ----------
+  const reveals = [...document.querySelectorAll('.reveal')];
+  if ('IntersectionObserver' in window && !reduced) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) { en.target.classList.remove('is-pending'); io.unobserve(en.target); }
+      });
+    }, { threshold: .15, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach((el) => {
+      if (el.getBoundingClientRect().top > window.innerHeight * .9) { el.classList.add('is-pending'); io.observe(el); }
+    });
+  }
 
-    function render() {
-      const n = pages();
-      c.classList.toggle('is-static', n <= 1 || items.length <= 1);
-      dots.innerHTML = '';
-      for (let i = 0; i < n; i++) {
-        const b = document.createElement('button');
-        b.type = 'button'; b.setAttribute('aria-label', `Слайд ${i + 1}`);
-        b.addEventListener('click', () => go(i));
-        dots.appendChild(b);
-      }
-      mark();
+  // ---------- маршрут: поезд едет по линии вместе со скроллом ----------
+  const metro = document.querySelector('.metro');
+  if (metro) {
+    const stations = [...metro.querySelectorAll('.metro__stations li')];
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const r = metro.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * .85 - r.top) / (r.height + vh * .35)));
+      metro.style.setProperty('--p', p.toFixed(3));
+      stations.forEach((li, i) => li.classList.toggle('is-reached', p >= i / (stations.length - 1) - .02));
+    };
+    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  // ---------- вкладки (досье результатов и книжка отзывов) ----------
+  function setupTabs(root, tabSel, panelSel, onSwitch) {
+    const tabs = [...root.querySelectorAll(tabSel)];
+    const panels = [...root.querySelectorAll(panelSel)];
+    if (!tabs.length) return null;
+    let cur = 0;
+    function show(i, focus) {
+      i = (i + tabs.length) % tabs.length;
+      if (i === cur) return;
+      const prev = cur; cur = i;
+      tabs.forEach((t, k) => { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
+      if (focus) tabs[i].focus();
+      onSwitch(panels[prev], panels[i], i);
     }
-    function mark() {
-      const cur = current();
-      [...dots.children].forEach((d, i) => d.setAttribute('aria-current', i === cur));
-    }
-    track.addEventListener('scroll', () => requestAnimationFrame(mark), { passive: true });
-    c.querySelector('.carousel__arrow--prev')?.addEventListener('click', () => go(current() > 0 ? current() - 1 : pages() - 1));
-    c.querySelector('.carousel__arrow--next')?.addEventListener('click', () => go(current() < pages() - 1 ? current() + 1 : 0));
-    window.addEventListener('resize', render);
-    render();
-  });
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(i));
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show(cur + 1, true); }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); show(cur - 1, true); }
+      });
+    });
+    return { show: (d) => show(cur + d), get cur() { return cur; }, count: tabs.length };
+  }
 
-  // ---------- модалка услуги ----------
-  const modal = document.getElementById('service-modal');
-  if (!modal) return;
-  const services = JSON.parse(document.getElementById('services-data').textContent);
-  const esc = (s) => String(s).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-  const tick = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>';
-  document.querySelectorAll('[data-open-service]').forEach((btn) => {
+  const dossier = document.querySelector('[data-tabs]');
+  if (dossier) {
+    setupTabs(dossier, '[role=tab]', '[role=tabpanel]', (from, to) => {
+      from.hidden = true; to.hidden = false;
+      to.classList.remove('is-entering'); void to.offsetWidth; to.classList.add('is-entering');
+    });
+  }
+
+  const book = document.querySelector('[data-book]');
+  if (book) {
+    const content = book.querySelector('.book__content');
+    const cur = book.querySelector('[data-cur]');
+    let busy = false;
+    const ctl = setupTabs(book, '.bookmark', '.entry', (from, to, i) => {
+      cur.textContent = i + 1;
+      if (reduced || busy) { from.hidden = true; to.hidden = false; return; }
+      busy = true;
+      content.classList.add('turn-out');
+      setTimeout(() => {
+        from.hidden = true; to.hidden = false;
+        content.classList.remove('turn-out'); content.classList.add('turn-in');
+        setTimeout(() => { content.classList.remove('turn-in'); busy = false; }, 430);
+      }, 280);
+    });
+    if (!ctl || ctl.count < 2) book.classList.add('is-static');
+    book.querySelectorAll('[data-dir]').forEach((b) => b.addEventListener('click', () => ctl && ctl.show(+b.dataset.dir)));
+  }
+
+  // ---------- услуги: лист «что входит» выезжает из папки ----------
+  document.querySelectorAll('.file__toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const s = services[+btn.dataset.openService];
-      const fullName = s.title + (s.subtitle ? ` (${s.subtitle})` : '');
-      modal.querySelector('.modal__body').innerHTML = `
-        <h3>${esc(s.title)}</h3>
-        ${s.subtitle ? `<p class="modal__sub">${esc(s.subtitle)}</p>` : ''}
-        <p>${esc(s.description)}</p>
-        ${s.features.length ? `<ul>${s.features.map((f) => `<li>${tick}<span>${esc(f)}</span></li>`).join('')}</ul>` : ''}
-        <p class="modal__price">${esc(s.price)}</p>
-        <a href="#contacts" class="btn btn--dark" data-pick="${esc(fullName)}">Оставить заявку</a>`;
-      modal.showModal();
-      goal('service_open', { service: fullName });
+      const file = btn.closest('.file');
+      const open = file.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
+      if (open) goal('service_open', { service: file.querySelector('.file__title').textContent });
     });
   });
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.close();
-    const pick = e.target.closest('[data-pick]');
-    if (pick) {
+  document.querySelectorAll('[data-pick]').forEach((a) => {
+    a.addEventListener('click', () => {
       const sel = document.querySelector('#lead-form select[name=package]');
-      [...sel.options].forEach((o) => { if (o.text === pick.dataset.pick) sel.value = o.value; });
-      modal.close();
-    }
+      if (sel) [...sel.options].forEach((o) => { if (o.text === a.dataset.pick) sel.value = o.value; });
+    });
   });
 
-  // ---------- форма заявки ----------
+  // ---------- форма-письмо ----------
   const form = document.getElementById('lead-form');
+  if (!form) return;
   const utm = new URLSearchParams(location.search);
   const utmStr = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
     .filter((k) => utm.get(k)).map((k) => `${k}=${utm.get(k)}`).join('&');
@@ -108,7 +154,7 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const msg = form.querySelector('.form__msg');
-    if (!form.checkValidity()) { msg.textContent = 'Пожалуйста, укажите имя и контакт для связи.'; form.reportValidity(); return; }
+    if (!form.checkValidity()) { msg.textContent = 'Укажите имя и контакт для связи — без них я не смогу ответить.'; form.reportValidity(); return; }
     form.classList.add('is-loading'); msg.textContent = '';
     try {
       const r = await fetch(form.action, {
@@ -118,7 +164,8 @@
       const data = await r.json();
       if (!data.ok) throw new Error(data.error);
       form.reset();
-      msg.textContent = 'Спасибо! Заявка отправлена — я свяжусь с вами в ближайшее время.';
+      msg.textContent = 'Письмо отправлено! Я свяжусь с вами в ближайшее время.';
+      form.closest('.letter').classList.add('is-sent');
       goal('lead');
     } catch (err) {
       msg.textContent = err.message || 'Не удалось отправить. Напишите, пожалуйста, в Telegram.';

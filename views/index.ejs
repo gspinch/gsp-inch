@@ -28,252 +28,360 @@
 </script>
 </head>
 <body>
+<%- include('partials/stickers') %>
 <%- include('partials/header') %>
+<% const tones = ['blue', 'lime', 'paper']; const tg = s.telegram && s.telegram !== 'https://t.me/' ? s.telegram : ''; %>
 
 <main>
-  <!-- HERO -->
+  <!-- ═══ HERO: первая страница дневника ═══ -->
   <section class="hero">
     <div class="container hero__inner">
-      <div class="hero__text reveal">
-        <p class="eyebrow">Обучение в Китае · 2027</p>
-        <h1 class="hero__title">Поступление<br>в Китай</h1>
-        <p class="hero__script">с персональным<br><span>сопровождением</span></p>
-        <p class="hero__lead">От выбора университета и подготовки документов до получения приглашения и зачисления.</p>
+      <div class="hero__text">
+        <p class="mono eyebrow" data-typed>Дневник поступления · запись №2027</p>
+        <h1 class="hero__title"><span class="rise" style="--d:.1s">Поступление</span> <span class="rise" style="--d:.2s">в&nbsp;Китай</span></h1>
+        <p class="hero__hand hand"><mark class="marker">с личным ментором,</mark> который сам прошёл этот путь</p>
+        <p class="hero__lead">От выбора университета и подготовки документов до получения приглашения и зачисления — на грант или на платной основе.</p>
         <div class="hero__actions">
-          <a href="#contacts" class="btn btn--dark" data-goal="cta_hero">Записаться на консультацию <%- icon('arrow-up-right') %></a>
-          <a href="#services" class="btn btn--ghost">Узнать об услугах</a>
+          <a href="#contacts" class="btn btn--lime" data-goal="cta_hero">Записаться на консультацию <%- icon('arrow-up-right') %></a>
+          <a href="#about" class="btn btn--ghost">Листать дневник ↓</a>
         </div>
       </div>
-      <div class="hero__media">
-        <div class="hero__img"><img src="/img/hero.jpg" alt="Беседка у озера и чайник с чаем — Китай" width="800" height="1314" fetchpriority="high"></div>
-        <div class="hero__seal" aria-hidden="true"><span>留学中国</span><b>印</b></div>
+
+      <div class="collage" aria-label="Коллаж: Китай, фото Камилы, посадочный талон">
+        <span class="cn collage__cn" aria-hidden="true">留学</span>
+        <figure class="stamp drop" style="--r:-7deg;--d:.15s">
+          <img src="/img/hero.jpg" alt="Беседка у озера и чайник — Китай" width="800" height="1314" fetchpriority="high">
+          <figcaption class="mono">中国 CHINA <b>¥2027</b></figcaption>
+        </figure>
+        <figure class="polaroid collage__me drop" style="--r:6deg;--d:.4s">
+          <svg class="clip" aria-hidden="true"><use href="#clip"/></svg>
+          <img src="/img/kamila.jpg" alt="Камила — ментор по поступлению в Китай" width="690" height="1029">
+          <figcaption class="hand">это я — 9-й год в Китае</figcaption>
+        </figure>
+        <div class="ticket drop" style="--r:-4deg;--d:.65s">
+          <div class="ticket__main">
+            <small class="mono">登机牌 · посадочный талон</small>
+            <b>MOW <span>→</span> PEK</b>
+            <small class="mono">пассажир: вы · рейс 2027</small>
+          </div>
+          <div class="ticket__stub mono"><small>место</small><b>CSC</b></div>
+        </div>
+        <span class="seal drop" style="--r:14deg;--d:.95s" aria-hidden="true">录取</span>
+        <svg class="stk collage__star drop" style="--r:-10deg;--d:1.1s" aria-hidden="true"><use href="#star"/></svg>
+        <svg class="stk collage__lantern swing" aria-hidden="true"><use href="#lantern"/></svg>
+        <span class="tape tape--blue collage__tape" aria-hidden="true"></span>
       </div>
     </div>
+
     <div class="container">
-      <ul class="stats reveal">
-        <li><strong><%= s.stat1_value %></strong><span><%= s.stat1_label %></span></li>
-        <li><strong><%= s.stat2_value %></strong><span><%= s.stat2_label %></span></li>
-        <li><strong><%= s.stat3_value %></strong><span><%= s.stat3_label %></span></li>
+      <ul class="notes">
+        <li class="note note--blue reveal" style="--r:-2deg"><span class="tape tape--lime"></span><strong><%= s.stat1_value %></strong><span><%= s.stat1_label %></span></li>
+        <li class="note note--paper reveal" style="--r:1.5deg;--d:.1s"><span class="tape tape--blue"></span><strong><%= s.stat2_value %></strong><span><%= s.stat2_label %></span></li>
+        <li class="note note--lime reveal" style="--r:-1deg;--d:.2s"><span class="tape tape--paper"></span><strong><%= s.stat3_value %></strong><span><%= s.stat3_label %></span></li>
       </ul>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about section" id="about">
-    <div class="container about__inner">
-      <div class="about__photo reveal">
-        <img src="/img/kamila.jpg" alt="Камила — ментор по поступлению в Китай" width="690" height="1029" loading="lazy">
-        <svg class="leaf leaf--about" viewBox="0 0 120 160" aria-hidden="true"><use href="#bamboo"/></svg>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <% for (let k = 0; k < 2; k++) { %>
+      <span>留学中国 ✶ гранты CSC ✶ HSK ✶ стратегия 2+3 ✶ языковой год ✶ бакалавриат ✶ магистратура ✶ 加油 ✶ мотивационное письмо ✶ интервью ✶ зачисление ✶&nbsp;</span>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- ═══ ОБО МНЕ ═══ -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="cn sec-head__cn" aria-hidden="true">关于我</span>
+        <h2 class="h2">Обо мне</h2>
+        <span class="mono sec-head__meta">стр. 02 · guānyú wǒ</span>
       </div>
-      <div class="about__text reveal">
-        <p class="eyebrow">Обо мне</p>
-        <h2 class="h2">Привет, я Камила!</h2>
-        <p class="about__role">Ментор по поступлению в Китай</p>
-        <p>С 2017 года живу и учусь в Китае. Прошла путь от языковых курсов до магистратуры на полном гранте. Помогаю поступать в университеты Китая честно, осознанно и без лишних затрат.</p>
-        <ul class="facts">
-          <li><%- icon('cap') %><span><b>HSK 5</b><br><b>HSKK 70</b></span></li>
-          <li><%- icon('book') %><span><b>100+</b><br>поступивших студентов</span></li>
-          <li><%- icon('leaf') %><span>Личный опыт / академический и практический</span></li>
-        </ul>
-        <a href="<%= s.telegram && s.telegram !== 'https://t.me/' ? s.telegram : '#contacts' %>" class="btn btn--olive" data-goal="about_more" <%- s.telegram && s.telegram !== 'https://t.me/' ? 'target="_blank" rel="noopener"' : '' %>>Узнать мой путь <%- icon('arrow') %></a>
-      </div>
-      <aside class="why reveal">
-        <img src="/img/mist.jpg" alt="" class="why__bg" loading="lazy">
-        <div class="why__card">
-          <h3 class="why__title">Почему<br><span>со мной?</span></h3>
-          <ul>
-            <li><%- icon('tick') %>Честная и прозрачная работа</li>
-            <li><%- icon('tick') %>Индивидуальная стратегия</li>
-            <li><%- icon('tick') %>Опыт учёбы в Китае изнутри</li>
-            <li><%- icon('tick') %>Поддержка на всех этапах</li>
-            <li><%- icon('tick') %>Фокус на результат, а не на количество</li>
-          </ul>
+
+      <div class="folder reveal" data-from="up">
+        <div class="folder__tabs" aria-hidden="true">
+          <span class="ftab ftab--blue">обо мне</span>
+          <span class="ftab ftab--lime">камила</span>
+          <span class="ftab ftab--paper">2017 → 2026</span>
         </div>
-      </aside>
+        <div class="folder__body about__grid">
+          <div class="about__text">
+            <h3 class="h3">Привет, я Камила!</h3>
+            <p class="hand hand--lg">ментор по поступлению в Китай</p>
+            <p>С 2017 года живу и учусь в Китае. Прошла путь от языковых курсов до магистратуры на полном гранте. Помогаю поступать в университеты Китая честно, осознанно и без лишних затрат.</p>
+            <ul class="chips">
+              <li class="chip chip--blue">HSK 5 · HSKK 70</li>
+              <li class="chip chip--lime">100+ поступивших</li>
+              <li class="chip chip--paper">магистратура на полном гранте</li>
+            </ul>
+            <a href="<%= tg || '#contacts' %>" class="btn btn--ink" data-goal="about_more" <%- tg ? 'target="_blank" rel="noopener"' : '' %>>Узнать мой путь <%- icon('arrow') %></a>
+          </div>
+
+          <figure class="polaroid about__photo reveal" data-from="right" style="--r:4deg">
+            <span class="tape tape--lime"></span>
+            <img src="/img/mist.jpg" alt="Пагода в тумане" loading="lazy">
+            <figcaption class="hand">тот самый туман над пагодой</figcaption>
+          </figure>
+
+          <div class="checklist reveal" data-from="up">
+            <p class="checklist__title hand">почему со мной?</p>
+            <ul>
+              <% ['Честная и прозрачная работа','Индивидуальная стратегия','Опыт учёбы в Китае изнутри','Поддержка на всех этапах','Фокус на результат, а не на количество'].forEach((t, i) => { %>
+              <li style="--d:<%= i * 120 %>ms"><svg class="htick" aria-hidden="true"><use href="#htick"/></svg><%= t %></li>
+              <% }) %>
+            </ul>
+            <svg class="stk checklist__bao" aria-hidden="true"><use href="#bao"/></svg>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services section" id="services">
+  <!-- ═══ УСЛУГИ: папки с выезжающими листами ═══ -->
+  <section class="section services" id="services">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="sec-head reveal">
+        <span class="cn sec-head__cn" aria-hidden="true">服务</span>
         <h2 class="h2">Услуги</h2>
-        <p class="eyebrow">Подберём формат под вашу цель</p>
+        <span class="mono sec-head__meta">подберём формат под вашу цель</span>
       </div>
       <div class="services__grid">
-        <% services.forEach((x, i) => { %>
-        <article class="service reveal" style="--d:<%= i * 80 %>ms">
-          <div class="service__img"><% if (x.photo) { %><img src="<%= x.photo %>" alt="" loading="lazy"><% } %></div>
-          <div class="service__body">
-            <h3 class="service__title"><%= x.title %><% if (x.subtitle) { %> <span>(<%= x.subtitle %>)</span><% } %></h3>
-            <p><%= x.description %></p>
-            <div class="service__foot">
-              <span class="service__price"><%= x.price %></span>
-              <button class="round-btn" type="button" data-open-service="<%= i %>" aria-label="Подробнее: <%= x.title %>"><%- icon('arrow') %></button>
+        <% services.forEach((x, i) => { const tone = tones[i % 3]; const full = x.title + (x.subtitle ? ' (' + x.subtitle + ')' : ''); const feats = x.features.split('\n').map(f => f.trim()).filter(Boolean); %>
+        <article class="file file--<%= tone %> reveal" data-from="up" style="--d:<%= i * 90 %>ms">
+          <span class="file__tab mono">пакет 0<%= i + 1 %></span>
+          <% if (feats.length) { %>
+          <div class="file__sheet" id="sheet-<%= i %>">
+            <div class="file__sheet-in">
+              <p class="mono file__sheet-title">что входит:</p>
+              <ul><% feats.forEach(f => { %><li><svg class="htick" aria-hidden="true"><use href="#htick"/></svg><%= f %></li><% }) %></ul>
+              <a href="#contacts" class="btn btn--ink btn--sm" data-pick="<%= full %>">Выбрать этот пакет</a>
+            </div>
+          </div>
+          <% } %>
+          <div class="file__front">
+            <% if (x.photo) { %><div class="file__photo"><img src="<%= x.photo %>" alt="" loading="lazy"></div><% } %>
+            <h3 class="file__title"><%= x.title %></h3>
+            <% if (x.subtitle) { %><p class="hand file__sub"><%= x.subtitle %></p><% } %>
+            <p class="file__desc"><%= x.description %></p>
+            <div class="file__foot">
+              <span class="price mono"><%= x.price %></span>
+              <% if (feats.length) { %>
+              <button class="file__toggle mono" type="button" aria-expanded="false" aria-controls="sheet-<%= i %>" data-goal="service_open">что входит <%- icon('plus') %></button>
+              <% } %>
             </div>
           </div>
         </article>
         <% }) %>
-        <article class="service service--cta reveal">
-          <img src="/img/cta.jpg" alt="" loading="lazy">
-          <div>
-            <h3>Не знаете,<br>с чего начать?</h3>
-            <p>Запишитесь на консультацию — разберём ваш кейс и составим пошаговый план.</p>
-            <a href="#contacts" class="btn btn--light" data-goal="cta_services">Записаться <%- icon('arrow-up-right') %></a>
-          </div>
-        </article>
+        <aside class="sticky reveal" data-from="right" style="--r:2deg">
+          <span class="tape tape--blue"></span>
+          <p class="hand sticky__title">Не знаете, с чего начать?</p>
+          <p class="hand">запишитесь на консультацию — разберём ваш кейс и составим пошаговый план</p>
+          <svg class="harrow" aria-hidden="true"><use href="#harrow"/></svg>
+          <a href="#contacts" class="btn btn--ink btn--sm" data-goal="cta_services">Записаться <%- icon('arrow-up-right') %></a>
+        </aside>
       </div>
     </div>
   </section>
 
-  <!-- STEPS -->
-  <section class="steps section" id="steps">
+  <!-- ═══ МАРШРУТ: схема метро ═══ -->
+  <section class="section route" id="steps">
     <div class="container">
-      <div class="section-head reveal">
-        <h2 class="h2">Этапы работы</h2>
-        <p class="eyebrow">От первого запроса до зачисления</p>
+      <div class="sec-head reveal">
+        <span class="cn sec-head__cn" aria-hidden="true">路线</span>
+        <h2 class="h2">Маршрут поступления</h2>
+        <span class="mono sec-head__meta">линия «2+3» · 5 станций · от первого запроса до зачисления</span>
       </div>
-      <ol class="steps__list reveal">
-        <% [['search','Анализ кейса и целей',''],['layers','Подбор университетов','(стратегия 2+3)'],['doc','Подготовка документов','ML, CV, рекомендации'],['send','Подача заявок и сопровождение',''],['check','Зачисление и дальнейшая поддержка','']].forEach(([ic, t, sub], i) => { %>
-          <li>
-            <span class="steps__icon"><%- icon(ic) %></span>
-            <span class="steps__num">0<%= i + 1 %></span>
-            <span class="steps__title"><%= t %></span>
-            <% if (sub) { %><small><%= sub %></small><% } %>
+      <div class="metro reveal" data-from="up">
+        <div class="metro__line" aria-hidden="true">
+          <span class="metro__fill"></span>
+          <svg class="metro__train"><use href="#train"/></svg>
+        </div>
+        <ol class="metro__stations">
+          <% [['分析','Анализ кейса и целей',''],['选校','Подбор университетов','стратегия 2+3'],['文件','Подготовка документов','ML, CV, рекомендации'],['申请','Подача заявок и сопровождение',''],['录取','Зачисление и дальнейшая поддержка','']].forEach(([cn, t, sub], i) => { %>
+          <li style="--i:<%= i %>">
+            <span class="metro__dot" aria-hidden="true"></span>
+            <span class="mono metro__no">站 0<%= i + 1 %></span>
+            <span class="cn metro__cn" aria-hidden="true"><%= cn %></span>
+            <b><%= t %></b>
+            <% if (sub) { %><small class="mono"><%= sub %></small><% } %>
           </li>
-        <% }) %>
-      </ol>
+          <% }) %>
+        </ol>
+      </div>
     </div>
   </section>
 
-  <!-- RESULTS -->
-  <section class="results section" id="results">
+  <!-- ═══ РЕЗУЛЬТАТЫ: папка-досье с закладками ═══ -->
+  <section class="section results" id="results">
     <div class="container">
-      <div class="section-head section-head--row reveal">
+      <div class="sec-head reveal">
+        <span class="cn sec-head__cn" aria-hidden="true">成果</span>
         <h2 class="h2">Результаты студентов</h2>
+        <span class="mono sec-head__meta">досье · кто уже поступил</span>
       </div>
-      <div class="results__inner">
-        <div class="carousel reveal" data-carousel>
-          <div class="carousel__track">
-            <% results.forEach((r) => { %>
-            <article class="result">
-              <div class="result__img">
-                <% if (r.photo) { %><img src="<%= r.photo %>" alt="<%= r.name %>" loading="lazy"><% } %>
-                <% if (r.badge) { %><span class="badge"><%= r.badge %></span><% } %>
-              </div>
-              <div class="result__body">
-                <h3><%= r.name %></h3>
-                <p class="result__program"><%= r.program %><% if (r.university) { %><br><%= r.university %><% } %></p>
+      <div class="results__grid">
+        <div class="dossier reveal" data-from="left" data-tabs>
+          <div class="dossier__tabs" role="tablist" aria-label="Студенты">
+            <% results.forEach((r, i) => { %>
+            <button class="ftab ftab--<%= tones[i % 3] %>" role="tab" type="button" id="rtab-<%= i %>" aria-controls="rpanel-<%= i %>" aria-selected="<%= i === 0 %>" tabindex="<%= i === 0 ? 0 : -1 %>"><%= r.name %></button>
+            <% }) %>
+          </div>
+          <div class="dossier__body">
+            <% results.forEach((r, i) => { %>
+            <article class="case" role="tabpanel" id="rpanel-<%= i %>" aria-labelledby="rtab-<%= i %>" <%= i === 0 ? '' : 'hidden' %>>
+              <figure class="polaroid case__photo">
+                <svg class="clip" aria-hidden="true"><use href="#clip"/></svg>
+                <% if (r.photo) { %><img src="<%= r.photo %>" alt="<%= r.name %>" loading="lazy"><% } else { %><span class="polaroid__empty cn">录取</span><% } %>
+                <figcaption class="hand"><%= r.name %></figcaption>
+              </figure>
+              <div class="case__text">
+                <p class="mono case__no">досье № <%= String(i + 1).padStart(3, '0') %></p>
+                <h3 class="h3"><%= r.name %></h3>
+                <p class="case__program"><%= r.program %><% if (r.university) { %><br><%= r.university %><% } %></p>
                 <p><%= r.text %></p>
               </div>
+              <% if (r.badge) { %><span class="seal seal--stamp" aria-label="<%= r.badge %>">录取<small><%= r.badge %></small></span><% } %>
             </article>
             <% }) %>
           </div>
-          <div class="carousel__nav"><div class="dots"></div></div>
         </div>
-        <ul class="results__stats reveal">
-          <li><strong><%= s.res1_value %></strong><span><%= s.res1_label %></span></li>
-          <li><strong><%= s.res2_value %></strong><span><%= s.res2_label %></span></li>
-          <li><strong><%= s.res3_value %></strong><span><%= s.res3_label %></span></li>
-        </ul>
+        <div class="report reveal" data-from="right" style="--r:1.5deg">
+          <span class="tape tape--paper"></span>
+          <p class="mono report__head">отчёт · 报告 · 2026</p>
+          <dl>
+            <div><dt><%= s.res1_value %></dt><dd><%= s.res1_label %></dd></div>
+            <div><dt><%= s.res2_value %></dt><dd><%= s.res2_label %></dd></div>
+            <div><dt><%= s.res3_value %></dt><dd><%= s.res3_label %></dd></div>
+          </dl>
+          <svg class="stk report__star" aria-hidden="true"><use href="#star"/></svg>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="reviews section" id="reviews">
+  <!-- ═══ ОТЗЫВЫ: книжка с закладками ═══ -->
+  <section class="section reviews" id="reviews">
     <div class="container">
-      <div class="section-head reveal"><h2 class="h2">Отзывы</h2></div>
-      <div class="carousel carousel--reviews reveal" data-carousel>
-        <button class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Назад"><%- icon('arrow-left') %></button>
-        <div class="carousel__track">
-          <% reviews.forEach((r) => { %>
-          <article class="review">
-            <header>
-              <% if (r.photo) { %><img src="<%= r.photo %>" alt="" class="avatar" loading="lazy"><% } else { %><span class="avatar avatar--letter"><%= r.name.charAt(0) %></span><% } %>
-              <div><b><%= r.name %><% if (r.location) { %>, <%= r.location %><% } %></b><% if (r.program) { %><small><%= r.program %></small><% } %></div>
-              <span class="quote" aria-hidden="true">“</span>
-            </header>
-            <p><%= r.text %></p>
-          </article>
+      <div class="sec-head reveal">
+        <span class="cn sec-head__cn" aria-hidden="true">日记</span>
+        <h2 class="h2">Отзывы</h2>
+        <span class="mono sec-head__meta">дневник студентов · rìjì</span>
+      </div>
+      <div class="book reveal" data-from="up" data-book>
+        <div class="book__page book__page--left">
+          <span class="cn book__cn" aria-hidden="true">日记</span>
+          <p class="mono">дневник отзывов</p>
+          <p class="hand book__hint">истории студентов, которые уже учатся в Китае. тяните за закладки →</p>
+          <svg class="stk book__panda" aria-hidden="true"><use href="#panda"/></svg>
+        </div>
+        <div class="book__spine" aria-hidden="true"></div>
+        <div class="book__page book__page--right">
+          <div class="book__content">
+            <% reviews.forEach((r, i) => { %>
+            <article class="entry" role="tabpanel" id="entry-<%= i %>" aria-labelledby="bm-<%= i %>" <%= i === 0 ? '' : 'hidden' %>>
+              <p class="mono entry__no">запись № <%= String(i + 1).padStart(2, '0') %></p>
+              <header class="entry__head">
+                <% if (r.photo) { %><img src="<%= r.photo %>" alt="" class="entry__ava" loading="lazy"><% } else { %><span class="entry__ava entry__ava--letter"><%= r.name.charAt(0) %></span><% } %>
+                <div>
+                  <h3 class="entry__name"><%= r.name %><% if (r.location) { %>, <%= r.location %><% } %></h3>
+                  <% if (r.program) { %><p class="mono entry__prog"><%= r.program %></p><% } %>
+                </div>
+              </header>
+              <blockquote class="hand entry__text"><%= r.text %></blockquote>
+            </article>
+            <% }) %>
+          </div>
+
+          <div class="book__pager mono">
+            <button type="button" data-dir="-1" aria-label="Предыдущий отзыв">←</button>
+            <span><b data-cur>1</b> / <%= reviews.length %></span>
+            <button type="button" data-dir="1" aria-label="Следующий отзыв">→</button>
+          </div>
+        </div>
+          <div class="book__tabs" role="tablist" aria-label="Отзывы">
+          <% reviews.forEach((r, i) => { %>
+          <button class="bookmark bookmark--<%= ['lime','blue','red','green'][i % 4] %>" role="tab" type="button" id="bm-<%= i %>" aria-controls="entry-<%= i %>" aria-selected="<%= i === 0 %>" tabindex="<%= i === 0 ? 0 : -1 %>"><%= r.name %></button>
           <% }) %>
         </div>
-        <button class="carousel__arrow carousel__arrow--next" type="button" aria-label="Вперёд"><%- icon('arrow') %></button>
-        <div class="carousel__nav"><div class="dots"></div></div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="faq section" id="faq">
-    <div class="container faq__inner">
-      <div class="reveal">
-        <h2 class="h2">Частые вопросы</h2>
+  <!-- ═══ FAQ ═══ -->
+  <section class="section faq" id="faq">
+    <div class="container faq__grid">
+      <div>
+        <div class="sec-head reveal">
+          <span class="cn sec-head__cn" aria-hidden="true">问答</span>
+          <h2 class="h2">Частые вопросы</h2>
+        </div>
         <div class="faq__list">
-          <% faq.forEach((q) => { %>
-          <details class="faq__item">
-            <summary><%= q.question %><%- icon('plus') %></summary>
-            <p><%= q.answer %></p>
+          <% faq.forEach((q, i) => { %>
+          <details class="qa reveal" data-from="left" style="--d:<%= i * 60 %>ms">
+            <summary><span class="mono qa__n">Q<%= i + 1 %>.</span><span class="qa__q"><%= q.question %></span><%- icon('plus') %></summary>
+            <div class="qa__a"><p><%= q.answer %></p></div>
           </details>
           <% }) %>
         </div>
       </div>
-      <div class="faq__img reveal"><img src="/img/panda.jpg" alt="Панда отдыхает на камне среди бамбука" loading="lazy"></div>
+      <div class="faq__side">
+        <figure class="polaroid faq__panda reveal" data-from="right" style="--r:-4deg">
+          <span class="tape tape--blue"></span>
+          <img src="/img/panda.jpg" alt="Панда отдыхает на камне среди бамбука" loading="lazy">
+          <figcaption class="hand">сосед по кампусу (почти)</figcaption>
+        </figure>
+        <div class="fortune reveal" data-from="up" style="--r:3deg">
+          <span class="cn">你能行</span>
+          <span class="mono">«у тебя получится» — записка из печенья с предсказанием</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact section" id="contacts">
+  <!-- ═══ ЗАЯВКА: письмо ═══ -->
+  <section class="contact" id="contacts">
+    <svg class="cloud cloud--1" aria-hidden="true"><use href="#cloud"/></svg>
+    <svg class="cloud cloud--2" aria-hidden="true"><use href="#cloud"/></svg>
     <div class="container">
-      <div class="contact__card reveal">
-        <img src="/img/cta.jpg" alt="" class="contact__bg" loading="lazy">
-        <div class="contact__text">
-          <p class="eyebrow eyebrow--light">Готовы начать?</p>
+      <div class="letter reveal" data-from="up">
+        <figure class="stamp letter__stamp" aria-hidden="true">
+          <img src="/img/cta.jpg" alt="" loading="lazy">
+          <figcaption class="mono">中国 <b>¥8</b></figcaption>
+        </figure>
+        <span class="postmark mono" aria-hidden="true">GSP·INCH ✶ 2027 ✶ 留学 ✶</span>
+        <div class="letter__head">
+          <p class="mono letter__to">кому: Камиле · куда: Китай · тема: поступление</p>
           <h2 class="h2">Запишитесь на консультацию</h2>
-          <p>Разберём ваш кейс, оценим шансы и составим пошаговый план поступления в Китай.</p>
-          <% if (s.telegram && s.telegram !== 'https://t.me/') { %>
-            <a href="<%= s.telegram %>" class="contact__tg" target="_blank" rel="noopener" data-goal="telegram_click"><%- icon('telegram') %> Или напишите в Telegram</a>
+          <p class="hand hand--lg">разберём ваш кейс, оценим шансы и составим пошаговый план</p>
+          <% if (tg) { %>
+            <a href="<%= tg %>" class="letter__tg mono" target="_blank" rel="noopener" data-goal="telegram_click"><%- icon('telegram') %> или напишите в Telegram</a>
           <% } %>
         </div>
         <form class="form" id="lead-form" action="/api/lead" method="post" novalidate>
-          <% if (sent) { %><p class="form__ok" role="status">Спасибо! Заявка отправлена — я свяжусь с вами в ближайшее время.</p><% } %>
-          <label>Ваше имя<input name="name" required maxlength="100" autocomplete="name"></label>
-          <label>Telegram / WhatsApp / телефон<input name="contact" required maxlength="150" placeholder="@username или +7…"></label>
-          <label>Формат
-            <select name="package">
+          <% if (sent) { %><p class="form__ok mono" role="status">Спасибо! Заявка отправлена — я свяжусь с вами в ближайшее время.</p><% } %>
+          <label for="f-name"><span class="mono">имя</span><input id="f-name" name="name" required maxlength="100" autocomplete="name" placeholder="Как к вам обращаться"></label>
+          <label for="f-contact"><span class="mono">telegram / whatsapp / телефон</span><input id="f-contact" name="contact" required maxlength="150" placeholder="@username или +7…"></label>
+          <label for="f-package"><span class="mono">формат</span>
+            <select id="f-package" name="package">
               <option value="">Пока не знаю — нужна консультация</option>
               <% services.forEach((x) => { %><option><%= x.title %><%= x.subtitle ? ' (' + x.subtitle + ')' : '' %></option><% }) %>
             </select>
           </label>
-          <label><span>Комментарий <span class="muted">(необязательно)</span></span><textarea name="message" rows="2" maxlength="2000" placeholder="Уровень образования, желаемая программа…"></textarea></label>
+          <label for="f-msg"><span class="mono">пара слов о себе <i>(необязательно)</i></span><textarea id="f-msg" name="message" rows="3" maxlength="2000" placeholder="Уровень образования, желаемая программа…"></textarea></label>
           <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="utm">
-          <label class="check"><input type="checkbox" required checked> <span>Согласна(ен) на обработку персональных данных согласно <a href="/privacy" target="_blank">политике</a></span></label>
-          <button class="btn btn--light" type="submit">Записаться <%- icon('arrow') %></button>
-          <p class="form__msg" role="status" aria-live="polite"></p>
+          <label class="check" for="f-agree"><input id="f-agree" type="checkbox" required checked> <span>Согласна(ен) на обработку персональных данных согласно <a href="/privacy" target="_blank">политике</a></span></label>
+          <button class="btn btn--lime" type="submit">Отправить письмо <%- icon('send') %></button>
+          <p class="form__msg mono" role="status" aria-live="polite"></p>
         </form>
+        <span class="seal seal--sent" aria-hidden="true">已发送<small>отправлено</small></span>
       </div>
     </div>
   </section>
 </main>
 
 <%- include('partials/footer') %>
-
-<!-- Модалка с деталями услуги -->
-<dialog class="modal" id="service-modal">
-  <form method="dialog"><button class="modal__close" aria-label="Закрыть"><%- icon('close') %></button></form>
-  <div class="modal__body"></div>
-</dialog>
-<script type="application/json" id="services-data"><%- JSON.stringify(services.map(x => ({ title: x.title, subtitle: x.subtitle, description: x.description, price: x.price, features: x.features.split('\n').map(f => f.trim()).filter(Boolean) }))).replace(/</g, '\\u003c') %></script>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="bamboo" viewBox="0 0 120 160">
-    <g fill="currentColor"><path d="M60 0c-1 40-4 90-10 160h3C58 90 61 40 62 0z" opacity=".5"/>
-    <path d="M58 30C40 25 20 30 5 45c20-5 38-6 53-10z"/><path d="M60 50c18-8 38-8 58 2-20 0-40 2-58 2z"/>
-    <path d="M57 80C40 78 22 88 10 104c16-8 32-14 47-20z"/><path d="M58 100c16-4 34 2 48 16-16-6-32-10-48-12z"/>
-    <path d="M60 15c10-10 25-14 40-12-15 4-28 9-40 15z"/></g>
-  </symbol>
-</svg>
-<script src="/js/main.js?v=1" defer></script>
+<script src="/js/main.js?v=2" defer></script>
 </body>
 </html>
