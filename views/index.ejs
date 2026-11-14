@@ -259,12 +259,6 @@
             </article>
             <% }) %>
           </div>
-
-          <div class="book__pager mono">
-            <button type="button" data-dir="-1" aria-label="<%= t('prev_review') %>">←</button>
-            <span><b data-cur>1</b> / <%= reviews.length %></span>
-            <button type="button" data-dir="1" aria-label="<%= t('next_review') %>">→</button>
-          </div>
         </div>
           <div class="book__tabs" role="tablist" aria-label="<%= t('reviews_tabs_aria') %>">
           <% reviews.forEach((r, i) => { %>

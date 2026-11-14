@@ -110,7 +110,7 @@
   const book = document.querySelector('[data-book]');
   if (book) {
     const page = book.querySelector('.book__page--right');
-    const cur = book.querySelector('[data-cur]');
+    const cur = book.querySelector('[data-cur]') || { textContent: '' };
     const vertical = window.matchMedia('(max-width: 960px)');
     let busy = false;
     let last = 0;
@@ -129,7 +129,7 @@
       if (!forward) {
         const entries = front.querySelectorAll('.entry');
         entries.forEach((el, k) => { el.hidden = k !== i; });
-        front.querySelector('[data-cur]').textContent = i + 1;
+        const fc = front.querySelector('[data-cur]'); if (fc) fc.textContent = i + 1;
       }
       const back = document.createElement('div');
       back.className = 'flip-sheet__back';
