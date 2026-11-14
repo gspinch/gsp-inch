@@ -630,12 +630,3 @@ button { font: inherit; color: inherit; }
   .contact__grid { grid-template-columns: 1fr; }
   .contact__intro { padding-top: 0; }
 }
-
-/* затемнение картинки под текстом анкеты: плавно от левого верхнего угла, без тени на буквах */
-.scene .contact.band::before { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background: linear-gradient(100deg, rgba(22,40,30,.78) 0%, rgba(22,40,30,.55) 38%, rgba(22,40,30,0) 62%),
-              linear-gradient(180deg, rgba(22,40,30,.35) 0%, rgba(22,40,30,0) 45%); }
-.contact__intro .hand--lg { font-family: var(--grotesk); font-weight: 500; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.45; max-width: 420px; opacity: .95; }
-@media (max-width: 960px) {
-  .scene .contact.band::before { background: linear-gradient(180deg, rgba(22,40,30,.8) 0%, rgba(22,40,30,.55) 22%, rgba(22,40,30,0) 40%); }
-}
