@@ -51,7 +51,7 @@ app.locals.icon = require('./icons');
 app.locals.cnText = (() => {
   const dir = path.join(__dirname, '..', 'views');
   const all = fs.readdirSync(dir, { recursive: true }).filter((f) => f.endsWith('.ejs'))
-    .map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('');
+    .map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('') + fs.readFileSync(path.join(__dirname, 'i18n.js'), 'utf8');
   return [...new Set(all.match(/[\u4e00-\u9fff！]/g) || [])].join('');
 })();
 

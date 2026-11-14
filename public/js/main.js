@@ -164,6 +164,29 @@
     book.querySelectorAll('[data-dir]').forEach((b) => b.addEventListener('click', () => { dirHint = +b.dataset.dir; ctl && ctl.show(dirHint); dirHint = 0; }));
   }
 
+  // ---------- печенье с предсказанием ----------
+  const fortune = document.querySelector('[data-fortune]');
+  if (fortune) {
+    const list = JSON.parse(fortune.dataset.list || '[]');
+    const cn = fortune.querySelector('.fortune__cn');
+    const text = fortune.querySelector('.fortune__text');
+    let last = -1;
+    const pick = () => { let k; do { k = Math.floor(Math.random() * list.length); } while (list.length > 1 && k === last); last = k; return list[k]; };
+    fortune.querySelector('.fortune__cookie').addEventListener('click', () => {
+      if (fortune.classList.contains('is-open')) {
+        // закрываем печенье и разламываем новое
+        fortune.classList.remove('is-open');
+        setTimeout(open, 380);
+      } else open();
+    });
+    function open() {
+      const [c, tx] = pick();
+      cn.textContent = c; text.textContent = tx;
+      fortune.classList.add('is-shake');
+      setTimeout(() => { fortune.classList.remove('is-shake'); fortune.classList.add('is-open'); }, reduced ? 0 : 340);
+    }
+  }
+
   // ---------- услуги: «Выбрать» подставляет пакет в форму ----------
   document.querySelectorAll('[data-pick]').forEach((a) => {
     a.addEventListener('click', () => {

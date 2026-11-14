@@ -293,9 +293,24 @@
           <figcaption class="hand"><%= t('panda_caption') %></figcaption>
         </figure>
         <svg class="stk faq__knot" aria-hidden="true"><use href="#s-knot"/></svg>
-        <div class="fortune reveal" data-from="up" style="--r:3deg">
-          <span class="cn">你能行</span>
-          <span class="mono"><%= t('fortune') %></span>
+        <div class="fortune reveal" data-from="up" data-fortune data-list="<%= JSON.stringify(t('fortunes')) %>">
+          <button class="fortune__cookie" type="button" aria-label="<%= t('fortune_aria') %>" data-goal="fortune_cookie">
+            <svg viewBox="0 0 200 120" aria-hidden="true">
+              <g class="fortune__half fortune__half--l">
+                <path d="M100 30C66 18 22 34 14 74c-3 16 12 26 30 18 20-9 34-14 56-12Z" fill="#f2b84b" stroke="#d99a2b" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M34 60c10-14 30-22 52-22" fill="none" stroke="#ffe0a0" stroke-width="6" stroke-linecap="round"/>
+              </g>
+              <g class="fortune__half fortune__half--r">
+                <path d="M100 30c34-12 78 4 86 44 3 16-12 26-30 18-20-9-34-14-56-12Z" fill="#f2b84b" stroke="#d99a2b" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M100 80c14 2 26 6 40 12" fill="none" stroke="#d99a2b" stroke-width="3" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </button>
+          <div class="fortune__slip" aria-live="polite">
+            <span class="cn fortune__cn"></span>
+            <span class="mono fortune__text"></span>
+          </div>
+          <p class="hand fortune__hint"><%= t('fortune_hint') %></p>
         </div>
       </div>
     </div>

@@ -45,7 +45,10 @@ const dict = {
     entry_no: 'запись №', prev_review: 'Предыдущий отзыв', next_review: 'Следующий отзыв', reviews_tabs_aria: 'Отзывы',
 
     faq_h: 'Частые вопросы', panda_alt: 'Панда отдыхает на камне среди бамбука', panda_caption: 'сосед по кампусу (почти)',
-    fortune: '«у тебя получится» — записка из печенья с предсказанием',
+    fortune_hint: 'нажми на печенье — там предсказание', fortune_aria: 'Разломить печенье с предсказанием',
+    fortunes: [['你能行', '«У тебя получится»'], ['梦想成真', '«Мечта сбудется — уже в этом году»'], ['加油', '«Вперёд! Грант ближе, чем кажется»'],
+      ['一路顺风', '«Попутного ветра — и в дороге, и в учёбе»'], ['心想事成', '«Всё задуманное сбудется»'], ['前途无量', '«Впереди огромные возможности»'],
+      ['好运来', '«Удача уже в пути»'], ['学无止境', '«Учиться никогда не поздно»']],
 
     letter_to: 'кому: Камиле · куда: Китай · тема: поступление',
     contact_h: 'Запишитесь на консультацию', contact_sub: 'разберём ваш кейс, оценим шансы и составим пошаговый план',
@@ -109,7 +112,10 @@ const dict = {
     entry_no: 'entry no.', prev_review: 'Previous review', next_review: 'Next review', reviews_tabs_aria: 'Reviews',
 
     faq_h: 'FAQ', panda_alt: 'A panda resting on a rock among bamboo', panda_caption: 'campus neighbour (almost)',
-    fortune: '“you can do it” — a note from a fortune cookie',
+    fortune_hint: 'tap the cookie — there’s a fortune inside', fortune_aria: 'Crack open the fortune cookie',
+    fortunes: [['你能行', '“You can do it”'], ['梦想成真', '“Your dream comes true — this year”'], ['加油', '“Keep going! The scholarship is closer than it seems”'],
+      ['一路顺风', '“Fair winds — on the road and in your studies”'], ['心想事成', '“Everything you wish for will come true”'], ['前途无量', '“Great opportunities lie ahead”'],
+      ['好运来', '“Good luck is on its way”'], ['学无止境', '“It’s never too late to learn”']],
 
     letter_to: 'to: Kamila · where: China · subject: admission',
     contact_h: 'Book a consultation', contact_sub: 'we’ll go through your case, assess your chances and build a step-by-step plan',
