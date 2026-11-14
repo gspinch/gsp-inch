@@ -661,3 +661,11 @@ button { font: inherit; color: inherit; }
   .book { margin-right: 190px; }
   .faq__grid { gap: 80px; }
 }
+
+/* «Обо мне» на всю ширину контейнера */
+@media (min-width: 961px) {
+  .about__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(48px, 6vw, 110px); }
+  .about__photo { max-width: 540px; justify-self: start; }
+  .about__story { max-width: 760px; }
+  .checklist { max-width: 760px; }
+}
