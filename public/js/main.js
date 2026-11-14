@@ -1,6 +1,25 @@
 (() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ---------- перфорация марок: зубцы ровно по краю при любом размере ----------
+  function perforate(el) {
+    const w = el.offsetWidth, h = el.offsetHeight;
+    if (!w || !h) return;
+    const r = 6, step = 16;
+    const nx = Math.max(1, Math.round(w / step)), ny = Math.max(1, Math.round(h / step));
+    let c = '';
+    for (let i = 0; i <= nx; i++) { const x = (i * w / nx).toFixed(1); c += `<circle cx='${x}' cy='0' r='${r}'/><circle cx='${x}' cy='${h}' r='${r}'/>`; }
+    for (let j = 1; j < ny; j++) { const y = (j * h / ny).toFixed(1); c += `<circle cx='0' cy='${y}' r='${r}'/><circle cx='${w}' cy='${y}' r='${r}'/>`; }
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'><mask id='m'><rect width='${w}' height='${h}' fill='white'/><g fill='black'>${c}</g></mask><rect width='${w}' height='${h}' mask='url(%23m)'/></svg>`;
+    const url = `url("data:image/svg+xml,${svg.replace(/</g, '%3C').replace(/>/g, '%3E')}")`;
+    el.style.webkitMaskImage = url; el.style.maskImage = url;
+  }
+  const stamps = document.querySelectorAll('.stamp, .pkg__in');
+  if ('ResizeObserver' in window) {
+    const ro = new ResizeObserver((entries) => entries.forEach((e) => perforate(e.target)));
+    stamps.forEach((el) => ro.observe(el));
+  } else stamps.forEach(perforate);
+
   // ---------- аналитика: цели ----------
   function goal(name, params) {
     try { if (window.ym && window.METRIKA_ID) window.ym(window.METRIKA_ID, 'reachGoal', name, params); } catch (e) {}
