@@ -121,7 +121,7 @@ button { font: inherit; color: inherit; }
 .header__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
 .nav { margin-left: auto; }
 .logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1; }
-.logo__mark { font: 900 22px/1 var(--grotesk); letter-spacing: -.03em; }
+.logo__mark { font: 900 28px/1 var(--grotesk); letter-spacing: -.03em; }
 .logo__mark i { font-style: normal; color: var(--red); }
 .logo__sub { font: 11px/1 var(--mono); color: var(--ink-2); margin-top: 6px; display: flex; gap: 6px; align-items: center; }
 .logo__sub .cn { font-size: 14px; color: var(--green); }

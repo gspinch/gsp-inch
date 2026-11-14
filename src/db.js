@@ -117,14 +117,14 @@ const settingsSchema = [
   { group: 'Цифры в шапке', items: [
     ['stat1_value', '9 лет'], ['stat1_label', 'жизни и обучения в Китае'],
     ['stat2_value', '100+'], ['stat2_label', 'студентов поступили с моей помощью'],
-    ['stat3_value', '5/5'], ['stat3_label', 'грантов в 2023 году (мой личный результат)'],
-    ['stat1_value_en', '9 years'], ['stat1_label_en', 'living and studying in China'], ['stat2_label_en', 'students admitted with my help'], ['stat3_label_en', 'scholarship offers in 2023 (my own result)'],
+    ['stat3_value', '5/5'], ['stat3_label', 'грантов в 2023 году'],
+    ['stat1_value_en', '9 years'], ['stat1_label_en', 'living and studying in China'], ['stat2_label_en', 'students admitted with my help'], ['stat3_label_en', 'scholarship offers in 2023'],
   ] },
   { group: 'Цифры в блоке «Результаты»', items: [
     ['res1_value', '100+'], ['res1_label', 'поступивших студентов'],
     ['res2_value', '90%'], ['res2_label', 'на гранты (полные и частичные)'],
-    ['res3_value', '5/5'], ['res3_label', 'офферов на грант (мой личный результат)'],
-    ['res1_label_en', 'admitted students'], ['res2_label_en', 'on scholarships (full and partial)'], ['res3_label_en', 'scholarship offers (my own result)'],
+    ['res3_value', '5/5'], ['res3_label', 'офферов на грант'],
+    ['res1_label_en', 'admitted students'], ['res2_label_en', 'on scholarships (full and partial)'], ['res3_label_en', 'scholarship offers'],
   ] },
   { group: 'Контакты', items: [
     ['telegram', 'https://t.me/'], ['whatsapp', ''], ['instagram', ''], ['youtube', ''], ['tiktok', ''], ['email', ''],
