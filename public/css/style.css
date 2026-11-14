@@ -113,7 +113,7 @@ button { font: inherit; color: inherit; }
 .seal small { font: 700 9.5px/1.1 var(--mono); text-transform: uppercase; letter-spacing: .06em; margin-top: -10px; max-width: 70px; }
 .stk { position: absolute; pointer-events: none; overflow: visible; }
 @keyframes wobble { 0%,100% { rotate: var(--r, 0deg); } 50% { rotate: calc(var(--r, 0deg) + 6deg); } }
-.collage__cat:not(.drop), .about:hover .about__flower, .faq__side:hover .faq__knot { animation: wobble 2.4s ease-in-out infinite; }
+.collage__cat:not(.drop), .about:hover .about__flower { animation: wobble 2.4s ease-in-out infinite; }
 
 /* ---------- шапка ---------- */
 .header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(242,237,226,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1.5px dashed transparent; transition: border-color .3s; }
@@ -377,11 +377,11 @@ button { font: inherit; color: inherit; }
 .qa__a p { margin: 0; font: 14.5px/1.65 var(--mono); color: var(--ink-2); }
 .qa[open] .qa__a { animation: unfold .45s var(--ease); }
 @keyframes unfold { from { opacity: 0; transform: translateY(-10px); } }
-.faq__side { position: relative; display: grid; gap: 30px; justify-items: center; padding-top: 30px; }
+.faq__side { position: relative; display: grid; gap: 0; justify-items: center; padding-top: 50px; width: min(340px, 100%); justify-self: center; }
 .faq__panda { width: min(340px, 100%); }
 .faq__panda img { aspect-ratio: 3 / 4; }
-.faq__knot { position: absolute; width: 64px; height: 104px; left: 2%; top: 46%; rotate: -8deg; z-index: 2; }
-.fortune { position: relative; display: grid; justify-items: center; gap: 4px; width: min(380px, 100%); --spread: clamp(56px, 17vw, 86px); }
+.faq__knot { position: absolute; width: 92px; height: 150px; left: -34px; top: -46px; rotate: -10deg; z-index: 4; transform-origin: 50% 0; animation: swing 4s ease-in-out infinite alternate; }
+.fortune { position: relative; z-index: 3; display: grid; justify-items: center; gap: 4px; width: min(300px, 100%); justify-self: end; margin: -96px -40px 0 0; --spread: clamp(56px, 17vw, 86px); }
 .fortune__stage { position: relative; width: 100%; height: 150px; background: none; border: 0; padding: 0; cursor: pointer; }
 .fortune__stage:focus-visible { outline: 2px dashed var(--ink-blue); outline-offset: 6px; border-radius: 12px; }
 .fortune__half { position: absolute; top: 4px; height: 122px; width: auto; aspect-ratio: 120 / 140; z-index: 2;
@@ -523,7 +523,7 @@ button { font: inherit; color: inherit; }
   .bookmark:hover { transform: none; padding-bottom: 12px; }
   .bookmark[aria-selected="true"] { transform: none; padding: 12px 16px 16px; }
   .faq__grid { grid-template-columns: 1fr; }
-  .faq__side { grid-template-columns: 1fr 1fr; align-items: center; padding-top: 0; }
+  .faq__side { padding-top: 40px; }
   .letter { grid-template-columns: 1fr; }
   .form { margin-top: 0; }
 }
@@ -559,7 +559,8 @@ button { font: inherit; color: inherit; }
   .case .seal--stamp { top: auto; bottom: -20px; right: -10px; width: 84px; height: 84px; font-size: 28px; }
   .report dl div { grid-template-columns: 90px 1fr; }
   .report dt { font-size: 34px; }
-  .faq__side { grid-template-columns: 1fr; }
+  .fortune { margin-right: 0; }
+  .faq__knot { left: -14px; width: 76px; height: 124px; }
   .qa__a { padding-left: 20px; }
   .letter__stamp { width: 70px; height: 86px; right: 16px; top: 22px; }
   .postmark { right: 60px; top: 40px; width: 92px; height: 92px; font-size: 8px; padding: 16px; }
