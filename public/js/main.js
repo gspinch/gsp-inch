@@ -139,7 +139,7 @@
     // Назад — новая страница прилетает слева и ложится сверху.
     function flip(from, to, i, forward) {
       const sheet = document.createElement('div');
-      const v = vertical.matches;
+      const v = false; // на телефоне тоже листаем вбок, как страницу блокнота
       sheet.className = 'flip-sheet' + (v ? ' flip-sheet--v' : '');
       Object.assign(sheet.style, { left: page.offsetLeft + 'px', top: page.offsetTop + 'px', width: page.offsetWidth + 'px', height: page.offsetHeight + 'px' });
       const front = page.cloneNode(true);
@@ -160,7 +160,7 @@
       const axis = v ? 'rotateX' : 'rotateY';
       const turned = v ? 'rotateX(180deg)' : 'rotateY(-180deg)';
       const frames = forward ? [{ transform: `${axis}(0deg)` }, { transform: turned }] : [{ transform: turned }, { transform: `${axis}(0deg)` }];
-      const opts = { duration: 820, easing: 'cubic-bezier(.45,.05,.25,1)', fill: 'forwards' };
+      const opts = { duration: vertical.matches ? 650 : 820, easing: 'cubic-bezier(.45,.05,.25,1)', fill: 'forwards' };
       const anim = sheet.animate(frames, opts);
       const shade = (el, a, b) => el.querySelector('.flip-sheet__shade').animate([{ opacity: a }, { opacity: .35, offset: .5 }, { opacity: b }], opts);
       shade(front, forward ? 0 : .3, forward ? .3 : 0);
