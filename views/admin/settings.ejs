@@ -1,0 +1,18 @@
+<%- include('_top', { title: 'Настройки' }) %>
+<h1>Настройки сайта</h1>
+<% if (saved) { %><p class="a-ok">Сохранено ✓</p><% } %>
+<form method="post" class="a-form-wide">
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <% schema.forEach(g => { %>
+    <fieldset class="a-card a-form">
+      <legend><%= g.group %></legend>
+      <% g.items.forEach(([k]) => { %>
+        <label class="a-field"><span><%= labels[k] || k %></span>
+          <input type="<%= k === 'tg_bot_token' ? 'password' : 'text' %>" name="<%= k %>" value="<%= s[k] || '' %>" autocomplete="off">
+        </label>
+      <% }) %>
+    </fieldset>
+  <% }) %>
+  <button class="a-btn">Сохранить</button>
+</form>
+<%- include('_bottom') %>

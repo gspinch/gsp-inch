@@ -1,0 +1,21 @@
+<%- include('_top', { title: 'Главная' }) %>
+<h1>Добро пожаловать 👋</h1>
+<p class="a-muted">Здесь можно добавлять отзывы и результаты студентов, менять цены и тексты, смотреть заявки с сайта.</p>
+<div class="a-tiles">
+  <a class="a-card a-tile" href="/admin/leads"><b><%= newLeads %></b><span>новых заявок</span></a>
+  <% Object.entries(entities).forEach(([k, e]) => { %>
+    <a class="a-card a-tile" href="/admin/<%= k %>"><b><%= counts[k] %></b><span><%= e.title %></span></a>
+  <% }) %>
+</div>
+<div class="a-quick">
+  <a class="a-btn" href="/admin/reviews/new">+ Добавить отзыв</a>
+  <a class="a-btn" href="/admin/results/new">+ Добавить результат</a>
+</div>
+<h2>Последние заявки</h2>
+<% if (!leads.length) { %><p class="a-muted">Заявок пока нет.</p><% } else { %>
+<div class="a-table-wrap"><table class="a-table">
+  <tr><th>Дата</th><th>Имя</th><th>Контакт</th><th>Формат</th></tr>
+  <% leads.forEach(l => { %><tr><td><%= l.created_at %></td><td><%= l.name %></td><td><%= l.contact %></td><td><%= l.package %></td></tr><% }) %>
+</table></div>
+<% } %>
+<%- include('_bottom') %>

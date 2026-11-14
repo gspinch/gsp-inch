@@ -1,0 +1,21 @@
+<%- include('_top', { title: entity.title }) %>
+<div class="a-head">
+  <h1><%= entity.title %></h1>
+  <a class="a-btn" href="/admin/<%= entity.table %>/new">+ Добавить <%= entity.single %></a>
+</div>
+<% if (!rows.length) { %><p class="a-muted">Пока пусто.</p><% } else { %>
+<div class="a-list">
+  <% rows.forEach(r => { const img = entity.fields.find(f => f.type === 'image'); %>
+    <a class="a-card a-row <%= r.published ? '' : 'is-hidden' %>" href="/admin/<%= entity.table %>/<%= r.id %>">
+      <% if (img) { %><span class="a-thumb"><% if (r[img.name]) { %><img src="<%= r[img.name] %>" alt=""><% } %></span><% } %>
+      <span class="a-row__text">
+        <b><%= r[entity.listCols[0]] %></b>
+        <% entity.listCols.slice(1).forEach(c => { %><small><%= r[c] %></small><% }) %>
+      </span>
+      <span class="a-pill"><%= r.published ? 'на сайте' : 'скрыто' %></span>
+      <span class="a-muted">#<%= r.sort %></span>
+    </a>
+  <% }) %>
+</div>
+<% } %>
+<%- include('_bottom') %>

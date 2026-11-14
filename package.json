@@ -1,0 +1,21 @@
+{
+  "name": "gsp-inch",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.2.0",
+    "cookie-session": "^2.1.1",
+    "ejs": "^7.0.2",
+    "express": "^4.22.3",
+    "multer": "^2.5.0",
+    "sharp": "^0.35.5"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20.12"
+  }
+}

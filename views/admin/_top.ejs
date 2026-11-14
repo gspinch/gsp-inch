@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title><%= title %> — Админка GSP·INCH</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/admin.css?v=1">
+</head>
+<body>
+<header class="a-top">
+  <a href="/admin" class="a-logo">GSP·INCH <span>админка</span></a>
+  <nav class="a-nav">
+    <a href="/admin" class="<%= path === '/admin' || path === '/admin/' ? 'on' : '' %>">Главная</a>
+    <a href="/admin/leads" class="<%= path.startsWith('/admin/leads') ? 'on' : '' %>">Заявки<% if (newLeads) { %> <b><%= newLeads %></b><% } %></a>
+    <% Object.entries(entities).forEach(([k, e]) => { %>
+      <a href="/admin/<%= k %>" class="<%= path.startsWith('/admin/' + k) ? 'on' : '' %>"><%= e.title %></a>
+    <% }) %>
+    <a href="/admin/settings" class="<%= path.startsWith('/admin/settings') ? 'on' : '' %>">Настройки</a>
+  </nav>
+  <div class="a-right">
+    <a href="/" target="_blank">Открыть сайт ↗</a>
+    <form action="/admin/logout" method="post"><button class="a-link">Выйти</button></form>
+  </div>
+</header>
+<main class="a-main">

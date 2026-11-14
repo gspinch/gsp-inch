@@ -1,0 +1,34 @@
+<%- include('_top', { title: entity.title }) %>
+<p><a href="/admin/<%= entity.table %>" class="a-muted">← <%= entity.title %></a></p>
+<h1><%= row.id ? 'Редактировать' : 'Добавить' %> <%= entity.single %></h1>
+<% if (error) { %><p class="a-error"><%= error %></p><% } %>
+<form method="post" action="/admin/<%= entity.table %>/<%= row.id || 'new' %>" enctype="multipart/form-data" class="a-card a-form">
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <% entity.fields.forEach(f => { const v = row[f.name] ?? ''; %>
+    <% if (f.type === 'checkbox') { %>
+      <label class="a-check"><input type="checkbox" name="<%= f.name %>" value="1" <%= row[f.name] ? 'checked' : '' %>> <%= f.label %></label>
+    <% } else if (f.type === 'image') { %>
+      <div class="a-field">
+        <span><%= f.label %></span>
+        <% if (v) { %>
+          <img src="<%= v %>" alt="" class="a-preview">
+          <label class="a-check"><input type="checkbox" name="<%= f.name %>__remove" value="1"> удалить фото</label>
+        <% } %>
+        <input type="file" name="<%= f.name %>" accept="image/*">
+        <small class="a-muted">JPG, PNG, WEBP или HEIC до 10 МБ — фото автоматически сожмётся.</small>
+      </div>
+    <% } else if (f.type === 'textarea') { %>
+      <label class="a-field"><span><%= f.label %><%= f.required ? ' *' : '' %></span><textarea name="<%= f.name %>" rows="5"><%= v %></textarea></label>
+    <% } else { %>
+      <label class="a-field"><span><%= f.label %><%= f.required ? ' *' : '' %></span>
+        <input type="<%= f.type === 'number' ? 'number' : 'text' %>" name="<%= f.name %>" value="<%= v %>">
+        <% if (f.hint) { %><small class="a-muted"><%= f.hint %></small><% } %>
+      </label>
+    <% } %>
+  <% }) %>
+  <div class="a-actions">
+    <button class="a-btn" name="action" value="save">Сохранить</button>
+    <% if (row.id) { %><button class="a-btn a-btn--danger" name="action" value="delete" formnovalidate onclick="return confirm('Удалить безвозвратно?')">Удалить</button><% } %>
+  </div>
+</form>
+<%- include('_bottom') %>

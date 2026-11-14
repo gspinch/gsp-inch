@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Вход — Админка GSP·INCH</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/admin.css?v=1">
+</head>
+<body class="a-login">
+  <form method="post" class="a-card a-login__card">
+    <div class="a-logo">GSP·INCH <span>админка</span></div>
+    <% if (error) { %><p class="a-error"><%= error %></p><% } %>
+    <label>Пароль<input type="password" name="password" autofocus required autocomplete="current-password"></label>
+    <button class="a-btn">Войти</button>
+  </form>
+</body>
+</html>

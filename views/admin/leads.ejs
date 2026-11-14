@@ -1,0 +1,29 @@
+<%- include('_top', { title: 'Заявки' }) %>
+<div class="a-head">
+  <h1>Заявки с сайта</h1>
+  <a class="a-btn a-btn--ghost" href="/admin/leads.csv">Скачать CSV (Excel)</a>
+</div>
+<% if (!leads.length) { %><p class="a-muted">Заявок пока нет.</p><% } else { %>
+<div class="a-list">
+<% leads.forEach(l => { %>
+  <div class="a-card a-lead <%= l.status === 'done' ? 'is-done' : '' %>">
+    <div>
+      <b><%= l.name %></b> · <%= l.contact %>
+      <% if (l.package) { %><div class="a-muted"><%= l.package %></div><% } %>
+      <% if (l.message) { %><p><%= l.message %></p><% } %>
+      <small class="a-muted"><%= l.created_at %> UTC<%= l.utm ? ' · ' + l.utm : '' %></small>
+    </div>
+    <form method="post" action="/admin/leads/<%= l.id %>" class="a-lead__actions">
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+      <% if (l.status === 'done') { %>
+        <button class="a-btn a-btn--ghost" name="status" value="new">Вернуть в новые</button>
+      <% } else { %>
+        <button class="a-btn" name="status" value="done">Обработана ✓</button>
+      <% } %>
+      <button class="a-link" name="action" value="delete" onclick="return confirm('Удалить заявку?')">удалить</button>
+    </form>
+  </div>
+<% }) %>
+</div>
+<% } %>
+<%- include('_bottom') %>
