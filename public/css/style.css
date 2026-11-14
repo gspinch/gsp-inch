@@ -588,30 +588,25 @@ button { font: inherit; color: inherit; }
 .scrap--wide { --ar: 2.6 / 1; width: clamp(220px, 26vw, 340px); }
 @media (max-width: 900px) { .scrap { display: none; } }
 
-/* ---------- анкета + футер: один пейзаж на льне, начинается рваным краем бумаги ---------- */
-:root { --linen: #7b6a4f; }
-.contact.band, .footer {
-  background-color: var(--linen);
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 4px),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .16 0 0 0 0 .1 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  box-shadow: none; }
-.contact.band { padding-top: clamp(110px, 12vw, 170px); padding-bottom: clamp(60px, 7vw, 90px); }
+/* ---------- анкета + футер: небо с облаками и китайский пейзаж внизу, начинается рваным краем бумаги ---------- */
+:root { --sky-print: #6fa3dd; }
+.contact.band, .footer { background-color: var(--sky-print); box-shadow: none; }
+.contact.band { padding-top: clamp(110px, 12vw, 170px); padding-bottom: clamp(40px, 5vw, 70px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .4 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("/img/clouds.svg"); background-repeat: repeat, no-repeat; background-size: 260px 260px, min(1440px, 160vw) auto; background-position: 0 0, center 70px; }
 .contact.band::before { content: ''; position: absolute; left: 0; right: 0; top: -2px; height: 70px; z-index: 1; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V45.7L1440 46.1L1407 52.2L1368 49.0L1330 27.6L1304 53.5L1273 55.7L1256 39.2L1236 43.3L1207 28.7L1187 33.9L1150 50.9L1131 52.7L1114 46.0L1096 28.2L1060 31.7L1040 56.2L1004 34.3L965 44.6L933 32.3L894 47.5L855 55.8L834 39.2L815 33.3L800 35.9L770 27.1L738 38.1L716 51.5L690 35.6L663 47.8L648 54.8L633 49.0L597 29.5L563 39.8L534 27.8L518 32.4L480 32.2L446 53.2L407 36.4L384 43.9L350 31.7L317 50.4L280 29.2L242 30.8L219 46.1L181 37.9L143 44.4L121 36.0L102 30.2L84 46.8L44 31.8L29 57.7L1 39.9L0 42.2Z' fill='%23ffffff'/%3E%3Cpath d='M0 0H1440V38.7L1440 38.7L1407 43.9L1368 42.2L1330 20.9L1304 48.3L1273 47.0L1256 34.1L1236 36.3L1207 20.4L1187 28.4L1150 43.0L1131 43.9L1114 38.5L1096 20.1L1060 26.3L1040 49.5L1004 28.7L965 36.2L933 26.1L894 40.7L855 46.8L834 30.8L815 24.4L800 29.0L770 20.1L738 30.1L716 44.6L690 29.5L663 41.1L648 49.3L633 42.5L597 20.5L563 31.0L534 20.3L518 25.4L480 25.9L446 47.9L407 30.3L384 35.7L350 23.2L317 43.9L280 21.1L242 22.7L219 38.3L181 30.2L143 36.4L121 29.5L102 22.3L84 40.7L44 24.8L29 49.6L1 32.2L0 36.0Z' fill='%23e9f0f2'/%3E%3C/svg%3E") no-repeat top / 100% 100%; filter: drop-shadow(0 6px 6px rgba(40,28,14,.25)); }
-.contact.band::after { content: ''; position: absolute; inset: 40px 0 0; z-index: 0; pointer-events: none;
-  background: url("/img/mountains.svg") no-repeat right -4vw top 0 / min(820px, 62vw) auto, url("/img/mountains-l.svg") no-repeat left -6vw bottom -2vw / min(760px, 58vw) auto; }
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V45.7L1440 46.1L1407 52.2L1368 49.0L1330 27.6L1304 53.5L1273 55.7L1256 39.2L1236 43.3L1207 28.7L1187 33.9L1150 50.9L1131 52.7L1114 46.0L1096 28.2L1060 31.7L1040 56.2L1004 34.3L965 44.6L933 32.3L894 47.5L855 55.8L834 39.2L815 33.3L800 35.9L770 27.1L738 38.1L716 51.5L690 35.6L663 47.8L648 54.8L633 49.0L597 29.5L563 39.8L534 27.8L518 32.4L480 32.2L446 53.2L407 36.4L384 43.9L350 31.7L317 50.4L280 29.2L242 30.8L219 46.1L181 37.9L143 44.4L121 36.0L102 30.2L84 46.8L44 31.8L29 57.7L1 39.9L0 42.2Z' fill='%23ffffff'/%3E%3Cpath d='M0 0H1440V38.7L1440 38.7L1407 43.9L1368 42.2L1330 20.9L1304 48.3L1273 47.0L1256 34.1L1236 36.3L1207 20.4L1187 28.4L1150 43.0L1131 43.9L1114 38.5L1096 20.1L1060 26.3L1040 49.5L1004 28.7L965 36.2L933 26.1L894 40.7L855 46.8L834 30.8L815 24.4L800 29.0L770 20.1L738 30.1L716 44.6L690 29.5L663 41.1L648 49.3L633 42.5L597 20.5L563 31.0L534 20.3L518 25.4L480 25.9L446 47.9L407 30.3L384 35.7L350 23.2L317 43.9L280 21.1L242 22.7L219 38.3L181 30.2L143 36.4L121 29.5L102 22.3L84 40.7L44 24.8L29 49.6L1 32.2L0 36.0Z' fill='%23e9f0f2'/%3E%3C/svg%3E") no-repeat top / 100% 100%; filter: drop-shadow(0 6px 6px rgba(20,40,80,.22)); }
 .contact .container { position: relative; z-index: 2; }
-.letter { box-shadow: 0 34px 60px -28px rgba(30,20,8,.6); }
+.letter { box-shadow: 0 34px 60px -28px rgba(20,45,90,.55); }
 .letter__hb { z-index: 3; }
-.footer { position: relative; overflow: hidden; color: #f3ead6; padding: calc(min(240px, 22vw) + 24px) 0 28px; margin-top: -1px; }
-.footer::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: min(240px, 22vw); pointer-events: none;
-  background: url("/img/mountains.svg") no-repeat right 4vw bottom / auto 100%; opacity: .9; }
-.footer > * { position: relative; }
-.footer .footer__nav a:hover { color: #fff; }
-.footer .footer__bottom { opacity: .75; }
+.footer { position: relative; overflow: hidden; color: #1f2c44; margin-top: -1px; padding: 24px 0 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .4 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("/img/landscape.svg"); background-repeat: repeat, no-repeat; background-size: 260px 260px, max(1440px, 100%) auto; background-position: 0 0, center bottom; }
+.footer__inner { padding-bottom: clamp(220px, 30vw, 420px); }
+.footer .footer__nav a { opacity: .9; }
+.footer .footer__nav a:hover { color: #fff; opacity: 1; }
+.footer .footer__bottom { opacity: 1; color: #1f2c44; }
+.footer .footer__bottom a { color: inherit; }
 @media (max-width: 640px) {
-  .contact.band::after { opacity: .55; }
   .contact.band::before { height: 46px; }
+  .footer { background-size: 260px 260px, 900px auto; }
+  .footer__inner { padding-bottom: 240px; }
 }
