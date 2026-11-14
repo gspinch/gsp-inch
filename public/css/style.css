@@ -591,7 +591,7 @@ button { font: inherit; color: inherit; }
 
 /* ---------- анкета + футер: одна сплошная картина — небо, облачная гряда, китайский пейзаж ---------- */
 .scene .contact.band { position: relative; margin-top: 0; box-shadow: none; background-color: #6fa3dd;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .4 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("/img/graduates.jpg"); background-repeat: repeat, no-repeat; background-size: 260px 260px, cover; background-position: 0 0, center calc(100% + 280px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .4 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("/img/campus.jpg"); background-repeat: repeat, no-repeat; background-size: 260px 260px, cover; background-position: 0 0, center bottom;
   padding-top: clamp(90px, 10vw, 140px); padding-bottom: clamp(300px, 34vw, 520px); }
 .contact .container { position: relative; z-index: 2; }
 .letter { box-shadow: 0 34px 60px -28px rgba(20,45,90,.55); }
@@ -600,7 +600,7 @@ button { font: inherit; color: inherit; }
 .scene .footer__bottom a { color: inherit; text-underline-offset: 4px; }
 /* мини-марки на письме */
 @media (max-width: 640px) {
-  .scene .contact.band { background-position: 0 0, 45% bottom; padding-bottom: 300px; }
+  .scene .contact.band { background-position: 0 0, 30% bottom; padding-bottom: 260px; }
 }
 
 
@@ -618,10 +618,10 @@ button { font: inherit; color: inherit; }
 
 /* анкета: заголовок белым прямо на картинке, письмо — только форма */
 .contact__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: clamp(28px, 5vw, 72px); align-items: start; max-width: 1100px; margin: 0 auto; }
-.contact__intro { container-type: inline-size; min-width: 0; color: #fff; padding-top: 20px; }
+.contact__intro { container-type: inline-size; min-width: 0; color: var(--ink); padding-top: 20px; }
 .contact__intro .h2 { font-size: min(60px, 9.4cqi); }
-.contact__intro .hand--lg { color: #fff; margin-top: 14px; font-size: clamp(26px, 2.6vw, 34px); font-weight: 700; }
-.contact__intro .letter__tg { color: #fff; }
+.contact__intro .hand--lg { color: var(--ink-blue); margin-top: 14px; font-size: clamp(26px, 2.6vw, 34px); font-weight: 700; }
+.contact__intro .letter__tg { color: var(--ink-blue); }
 .letter { display: block; max-width: none; margin: 0; padding: clamp(28px, 4vw, 44px); }
 .letter .letter__to { margin-bottom: 22px; padding-right: 110px; }
 .letter .form { margin-top: 0; }
