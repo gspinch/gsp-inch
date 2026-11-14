@@ -180,7 +180,7 @@ seed('services', [
   { title: 'Сопровождение', subtitle: 'платный языковой год', description: 'Подбор университетов, подготовка и подача документов, сопровождение до зачисления.',
     features: 'Подбор от 5 университетов (стратегия 2+3)\nПодготовка всех документов (ML, CV, рекомендации)\nПодача заявок и отслеживание статуса\nПодготовка к интервью\nПоддержка до зачисления',
     price: '3 990 юаней', photo: '', sort: 2, published: 1 },
-  { title: 'Индивидуальная консультация', subtitle: '', description: 'Разбор вашего кейса, стратегия поступления и ответы на все вопросы.',
+  { title: 'Индивидуальная консультация', subtitle: 'разбор вашего кейса', description: 'Стратегия поступления и ответы на все ваши вопросы за одну встречу.',
     features: 'Анализ вашего кейса и целей\nРазбор до 5 университетов\nОценка шансов поступления\nПлан подготовки и список документов\nОтветы на все вопросы (1,5–2 часа)',
     price: '990 юаней', photo: '', sort: 3, published: 1 },
 ]);
@@ -210,7 +210,7 @@ const enSeed = {
       features_en: 'Everything in the “Support” package\nChoosing scholarship programmes\nTailoring documents to requirements\nInterview prep and consultations\nSupport until you get the admission letter', price_en: '5,990 CNY' }],
     ['Сопровождение', { title_en: 'Support', subtitle_en: 'self-funded language year', description_en: 'Choosing universities, preparing and submitting documents, support until enrollment.',
       features_en: 'Up to 5 universities (2+3 strategy)\nAll documents prepared (ML, CV, recommendations)\nApplications and status tracking\nInterview prep\nSupport until enrollment', price_en: '3,990 CNY' }],
-    ['Индивидуальная консультация', { title_en: 'One-to-one consultation', description_en: 'We go through your case, build an admission strategy and answer all your questions.',
+    ['Индивидуальная консультация', { title_en: 'One-to-one consultation', subtitle_en: 'your case reviewed', description_en: 'An admission strategy and answers to all your questions in one session.',
       features_en: 'Analysis of your case and goals\nReview of up to 5 universities\nAssessment of your chances\nPreparation plan and document checklist\nAnswers to all your questions (1.5–2 hours)', price_en: '990 CNY' }],
   ],
   results: [
