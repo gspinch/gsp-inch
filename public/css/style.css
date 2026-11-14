@@ -113,7 +113,9 @@ button { font: inherit; color: inherit; }
   background: radial-gradient(circle at 30% 30%, rgba(210,63,43,.08), transparent 70%);
 }
 .seal small { font: 700 9.5px/1.1 var(--mono); text-transform: uppercase; letter-spacing: .06em; margin-top: -10px; max-width: 70px; }
-.stk { position: absolute; pointer-events: none; }
+.stk { position: absolute; pointer-events: none; overflow: visible; }
+@keyframes wobble { 0%,100% { rotate: var(--r, 0deg); } 50% { rotate: calc(var(--r, 0deg) + 6deg); } }
+.collage__cat:not(.drop), .about:hover .about__flower, .faq__side:hover .faq__knot { animation: wobble 2.4s ease-in-out infinite; }
 
 /* ---------- шапка ---------- */
 .header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(242,237,226,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1.5px dashed transparent; transition: border-color .3s; }
@@ -141,9 +143,10 @@ button { font: inherit; color: inherit; }
 
 /* ---------- hero ---------- */
 .hero { padding-top: clamp(24px, 4vw, 48px); position: relative; }
-.hero__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; }
-.hero__text { min-width: 0; }
-.hero__title { font-size: clamp(40px, 6.1vw, 88px); text-transform: uppercase; margin: 10px 0 14px; letter-spacing: -.045em; }
+.hero__inner { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: 32px; align-items: center; }
+.hero__text { min-width: 0; container-type: inline-size; }
+/* слово «ПОСТУПЛЕНИЕ» ≈ 9.6em — размер считается от ширины колонки, чтобы не залезать на коллаж */
+.hero__title { font-size: clamp(34px, 5vw, 64px); font-size: min(13cqi, 96px); text-transform: uppercase; margin: 10px 0 14px; letter-spacing: -.045em; }
 .hero__title span { display: inline-block; }
 .hero__hand { font-size: clamp(28px, 3.2vw, 40px); max-width: 560px; margin-bottom: 22px; }
 .marker { background: linear-gradient(transparent 30%, var(--lime) 30% 88%, transparent 88%) no-repeat 0 0 / 0% 100%; color: inherit; padding: 0 4px; animation: marker 1s .9s var(--ease) forwards; }
@@ -167,8 +170,10 @@ button { font: inherit; color: inherit; }
 .ticket__stub small { font-size: 10px; text-transform: uppercase; }
 .ticket__stub b { font-size: 20px; }
 .collage .seal { position: absolute; right: -2%; bottom: 14%; z-index: 5; width: 104px; height: 104px; font-size: 40px; }
-.collage__star { width: 92px; height: 92px; left: -2%; top: 52%; z-index: 5; rotate: var(--r); }
-.collage__lantern { width: 54px; height: 96px; right: -3%; top: -14%; z-index: 6; transform-origin: 50% 0; }
+.collage__cat { width: 128px; height: 142px; left: -6%; top: 50%; z-index: 6; rotate: var(--r); }
+.collage__orange { width: 84px; height: 84px; left: 44%; top: -4%; z-index: 6; rotate: var(--r); }
+.collage__grant { width: 170px; height: 88px; right: -4%; bottom: -6%; z-index: 7; }
+.collage__lantern { width: 62px; height: 112px; right: -3%; top: -14%; z-index: 6; transform-origin: 50% 0; }
 .collage__tape { top: 6%; left: 22%; rotate: -14deg; }
 
 /* падение элементов коллажа при загрузке */
@@ -224,7 +229,8 @@ button { font: inherit; color: inherit; }
 .checklist ul { list-style: none; padding: 0; margin: 0; }
 .checklist li { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; line-height: 32px; }
 .htick { width: 22px; height: 22px; flex: none; color: var(--green); margin-top: 4px; }
-.checklist__bao { width: 76px; height: 58px; right: -18px; bottom: -26px; rotate: 10deg; }
+.checklist__bao { width: 120px; height: 92px; right: -30px; bottom: -40px; rotate: -8deg; }
+.about__flower { position: absolute; width: 74px; height: 74px; left: -26px; top: 46%; rotate: -12deg; }
 
 /* ---------- услуги: карточки-пакеты с иллюстрациями ---------- */
 .services__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
@@ -234,7 +240,8 @@ button { font: inherit; color: inherit; }
 .pkg__no { position: absolute; top: 14px; right: 16px; font-size: 13px; background: var(--card); border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 10px; z-index: 2; rotate: 4deg; }
 .pkg__art { height: 170px; margin: 0 -6px 18px; border-radius: 12px; background: var(--card); border: 1.5px solid var(--ink); display: grid; place-items: center; overflow: hidden;
   background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 18px 18px; }
-.pkg__art svg { width: 82%; height: 88%; transition: transform .5s var(--ease); }
+.pkg__art { position: relative; }
+.pkg__art svg { position: absolute; inset: 6px 8px; width: calc(100% - 16px); height: calc(100% - 12px); overflow: visible; transition: transform .5s var(--ease); }
 .pkg:hover .pkg__art svg { transform: scale(1.06) rotate(-2deg); }
 .pkg__art img { width: 100%; height: 100%; object-fit: cover; }
 .pkg__title { font-size: 26px; letter-spacing: -.025em; line-height: 1.02; }
@@ -294,7 +301,7 @@ button { font: inherit; color: inherit; }
 .report dl div:last-child { border-bottom: 0; }
 .report dt { font: 900 42px/1 var(--grotesk); letter-spacing: -.04em; }
 .report dd { margin: 0; font: 13px/1.35 var(--mono); }
-.report__star { width: 70px; height: 70px; right: -24px; bottom: -26px; rotate: 18deg; }
+.report__star { width: 92px; height: 92px; right: -30px; bottom: -36px; rotate: 14deg; }
 
 /* ---------- отзывы: книжка с закладками ---------- */
 .book { position: relative; display: grid; grid-template-columns: 1fr 34px 1.35fr; margin-right: 120px; filter: drop-shadow(0 20px 30px rgba(43,38,32,.22)); }
@@ -306,7 +313,7 @@ button { font: inherit; color: inherit; }
 .book__spine::before { content: ''; position: absolute; inset: 24px 4px; background: radial-gradient(ellipse 13px 6px at 50% 50%, transparent 55%, #8a8f98 60% 78%, transparent 82%) 0 0 / 100% 22px repeat-y; }
 .book__cn { display: block; font-size: clamp(90px, 11vw, 150px); line-height: 1; color: var(--red); opacity: .85; margin-bottom: 10px; }
 .book__hint { font-size: 26px; color: var(--ink-blue); max-width: 300px; margin-top: 14px; }
-.book__panda { width: 96px; height: 88px; right: 18px; bottom: 18px; rotate: -8deg; }
+.book__panda { width: 130px; height: 104px; right: 10px; bottom: 14px; rotate: -8deg; }
 .book__content { flex: 1; transform-origin: 0 50%; transform-style: preserve-3d; }
 .book__content.turn-out { animation: turnout .28s ease-in forwards; }
 .book__content.turn-in { animation: turnin .42s var(--ease); }
@@ -351,6 +358,7 @@ button { font: inherit; color: inherit; }
 @keyframes unfold { from { opacity: 0; transform: translateY(-10px); } }
 .faq__side { position: relative; display: grid; gap: 30px; justify-items: center; padding-top: 30px; }
 .faq__panda { width: min(320px, 100%); }
+.faq__knot { position: absolute; width: 64px; height: 104px; left: 2%; top: 46%; rotate: -8deg; z-index: 2; }
 .fortune { background: #fff; padding: 14px 20px; box-shadow: var(--shadow); rotate: var(--r); display: grid; gap: 4px; max-width: 300px; border-left: 6px solid var(--red); }
 .fortune .cn { font-size: 34px; color: var(--red); }
 .fortune .mono { font-size: 12.5px; color: var(--ink-2); }
@@ -366,27 +374,32 @@ button { font: inherit; color: inherit; }
   background-image: repeating-linear-gradient(transparent 0 33px, rgba(53,80,160,.1) 33px 34px); }
 .letter::before { content: ''; position: absolute; inset: 0 0 auto; height: 8px; background: repeating-linear-gradient(-45deg, var(--red) 0 14px, #fffdf6 14px 28px, var(--ink-blue) 28px 42px, #fffdf6 42px 56px); border-radius: 6px 6px 0 0; }
 .letter__stamp { position: absolute; right: 26px; top: 26px; width: 92px; height: 112px; rotate: 6deg; }
+.letter__hb { position: absolute; width: 70px; height: 92px; left: -26px; bottom: 40px; rotate: -14deg; z-index: 2; }
 .postmark { position: absolute; right: 90px; top: 58px; width: 116px; height: 116px; border: 2px solid rgba(53,80,160,.55); border-radius: 50%; display: grid; place-items: center; text-align: center; font-size: 10px; color: rgba(53,80,160,.7); rotate: -16deg; padding: 22px; line-height: 1.6; pointer-events: none; }
 .letter__head { padding-top: 70px; }
 .letter__to { font-size: 12px; text-transform: uppercase; color: var(--ink-2); border-bottom: 1.5px dashed var(--line); padding-bottom: 10px; margin-bottom: 18px; }
 .letter__head .h2 { font-size: clamp(30px, 3.6vw, 46px); }
 .letter__head .hand--lg { margin-top: 14px; }
 .letter__tg { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-blue); margin-top: 6px; }
-.form { display: grid; gap: 16px; align-content: start; padding-top: clamp(0px, 9vw, 120px); }
-.form label { display: grid; gap: 4px; }
-.form label > span { font-size: 12px; text-transform: uppercase; color: var(--ink-2); letter-spacing: .06em; }
-.form label i { text-transform: none; font-style: normal; color: var(--muted); }
+.form { position: relative; z-index: 3; display: grid; gap: 18px; align-content: start; align-self: start; margin-top: clamp(0px, 7vw, 90px);
+  background: #fff; border: 2px solid var(--ink); border-radius: 18px; padding: 26px; box-shadow: 5px 5px 0 var(--ink); }
+.form label { display: grid; gap: 7px; }
+.form label > span { font: 600 14px/1.3 var(--grotesk); color: var(--ink); }
+.form label i { font-style: normal; font-weight: 400; color: var(--muted); }
 .form input:not([type=checkbox]), .form select, .form textarea {
-  width: 100%; font: 17px/1.4 var(--mono); color: var(--ink); background: transparent; border: 0; border-bottom: 2px solid var(--ink);
-  padding: 8px 2px; border-radius: 0; resize: vertical; -webkit-appearance: none; appearance: none;
+  width: 100%; font: 400 16px/1.4 var(--grotesk); color: var(--ink); background: var(--paper);
+  border: 1.5px solid var(--line); border-radius: 12px; padding: 13px 14px; resize: vertical; -webkit-appearance: none; appearance: none;
+  transition: border-color .2s, background .2s, box-shadow .2s;
 }
-.form select { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b2620' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 4px center / 18px; padding-right: 28px; }
-.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--ink-blue); background-color: rgba(188,203,247,.25); }
-.form .check { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: var(--ink-2); }
-.form .check input { margin-top: 3px; accent-color: var(--green); }
-.form .btn { justify-self: start; }
+.form ::placeholder { color: var(--muted); opacity: 1; }
+.form select { background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b2620' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 18px; padding-right: 42px; }
+.form input:hover, .form select:hover, .form textarea:hover { border-color: #bfb4a0; }
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--ink-blue); background-color: #fff; box-shadow: 0 0 0 4px rgba(147,173,239,.35); }
+.form .check { display: flex; gap: 10px; align-items: flex-start; font: 400 13px/1.45 var(--grotesk); color: var(--ink-2); }
+.form .check input { width: 18px; height: 18px; margin: 1px 0 0; flex: none; accent-color: var(--green); }
+.form .btn { justify-self: stretch; margin-top: 4px; }
 .form__msg:empty { display: none; }
-.form__msg, .form__ok { margin: 0; font-size: 14px; background: var(--lime); padding: 10px 14px; border-radius: 8px; }
+.form__msg, .form__ok { margin: 0; font: 500 14px/1.4 var(--grotesk); background: var(--lime); padding: 10px 14px; border-radius: 10px; }
 .form.is-loading .btn { opacity: .6; pointer-events: none; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
 .seal--sent { position: absolute; right: 12%; bottom: 14%; width: 130px; height: 130px; font-size: 38px; opacity: 0; pointer-events: none; --r: -14deg; }
@@ -397,7 +410,7 @@ button { font: inherit; color: inherit; }
 .footer { background: var(--green-dk); color: var(--paper); padding: 40px 0 26px; }
 .footer__top { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; border-bottom: 1.5px dashed rgba(242,237,226,.25); padding-bottom: 26px; margin-bottom: 26px; }
 .footer__cheer { margin: 0; display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
-.footer__cheer .cn { font-size: clamp(70px, 10vw, 130px); line-height: .9; color: var(--lime); }
+.footer__sticker { width: clamp(180px, 22vw, 260px); height: clamp(98px, 12vw, 142px); rotate: -5deg; }
 .footer__cheer .hand { font-size: 24px; color: var(--blue); padding-bottom: 12px; }
 .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .footer .logo__sub { color: rgba(242,237,226,.7); }
@@ -464,7 +477,7 @@ button { font: inherit; color: inherit; }
   .faq__grid { grid-template-columns: 1fr; }
   .faq__side { grid-template-columns: 1fr 1fr; align-items: center; padding-top: 0; }
   .letter { grid-template-columns: 1fr; }
-  .form { padding-top: 0; }
+  .form { margin-top: 0; }
 }
 @media (max-width: 640px) {
   body { font-size: 15px; }
@@ -474,7 +487,11 @@ button { font: inherit; color: inherit; }
   .hero__actions .btn { flex: 1 1 100%; }
   .collage { aspect-ratio: 1 / 1.1; }
   .collage .seal { width: 76px; height: 76px; font-size: 28px; bottom: 2%; right: 0; }
-  .collage__star { width: 64px; height: 64px; }
+  .collage__cat { width: 92px; height: 102px; left: -4%; }
+  .collage__orange { width: 60px; height: 60px; }
+  .collage__grant { width: 130px; height: 68px; right: 0; bottom: -4%; }
+  .about__flower { width: 56px; height: 56px; left: -10px; }
+  .letter__hb { width: 54px; height: 70px; left: -12px; }
   .ticket { width: 84%; left: 6%; }
   .notes { grid-template-columns: 1fr; gap: 20px; }
   .ftab { padding: 11px 18px 15px; font-size: 12px; }
@@ -497,6 +514,7 @@ button { font: inherit; color: inherit; }
   .letter__stamp { width: 70px; height: 86px; right: 16px; top: 22px; }
   .postmark { right: 60px; top: 40px; width: 92px; height: 92px; font-size: 8px; padding: 16px; }
   .letter__head { padding-top: 80px; }
-  .form .btn { justify-self: stretch; }
+  .form { padding: 20px; box-shadow: 4px 4px 0 var(--ink); }
   .footer__top { flex-direction: column; align-items: flex-start; }
 }
+.form .check > span { font: 400 13px/1.45 var(--grotesk); color: var(--ink-2); }

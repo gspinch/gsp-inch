@@ -67,8 +67,10 @@
           <div class="ticket__stub mono"><small>место</small><b>CSC</b></div>
         </div>
         <span class="seal drop" style="--r:14deg;--d:.95s" aria-hidden="true">录取</span>
-        <svg class="stk collage__star drop" style="--r:-10deg;--d:1.1s" aria-hidden="true"><use href="#star"/></svg>
-        <svg class="stk collage__lantern swing" aria-hidden="true"><use href="#lantern"/></svg>
+        <svg class="stk collage__cat drop" style="--r:-8deg;--d:1.1s" aria-hidden="true"><use href="#s-cat"/></svg>
+        <svg class="stk collage__orange drop" style="--r:12deg;--d:1.25s" aria-hidden="true"><use href="#s-orange"/></svg>
+        <svg class="stk collage__grant drop" style="--r:0deg;--d:1.4s" aria-hidden="true"><use href="#s-grant"/></svg>
+        <svg class="stk collage__lantern swing" aria-hidden="true"><use href="#s-lantern"/></svg>
         <span class="tape tape--blue collage__tape" aria-hidden="true"></span>
       </div>
     </div>
@@ -104,6 +106,7 @@
           <img src="/img/kamila.jpg" alt="Камила — ментор по поступлению в Китай" width="690" height="1029" loading="lazy">
           <figcaption class="hand">Камила · 9-й год в Китае</figcaption>
           <span class="seal about__seal" aria-hidden="true">导师</span>
+          <svg class="stk about__flower" aria-hidden="true"><use href="#s-flower"/></svg>
         </figure>
         <div class="about__text reveal" data-from="right">
           <h3 class="h3">Привет, я Камила!</h3>
@@ -116,7 +119,7 @@
               <li style="--d:<%= i * 120 %>ms"><svg class="htick" aria-hidden="true"><use href="#htick"/></svg><%= t %></li>
               <% }) %>
             </ul>
-            <svg class="stk checklist__bao" aria-hidden="true"><use href="#bao"/></svg>
+            <svg class="stk checklist__bao" aria-hidden="true"><use href="#s-cookie"/></svg>
           </div>
         </div>
       </div>
@@ -132,11 +135,15 @@
         <span class="mono sec-head__meta">подберём формат под вашу цель</span>
       </div>
       <div class="services__grid">
-        <% const arts = ['ill-grad', 'ill-book', 'ill-tea']; services.forEach((x, i) => { const tone = tones[i % 3]; const full = x.title + (x.subtitle ? ' (' + x.subtitle + ')' : ''); const feats = x.features.split('\n').map(f => f.trim()).filter(Boolean); %>
+        <% const arts = [
+              [['s-hongbao', 18, 14, 70, 108, -10], ['s-cloud', 4, 92, 96, 52, 0], ['s-cat', 98, 4, 112, 132, 6]],
+              [['s-lantern', 14, 0, 52, 92, -6], ['s-jiayou', 62, 18, 136, 72, -4], ['s-candy', 20, 92, 110, 56, 8], ['s-orange', 140, 80, 66, 66, 10]],
+              [['s-knot', 8, 0, 54, 86, 0], ['s-cookie', 52, 28, 140, 108, -6], ['s-flower', 160, 4, 48, 48, 14]]
+            ]; services.forEach((x, i) => { const tone = tones[i % 3]; const full = x.title + (x.subtitle ? ' (' + x.subtitle + ')' : ''); const feats = x.features.split('\n').map(f => f.trim()).filter(Boolean); %>
         <article class="pkg pkg--<%= tone %> reveal" data-from="up" style="--d:<%= i * 110 %>ms">
           <span class="pkg__no mono">№0<%= i + 1 %></span>
           <div class="pkg__art">
-            <% if (x.photo) { %><img src="<%= x.photo %>" alt="" loading="lazy"><% } else { %><svg aria-hidden="true"><use href="#<%= arts[i % 3] %>"/></svg><% } %>
+            <% if (x.photo) { %><img src="<%= x.photo %>" alt="" loading="lazy"><% } else { %><svg viewBox="0 0 220 150" aria-hidden="true"><% arts[i % 3].forEach(([id, x, y, w, h, r]) => { %><use href="#<%= id %>" x="<%= x %>" y="<%= y %>" width="<%= w %>" height="<%= h %>" transform="rotate(<%= r %> <%= x + w / 2 %> <%= y + h / 2 %>)"/><% }) %></svg><% } %>
           </div>
           <h3 class="pkg__title"><%= x.title %></h3>
           <% if (x.subtitle) { %><p class="hand pkg__sub"><%= x.subtitle %></p><% } %>
@@ -229,7 +236,7 @@
             <div><dt><%= s.res2_value %></dt><dd><%= s.res2_label %></dd></div>
             <div><dt><%= s.res3_value %></dt><dd><%= s.res3_label %></dd></div>
           </dl>
-          <svg class="stk report__star" aria-hidden="true"><use href="#star"/></svg>
+          <svg class="stk report__star" aria-hidden="true"><use href="#s-orange"/></svg>
         </div>
       </div>
     </div>
@@ -248,7 +255,7 @@
           <span class="cn book__cn" aria-hidden="true">日记</span>
           <p class="mono">дневник отзывов</p>
           <p class="hand book__hint">истории студентов, которые уже учатся в Китае. тяните за закладки →</p>
-          <svg class="stk book__panda" aria-hidden="true"><use href="#panda"/></svg>
+          <svg class="stk book__panda" aria-hidden="true"><use href="#s-noodles"/></svg>
         </div>
         <div class="book__spine" aria-hidden="true"></div>
         <div class="book__page book__page--right">
@@ -306,6 +313,7 @@
           <img src="/img/panda.jpg" alt="Панда отдыхает на камне среди бамбука" loading="lazy">
           <figcaption class="hand">сосед по кампусу (почти)</figcaption>
         </figure>
+        <svg class="stk faq__knot" aria-hidden="true"><use href="#s-knot"/></svg>
         <div class="fortune reveal" data-from="up" style="--r:3deg">
           <span class="cn">你能行</span>
           <span class="mono">«у тебя получится» — записка из печенья с предсказанием</span>
@@ -324,6 +332,7 @@
           <img src="/img/cta.jpg" alt="" loading="lazy">
           <figcaption class="mono">中国 <b>¥8</b></figcaption>
         </figure>
+        <svg class="stk letter__hb" aria-hidden="true"><use href="#s-hongbao"/></svg>
         <span class="postmark mono" aria-hidden="true">GSP·INCH ✶ 2027 ✶ 留学 ✶</span>
         <div class="letter__head">
           <p class="mono letter__to">кому: Камиле · куда: Китай · тема: поступление</p>
@@ -334,21 +343,21 @@
           <% } %>
         </div>
         <form class="form" id="lead-form" action="/api/lead" method="post" novalidate>
-          <% if (sent) { %><p class="form__ok mono" role="status">Спасибо! Заявка отправлена — я свяжусь с вами в ближайшее время.</p><% } %>
-          <label for="f-name"><span class="mono">имя</span><input id="f-name" name="name" required maxlength="100" autocomplete="name" placeholder="Как к вам обращаться"></label>
-          <label for="f-contact"><span class="mono">telegram / whatsapp / телефон</span><input id="f-contact" name="contact" required maxlength="150" placeholder="@username или +7…"></label>
-          <label for="f-package"><span class="mono">формат</span>
+          <% if (sent) { %><p class="form__ok" role="status">Спасибо! Заявка отправлена — я свяжусь с вами в ближайшее время.</p><% } %>
+          <label for="f-name"><span>Ваше имя</span><input id="f-name" name="name" required maxlength="100" autocomplete="name" placeholder="Как к вам обращаться"></label>
+          <label for="f-contact"><span>Как с вами связаться</span><input id="f-contact" name="contact" required maxlength="150" placeholder="Telegram, WhatsApp или телефон"></label>
+          <label for="f-package"><span>Что вас интересует</span>
             <select id="f-package" name="package">
               <option value="">Пока не знаю — нужна консультация</option>
               <% services.forEach((x) => { %><option><%= x.title %><%= x.subtitle ? ' (' + x.subtitle + ')' : '' %></option><% }) %>
             </select>
           </label>
-          <label for="f-msg"><span class="mono">пара слов о себе <i>(необязательно)</i></span><textarea id="f-msg" name="message" rows="3" maxlength="2000" placeholder="Уровень образования, желаемая программа…"></textarea></label>
+          <label for="f-msg"><span>Пара слов о себе <i>— необязательно</i></span><textarea id="f-msg" name="message" rows="3" maxlength="2000" placeholder="Уровень образования, желаемая программа…"></textarea></label>
           <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="utm">
           <label class="check" for="f-agree"><input id="f-agree" type="checkbox" required checked> <span>Согласна(ен) на обработку персональных данных согласно <a href="/privacy" target="_blank">политике</a></span></label>
           <button class="btn btn--lime" type="submit">Отправить письмо <%- icon('send') %></button>
-          <p class="form__msg mono" role="status" aria-live="polite"></p>
+          <p class="form__msg" role="status" aria-live="polite"></p>
         </form>
         <span class="seal seal--sent" aria-hidden="true">已发送<small>отправлено</small></span>
       </div>
