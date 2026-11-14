@@ -95,7 +95,13 @@
 
   const dossier = document.querySelector('[data-tabs]');
   if (dossier) {
-    setupTabs(dossier, '[role=tab]', '[role=tabpanel]', (from, to) => {
+    const dTabs = [...dossier.querySelectorAll('[role=tab]')];
+    const dBody = dossier.querySelector('.dossier__body');
+    // лист досье того же цвета, что и выбранный язычок
+    const paint = (i) => dBody.style.setProperty('--tone', getComputedStyle(dTabs[i]).backgroundColor);
+    if (dTabs.length) paint(0);
+    setupTabs(dossier, '[role=tab]', '[role=tabpanel]', (from, to, i) => {
+      paint(i);
       from.hidden = true; to.hidden = false;
       to.classList.remove('is-entering'); void to.offsetWidth; to.classList.add('is-entering');
     });
@@ -103,22 +109,59 @@
 
   const book = document.querySelector('[data-book]');
   if (book) {
-    const content = book.querySelector('.book__content');
+    const page = book.querySelector('.book__page--right');
     const cur = book.querySelector('[data-cur]');
+    const vertical = window.matchMedia('(max-width: 960px)');
     let busy = false;
+    let last = 0;
+
+    // Перелистывание: поверх правой страницы кладём её копию и переворачиваем вокруг корешка.
+    // Вперёд — старая страница уходит влево, под ней уже новая.
+    // Назад — новая страница прилетает слева и ложится сверху.
+    function flip(from, to, i, forward) {
+      const sheet = document.createElement('div');
+      const v = vertical.matches;
+      sheet.className = 'flip-sheet' + (v ? ' flip-sheet--v' : '');
+      Object.assign(sheet.style, { left: page.offsetLeft + 'px', top: page.offsetTop + 'px', width: page.offsetWidth + 'px', height: page.offsetHeight + 'px' });
+      const front = page.cloneNode(true);
+      front.classList.add('flip-sheet__front');
+      front.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+      if (!forward) {
+        const entries = front.querySelectorAll('.entry');
+        entries.forEach((el, k) => { el.hidden = k !== i; });
+        front.querySelector('[data-cur]').textContent = i + 1;
+      }
+      const back = document.createElement('div');
+      back.className = 'flip-sheet__back';
+      [front, back].forEach((f) => { const sh = document.createElement('span'); sh.className = 'flip-sheet__shade'; f.appendChild(sh); });
+      sheet.append(front, back);
+      book.appendChild(sheet);
+
+      if (forward) { from.hidden = true; to.hidden = false; cur.textContent = i + 1; }
+      const axis = v ? 'rotateX' : 'rotateY';
+      const turned = v ? 'rotateX(180deg)' : 'rotateY(-180deg)';
+      const frames = forward ? [{ transform: `${axis}(0deg)` }, { transform: turned }] : [{ transform: turned }, { transform: `${axis}(0deg)` }];
+      const opts = { duration: 820, easing: 'cubic-bezier(.45,.05,.25,1)', fill: 'forwards' };
+      const anim = sheet.animate(frames, opts);
+      const shade = (el, a, b) => el.querySelector('.flip-sheet__shade').animate([{ opacity: a }, { opacity: .35, offset: .5 }, { opacity: b }], opts);
+      shade(front, forward ? 0 : .3, forward ? .3 : 0);
+      shade(back, forward ? .3 : 0, forward ? 0 : .3);
+      anim.onfinish = () => {
+        if (!forward) { from.hidden = true; to.hidden = false; cur.textContent = i + 1; }
+        sheet.remove(); busy = false;
+      };
+    }
+
     const ctl = setupTabs(book, '.bookmark', '.entry', (from, to, i) => {
-      cur.textContent = i + 1;
-      if (reduced || busy) { from.hidden = true; to.hidden = false; return; }
+      const forward = dirHint ? dirHint > 0 : i > last;
+      last = i;
+      if (reduced || busy) { from.hidden = true; to.hidden = false; cur.textContent = i + 1; return; }
       busy = true;
-      content.classList.add('turn-out');
-      setTimeout(() => {
-        from.hidden = true; to.hidden = false;
-        content.classList.remove('turn-out'); content.classList.add('turn-in');
-        setTimeout(() => { content.classList.remove('turn-in'); busy = false; }, 430);
-      }, 280);
+      flip(from, to, i, forward);
     });
+    let dirHint = 0;
     if (!ctl || ctl.count < 2) book.classList.add('is-static');
-    book.querySelectorAll('[data-dir]').forEach((b) => b.addEventListener('click', () => ctl && ctl.show(+b.dataset.dir)));
+    book.querySelectorAll('[data-dir]').forEach((b) => b.addEventListener('click', () => { dirHint = +b.dataset.dir; ctl && ctl.show(dirHint); dirHint = 0; }));
   }
 
   // ---------- услуги: «Выбрать» подставляет пакет в форму ----------
