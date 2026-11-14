@@ -1,20 +1,4 @@
 <footer class="footer">
-  <div class="container footer__inner">
-    <a href="<%= base %>" class="logo">
-      <span class="logo__mark">GSP<i>·</i>INCH</span>
-    </a>
-    <nav class="footer__nav" aria-label="<%= t('footer_menu') %>">
-      <a href="<%= base %>#about"><%= t('nav_about') %></a><a href="<%= base %>#services"><%= t('nav_services') %></a><a href="<%= base %>#steps"><%= t('nav_steps') %></a>
-      <a href="<%= base %>#results"><%= t('nav_results') %></a><a href="<%= base %>#reviews"><%= t('nav_reviews') %></a><a href="<%= base %>#faq"><%= t('nav_faq') %></a><a href="<%= base %>#contacts"><%= t('nav_contacts') %></a>
-    </nav>
-    <div class="socials">
-      <% [['telegram','Telegram'],['instagram','Instagram'],['tiktok','TikTok'],['youtube','YouTube'],['whatsapp','WhatsApp']].forEach(([k, label]) => {
-           if (s[k] && s[k] !== 'https://t.me/') { %>
-        <a href="<%= s[k] %>" target="_blank" rel="noopener" aria-label="<%= label %>" data-goal="social_<%= k %>"><%- icon(k) %></a>
-      <% } }) %>
-      <% if (s.email) { %><a href="mailto:<%= s.email %>" aria-label="E-mail"><%- icon('mail') %></a><% } %>
-    </div>
-  </div>
   <div class="container footer__bottom">
     <span>© <%= new Date().getFullYear() %> GSP·INCH</span>
     <a href="/privacy"><%= t('privacy') %></a>
