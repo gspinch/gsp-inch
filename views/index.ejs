@@ -324,11 +324,6 @@
   <section class="contact band band--mid" id="contacts">
     <div class="container">
       <div class="letter reveal" data-from="up">
-        <div class="letter__stamps" aria-hidden="true">
-          <figure class="stamp letter__mini" style="--r:-6deg"><img src="/img/stamp-willow.jpg" alt=""><figcaption class="mono">中国 <b>¥8</b></figcaption></figure>
-          <figure class="stamp letter__mini" style="--r:5deg"><img src="/img/stamp-night.jpg" alt=""><figcaption class="mono">中国 <b>¥12</b></figcaption></figure>
-        </div>
-        <span class="postmark mono" aria-hidden="true">GSP·INCH ✶ 2027 ✶ 留学 ✶</span>
         <div class="letter__head">
           <p class="mono letter__to"><%= t('letter_to') %></p>
           <h2 class="h2"><%= t('contact_h') %></h2>
@@ -336,6 +331,11 @@
           <% if (tg) { %>
             <a href="<%= tg %>" class="letter__tg mono" target="_blank" rel="noopener" data-goal="telegram_click"><%- icon('telegram') %> <%= t('contact_tg') %></a>
           <% } %>
+          <div class="letter__stamps" aria-hidden="true">
+            <figure class="stamp letter__mini" style="--r:-6deg"><img src="/img/stamp-willow.jpg" alt=""><figcaption class="mono">中国 <b>¥8</b></figcaption></figure>
+            <figure class="stamp letter__mini" style="--r:5deg"><img src="/img/stamp-night.jpg" alt=""><figcaption class="mono">中国 <b>¥12</b></figcaption></figure>
+            <span class="postmark mono" aria-hidden="true">GSP·INCH ✶ 2027 ✶ 留学 ✶</span>
+          </div>
         </div>
         <form class="form" id="lead-form" action="/api/lead" method="post" novalidate data-msg-invalid="<%= t('js_invalid') %>" data-msg-ok="<%= t('js_ok') %>" data-msg-fail="<%= t('js_fail') %>">
           <% if (sent) { %><p class="form__ok" role="status"><%= t('f_sent_ok') %></p><% } %>
