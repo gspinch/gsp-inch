@@ -324,11 +324,10 @@
   <section class="contact band band--mid" id="contacts">
     <div class="container">
       <div class="letter reveal" data-from="up">
-        <figure class="stamp letter__stamp" aria-hidden="true">
-          <img src="/img/cta.jpg" alt="" loading="lazy">
-          <figcaption class="mono">中国 <b>¥8</b></figcaption>
-        </figure>
-        <svg class="stk letter__hb" aria-hidden="true"><use href="#s-hongbao"/></svg>
+        <div class="letter__stamps" aria-hidden="true">
+          <figure class="stamp letter__mini" style="--r:-6deg"><img src="/img/stamp-willow.jpg" alt=""><figcaption class="mono">中国 <b>¥8</b></figcaption></figure>
+          <figure class="stamp letter__mini" style="--r:5deg"><img src="/img/stamp-night.jpg" alt=""><figcaption class="mono">中国 <b>¥12</b></figcaption></figure>
+        </div>
         <span class="postmark mono" aria-hidden="true">GSP·INCH ✶ 2027 ✶ 留学 ✶</span>
         <div class="letter__head">
           <p class="mono letter__to"><%= t('letter_to') %></p>

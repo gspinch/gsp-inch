@@ -418,9 +418,8 @@ button { font: inherit; color: inherit; }
 .letter { position: relative; background: #fffdf6; max-width: 980px; margin: 0 auto; padding: clamp(28px, 5vw, 60px); display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(24px, 4vw, 48px); box-shadow: 0 30px 60px -30px rgba(30,70,110,.45); border-radius: 6px;
   background-image: repeating-linear-gradient(transparent 0 33px, rgba(53,80,160,.1) 33px 34px); }
 .letter::before { content: ''; position: absolute; inset: 0 0 auto; height: 8px; background: repeating-linear-gradient(-45deg, var(--red) 0 14px, #fffdf6 14px 28px, var(--ink-blue) 28px 42px, #fffdf6 42px 56px); border-radius: 6px 6px 0 0; }
-.letter__stamp { position: absolute; right: 26px; top: 26px; width: 92px; height: 112px; rotate: 6deg; }
-.letter__hb { position: absolute; width: 150px; height: 196px; left: clamp(60px, 15%, 190px); bottom: clamp(40px, 6vw, 80px); rotate: -12deg; z-index: 2; }
-.postmark { position: absolute; right: 90px; top: 58px; width: 116px; height: 116px; border: 2px solid rgba(53,80,160,.55); border-radius: 50%; display: grid; place-items: center; text-align: center; font-size: 10px; color: rgba(53,80,160,.7); rotate: -16deg; padding: 22px; line-height: 1.6; pointer-events: none; }
+
+.postmark { position: absolute; right: 170px; top: 72px; z-index: 4; width: 116px; height: 116px; border: 2px solid rgba(53,80,160,.55); border-radius: 50%; display: grid; place-items: center; text-align: center; font-size: 10px; color: rgba(53,80,160,.7); rotate: -16deg; padding: 22px; line-height: 1.6; pointer-events: none; }
 .letter__head { padding-top: 70px; }
 .letter__to { font-size: 12px; text-transform: uppercase; color: var(--ink-2); border-bottom: 1.5px dashed var(--line); padding-bottom: 10px; margin-bottom: 18px; }
 .letter__head .h2 { font-size: clamp(30px, 3.6vw, 46px); }
@@ -539,8 +538,7 @@ button { font: inherit; color: inherit; }
   .collage__orange { width: 60px; height: 60px; }
   .collage__grant { width: 130px; height: 68px; right: 0; bottom: -2%; }
   .about__flower { width: 56px; height: 56px; left: -10px; }
-  .letter__hb { display: none; }
-  .ticket { width: 84%; left: 6%; }
+    .ticket { width: 84%; left: 6%; }
   .notes { grid-template-columns: 1fr; gap: 20px; }
   .ftab { padding: 11px 18px 15px; font-size: 12px; }
   .about__grid { grid-template-columns: 1fr; }
@@ -562,8 +560,7 @@ button { font: inherit; color: inherit; }
   .fortune { margin-right: 0; }
   .faq__knot { left: -14px; width: 76px; height: 124px; }
   .qa__a { padding-left: 20px; }
-  .letter__stamp { width: 70px; height: 86px; right: 16px; top: 22px; }
-  .postmark { right: 60px; top: 40px; width: 92px; height: 92px; font-size: 8px; padding: 16px; }
+  .postmark { right: 118px; top: 44px; width: 92px; height: 92px; font-size: 8px; padding: 16px; }
   .letter__head { padding-top: 80px; }
   .form .btn { justify-self: stretch; }
   .footer__top { flex-direction: column; align-items: flex-start; }
@@ -593,24 +590,25 @@ button { font: inherit; color: inherit; }
 @media (max-width: 900px) { .scrap { display: none; } }
 
 /* ---------- анкета + футер: одна сплошная картина — небо, облачная гряда, китайский пейзаж ---------- */
-.scene { position: relative; background-color: #6fa3dd;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .4 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("/img/graduates.jpg");
-  background-repeat: repeat, no-repeat; background-size: 260px 260px, cover; background-position: 0 0, center calc(100% + 240px); }
-.scene .contact.band, .scene .footer { background: none; box-shadow: none; margin-top: 0; }
-.scene .contact.band { padding-top: clamp(90px, 10vw, 140px); padding-bottom: clamp(40px, 5vw, 70px); }
+.scene .contact.band { position: relative; margin-top: 0; box-shadow: none; background-color: #6fa3dd;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .4 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("/img/graduates.jpg"); background-repeat: repeat, no-repeat; background-size: 260px 260px, cover; background-position: 0 0, center calc(100% + 280px);
+  padding-top: clamp(90px, 10vw, 140px); padding-bottom: clamp(300px, 34vw, 520px); }
 .contact .container { position: relative; z-index: 2; }
 .letter { box-shadow: 0 34px 60px -28px rgba(20,45,90,.55); }
-.letter__hb { z-index: 3; }
-.scene .footer { color: #1f2c44; padding: 40px 0 18px; }
-.scene .footer__bottom { margin-top: 0; padding-block: 18px; font: 600 16px/1.4 var(--grotesk); color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.55), 0 0 18px rgba(0,0,0,.35); }
-.scene .footer__bottom a { color: #fff; text-underline-offset: 4px; }
-.scene .footer { padding-top: clamp(300px, 34vw, 520px); }
-.scene .footer__nav a { opacity: .9; }
-.scene .footer__nav a:hover { color: var(--red); opacity: 1; }
+.scene .footer { background: var(--green-dk); box-shadow: none; margin-top: 0; padding: 26px 0; color: var(--paper); }
+.scene .footer__bottom { margin-top: 0; font: 500 16px/1.4 var(--grotesk); opacity: 1; color: var(--paper); }
+.scene .footer__bottom a { color: inherit; text-underline-offset: 4px; }
+/* мини-марки на письме */
+.letter__stamps { position: absolute; right: 24px; top: 22px; display: flex; gap: 10px; z-index: 3; }
+.letter__mini { width: 100px; height: 122px; padding: 7px 7px 24px; }
+.letter__mini figcaption { font-size: 9.5px; left: 9px; right: 9px; bottom: 6px; }
 @media (max-width: 640px) {
-  .scene { background-size: 260px 260px, cover; background-position: 0 0, 45% bottom; }
-  .scene .footer { padding-top: 300px; }
+  .scene .contact.band { background-position: 0 0, 45% bottom; padding-bottom: 300px; }
+  .letter__stamps { right: 12px; top: 16px; gap: 6px; }
+  .letter__mini { width: 62px; height: 78px; padding: 5px 5px 18px; }
+  .letter__mini figcaption { font-size: 8px; }
 }
+
 
 /* перфорация марок — маску строит main.js под точный размер элемента */
 .stamp, .pkg__in { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
