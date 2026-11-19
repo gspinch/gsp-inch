@@ -174,14 +174,14 @@ function seed(table, rows) {
 }
 
 seed('services', [
-  { title: 'Полное сопровождение', subtitle: 'грант / степень', description: 'От стратегии и подготовки документов до зачисления.',
-    features: 'Всё из пакета «Сопровождение»\nПодбор программ на грант\nОптимизация документов под требования\nПодготовка к интервью и консультации\nСопровождение до получения приглашения',
+  { title: 'Полное сопровождение', subtitle: 'языковой год на грант, бакалавриат и магистратура', description: 'От стратегии и подготовки документов до зачисления.',
+    features: 'Всё из пакета «Сопровождение»\nПодбор программ на грант\nОптимизация документов под требования\nПодготовка к интервью и консультации\nСопровождение до получения приглашения\nПомощь в бронировании общежития',
     price: '5 990 юаней', photo: '', sort: 1, published: 1 },
   { title: 'Сопровождение', subtitle: 'платный языковой год', description: 'Подбор университетов, подготовка и подача документов, сопровождение до зачисления.',
     features: 'Подбор от 5 университетов (стратегия 2+3)\nПодготовка всех документов (ML, CV, рекомендации)\nПодача заявок и отслеживание статуса\nПодготовка к интервью\nПоддержка до зачисления',
     price: '3 990 юаней', photo: '', sort: 2, published: 1 },
   { title: 'Индивидуальная консультация', subtitle: 'разбор вашего кейса', description: 'Стратегия поступления и ответы на все ваши вопросы за одну встречу.',
-    features: 'Анализ вашего кейса и целей\nРазбор до 5 университетов\nОценка шансов поступления\nПлан подготовки и список документов\nОтветы на все вопросы (1,5–2 часа)',
+    features: 'Анализ вашего кейса и целей\nРазбор до 5 университетов\nОценка шансов поступления\nПлан подготовки и список документов\nОтветы на все вопросы (1,5–2 часа)\nПосле встречи — запись консультации и шаблоны документов',
     price: '990 юаней', photo: '', sort: 3, published: 1 },
 ]);
 
@@ -196,22 +196,27 @@ seed('reviews', [
 ]);
 
 seed('faq', [
-  { question: 'Нужен ли IELTS / DET для поступления?', answer: 'Для англоязычных программ большинство университетов просят IELTS, TOEFL или Duolingo English Test. Для части программ достаточно справки о том, что обучение велось на английском. Подберём вариант под ваш случай.', sort: 1, published: 1 },
-  { question: 'Когда начинается подача документов?', answer: 'Основной приём на программы с сентября открывается с ноября по март, на гранты CSC — обычно с декабря по март. Начинать подготовку лучше за 6–9 месяцев.', sort: 2, published: 1 },
-  { question: 'Что входит в полное сопровождение?', answer: 'Стратегия и подбор университетов, подготовка всех документов (мотивационное письмо, CV, рекомендации), подача заявок, подготовка к интервью и поддержка до получения приглашения и зачисления.', sort: 3, published: 1 },
-  { question: 'Можно ли поступить без HSK?', answer: 'Да — на англоязычные программы и на языковой год HSK не требуется. Для китайскоязычных программ бакалавриата обычно нужен HSK 4–5.', sort: 4, published: 1 },
-  { question: 'Работаете ли вы с родителями?', answer: 'Да, многие консультации проходят вместе с родителями: объясняю процесс, сроки, стоимость жизни и обучения.', sort: 5, published: 1 },
+  { question: "Можно ли поступить без знания китайского?", answer: "Да. Можно начать с языковых курсов с нуля или выбрать программу на английском, подтвердив его уровень. Для обучения на китайском обычно нужен HSK — требования зависят от университета и специальности.", sort: 1, published: 1 },
+  { question: "Реально ли получить полный грант?", answer: "Да. Есть гранты, которые покрывают обучение, проживание и предусматривают ежемесячную стипендию. Шансы зависят от вашей подготовки, выбранной программы и конкурса. Я помогу оценить ваш профиль и подобрать подходящие варианты.", sort: 2, published: 1 },
+  { question: "Когда нужно начинать подготовку к поступлению?", answer: "Лучше за 9–12 месяцев до начала учёбы: будет время выбрать программу, подготовить документы и сдать необходимые экзамены. Если времени меньше, можно рассмотреть варианты, по которым ещё открыт приём.", sort: 3, published: 1 },
+  { question: "Как проходит работа со мной?", answer: "Сначала разбираем ваши цели, подготовку и бюджет. Затем подбираем университеты, готовим документы и подаём заявки. Я отслеживаю результаты, помогаю подготовиться к интервью и остаюсь на связи до зачисления.", sort: 4, published: 1 },
+  { question: "Гарантируете ли вы поступление?", answer: "Я помогу выстроить стратегию поступления, подобрать подходящие университеты и подготовить сильную заявку. Финальное решение остаётся за университетом, а моя задача — внимательно пройти с вами каждый этап и повысить ваши шансы на зачисление. Все условия работы закрепляем в договоре.", sort: 5, published: 1 },
+  { question: "Можно ли получить грант с невысокими оценками?", answer: "Да, такие возможности есть. Оценки — один из критериев: также учитываются уровень языка, мотивация и достижения. Мы разберём вашу ситуацию, подберём доступные варианты и определим, чем можно усилить заявку.", sort: 6, published: 1 },
+  { question: "Нужны ли вступительные экзамены?", answer: "Зависит от программы. Для поступления на бакалавриат во многие университеты требуется CSCA — экзамен для иностранных абитуриентов. Также могут понадобиться языковой сертификат, интервью или дополнительные испытания. Требования проверяем до подачи.", sort: 7, published: 1 },
+  { question: "Как выбрать университет и специальность?", answer: "Начинаем с ваших интересов, карьерных планов, уровня языка и бюджета. Я помогу сравнить программы, требования и условия грантов, чтобы выбрать университеты, которые подходят под ваши цели и подготовку.", sort: 8, published: 1 },
+  { question: "Что делать, если ещё нет аттестата или диплома?", answer: "Если вы заканчиваете обучение в год поступления, многие университеты принимают справку с предполагаемой датой выпуска и текущую выписку оценок. Аттестат или диплом нужно предоставить позже — в срок, установленный университетом.", sort: 9, published: 1 },
+  { question: "Можно ли оплачивать сопровождение частями?", answer: "Да, оплата делится на две части: 50% перед началом работы и оставшиеся 50% — в срок, указанный в договоре.", sort: 10, published: 1 },
 ]);
 
 // Английские тексты для стартового наполнения (заполняются, только если поле пустое)
 const enSeed = {
   services: [
-    ['Полное сопровождение', { title_en: 'Full support', subtitle_en: 'scholarship / degree', description_en: 'From strategy and documents all the way to enrollment.',
-      features_en: 'Everything in the “Support” package\nChoosing scholarship programmes\nTailoring documents to requirements\nInterview prep and consultations\nSupport until you get the admission letter', price_en: '5,990 CNY' }],
+    ['Полное сопровождение', { title_en: 'Full support', subtitle_en: 'scholarship: language year, bachelor’s and master’s', description_en: 'From strategy and documents all the way to enrollment.',
+      features_en: 'Everything in the “Support” package\nChoosing scholarship programmes\nTailoring documents to requirements\nInterview prep and consultations\nSupport until you get the admission letter\nHelp booking a dormitory', price_en: '5,990 CNY' }],
     ['Сопровождение', { title_en: 'Support', subtitle_en: 'self-funded language year', description_en: 'Choosing universities, preparing and submitting documents, support until enrollment.',
       features_en: 'Up to 5 universities (2+3 strategy)\nAll documents prepared (ML, CV, recommendations)\nApplications and status tracking\nInterview prep\nSupport until enrollment', price_en: '3,990 CNY' }],
     ['Индивидуальная консультация', { title_en: 'One-to-one consultation', subtitle_en: 'your case reviewed', description_en: 'An admission strategy and answers to all your questions in one session.',
-      features_en: 'Analysis of your case and goals\nReview of up to 5 universities\nAssessment of your chances\nPreparation plan and document checklist\nAnswers to all your questions (1.5–2 hours)', price_en: '990 CNY' }],
+      features_en: 'Analysis of your case and goals\nReview of up to 5 universities\nAssessment of your chances\nPreparation plan and document checklist\nAnswers to all your questions (1.5–2 hours)\nAfterwards: the session recording and document templates', price_en: '990 CNY' }],
   ],
   results: [
     ['Егор', { name_en: 'Egor', program_en: 'Bachelor’s, 土木工程 (Civil Engineering)', text_en: 'Admitted on a full scholarship to an English-taught programme.', badge_en: 'Full scholarship' }],
@@ -221,11 +226,16 @@ const enSeed = {
     ['Тимур', { name_en: 'Timur', location_en: 'Russia', program_en: 'Master’s, engineering', text_en: 'A professional approach, clear and to the point. I would definitely have got lost in the documents on my own. Highly recommend!' }],
   ],
   faq: [
-    ['Нужен ли IELTS / DET для поступления?', { question_en: 'Do I need IELTS / DET to apply?', answer_en: 'Most universities ask for IELTS, TOEFL or the Duolingo English Test for English-taught programmes. For some programmes a letter confirming you studied in English is enough. We’ll find the right option for you.' }],
-    ['Когда начинается подача документов?', { question_en: 'When do applications open?', answer_en: 'For September intakes, applications usually run from November to March; CSC scholarships typically from December to March. It’s best to start preparing 6–9 months ahead.' }],
-    ['Что входит в полное сопровождение?', { question_en: 'What does full support include?', answer_en: 'Strategy and university selection, all documents (motivation letter, CV, recommendations), applications, interview prep and support until you receive your admission letter and enroll.' }],
-    ['Можно ли поступить без HSK?', { question_en: 'Can I apply without HSK?', answer_en: 'Yes — English-taught programmes and the language year don’t require HSK. Chinese-taught bachelor’s programmes usually require HSK 4–5.' }],
-    ['Работаете ли вы с родителями?', { question_en: 'Do you work with parents?', answer_en: 'Yes, many consultations happen together with parents: I explain the process, timelines, and the cost of living and studying.' }],
+    ["Можно ли поступить без знания китайского?", { question_en: "Can I apply without knowing Chinese?", answer_en: "Yes. You can start with Chinese language courses from scratch or choose an English-taught programme by proving your English level. Chinese-taught programmes usually require HSK — requirements depend on the university and major." }],
+    ["Реально ли получить полный грант?", { question_en: "Is a full scholarship realistic?", answer_en: "Yes. There are scholarships that cover tuition and accommodation and include a monthly stipend. Your chances depend on your background, the programme and the competition. I’ll help you assess your profile and find suitable options." }],
+    ["Когда нужно начинать подготовку к поступлению?", { question_en: "When should I start preparing?", answer_en: "Ideally 9–12 months before your studies begin: that leaves time to choose a programme, prepare documents and take the required exams. If you have less time, we can look at programmes that are still accepting applications." }],
+    ["Как проходит работа со мной?", { question_en: "How does working with me go?", answer_en: "First we look at your goals, background and budget. Then we choose universities, prepare documents and submit applications. I track the results, help you prepare for interviews and stay in touch until enrollment." }],
+    ["Гарантируете ли вы поступление?", { question_en: "Do you guarantee admission?", answer_en: "I’ll help you build an admission strategy, choose the right universities and prepare a strong application. The final decision belongs to the university; my job is to go through every step with you carefully and raise your chances of admission. All terms of our work are set out in a contract." }],
+    ["Можно ли получить грант с невысокими оценками?", { question_en: "Can I get a scholarship with average grades?", answer_en: "Yes, there are such opportunities. Grades are only one criterion: language level, motivation and achievements also count. We’ll go through your situation, find available options and work out how to strengthen your application." }],
+    ["Нужны ли вступительные экзамены?", { question_en: "Are there entrance exams?", answer_en: "It depends on the programme. Many universities require the CSCA exam for international applicants to bachelor’s programmes. You may also need a language certificate, an interview or additional tests. We check the requirements before applying." }],
+    ["Как выбрать университет и специальность?", { question_en: "How do I choose a university and major?", answer_en: "We start with your interests, career plans, language level and budget. I’ll help you compare programmes, requirements and scholarship terms to choose universities that fit your goals and background." }],
+    ["Что делать, если ещё нет аттестата или диплома?", { question_en: "What if I don’t have my diploma yet?", answer_en: "If you graduate in the year you apply, many universities accept a certificate with your expected graduation date and a current transcript. The diploma itself is submitted later, by the deadline set by the university." }],
+    ["Можно ли оплачивать сопровождение частями?", { question_en: "Can I pay for support in instalments?", answer_en: "Yes, payment is split into two parts: 50% before we start and the remaining 50% by the date set in the contract." }],
   ],
 };
 const keyField = { services: 'title', results: 'name', reviews: 'name', faq: 'question' };

@@ -23,7 +23,7 @@ const dict = {
 
     about_h: 'Обо мне', about_alt: 'Камила — ментор по поступлению в Китай',
     about_hi: 'Привет, я Камила!', about_role: 'ментор по поступлению в Китай',
-    about_story_html: 'С 2017 года живу и учусь в Китае. Прошла путь от языковых курсов до <mark class="hl hl--lime">магистратуры на полном гранте</mark> и сдала <mark class="hl hl--blue">HSK 5 и HSKK на 70 баллов</mark>. Помогаю поступать в университеты Китая честно, осознанно и без лишних затрат.',
+    about_story_html: 'С 2017 года живу и учусь в Китае. Прошла путь от языковых курсов до <mark class="hl hl--lime">магистратуры на полном гранте</mark>. Теперь помогаю вам сделать учёбу в Китае частью своей истории — выбрать подходящий университет, разобраться в поступлении и уверенно пройти каждый этап с моей поддержкой.',
     why_title: 'почему со мной?',
     why: ['Честная и прозрачная работа', 'Индивидуальная стратегия', 'Опыт учёбы в Китае изнутри', 'Поддержка на всех этапах', 'Фокус на результат, а не на количество'],
 
@@ -41,7 +41,7 @@ const dict = {
 
     results_h: 'Результаты студентов', results_tabs_aria: 'Студенты', case_no: 'досье №', report_head: 'отчёт · 报告 · 2026',
 
-    reviews_h: 'Отзывы', book_label: 'дневник отзывов', book_hint: 'истории студентов, которые уже учатся в Китае. тяните за закладки →',
+    reviews_h: 'Отзывы', reviews_more: 'Больше отзывов в Instagram', book_label: 'дневник отзывов', book_hint: 'истории студентов, которые уже учатся в Китае. тяните за закладки →',
     entry_no: 'запись №', prev_review: 'Предыдущий отзыв', next_review: 'Следующий отзыв', reviews_tabs_aria: 'Отзывы',
 
     faq_h: 'Частые вопросы', faq_img_alt: 'Ворота кампуса и цветущая магнолия', panda_caption: 'сосед по кампусу (почти)',
@@ -90,7 +90,7 @@ const dict = {
 
     about_h: 'About me', about_alt: 'Kamila — study-in-China mentor',
     about_hi: 'Hi, I’m Kamila!', about_role: 'your study-in-China mentor',
-    about_story_html: 'I have been living and studying in China since 2017. I went from language courses to a <mark class="hl hl--lime">master’s degree on a full scholarship</mark> and passed <mark class="hl hl--blue">HSK 5 and HSKK with 70 points</mark>. I help students get into Chinese universities honestly, thoughtfully and without unnecessary costs.',
+    about_story_html: 'I have been living and studying in China since 2017. I went from language courses to a <mark class="hl hl--lime">master’s degree on a full scholarship</mark>. Now I help you make studying in China part of your own story — choose the right university, understand the admission process and confidently go through every step with my support.',
     why_title: 'why work with me?',
     why: ['Honest, transparent work', 'A strategy built for you', 'First-hand experience of studying in China', 'Support at every step', 'Focus on results, not volume'],
 
@@ -108,7 +108,7 @@ const dict = {
 
     results_h: 'Student results', results_tabs_aria: 'Students', case_no: 'file no.', report_head: 'report · 报告 · 2026',
 
-    reviews_h: 'Reviews', book_label: 'review diary', book_hint: 'stories from students who already study in China. pull the bookmarks →',
+    reviews_h: 'Reviews', reviews_more: 'More reviews on Instagram', book_label: 'review diary', book_hint: 'stories from students who already study in China. pull the bookmarks →',
     entry_no: 'entry no.', prev_review: 'Previous review', next_review: 'Next review', reviews_tabs_aria: 'Reviews',
 
     faq_h: 'FAQ', faq_img_alt: 'Campus gate and a blooming magnolia', panda_caption: 'campus neighbour (almost)',

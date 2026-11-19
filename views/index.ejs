@@ -265,6 +265,9 @@
           <% }) %>
         </div>
       </div>
+      <% if (s.instagram) { %>
+      <a href="<%= s.instagram %>" class="btn btn--ghost reviews__more" target="_blank" rel="noopener" data-goal="reviews_instagram"><%- icon('instagram') %> <%= t('reviews_more') %> <%- icon('arrow-up-right') %></a>
+      <% } %>
     </div>
   </section>
 
