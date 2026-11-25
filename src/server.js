@@ -38,6 +38,18 @@ app.use(cookieSession({
 }));
 
 app.locals.SITE_URL = SITE_URL;
+// версия статики = хэш содержимого файлов: после обновления браузер сразу берёт новые CSS/JS
+app.locals.asset = (() => {
+  const pub = path.join(__dirname, '..', 'public');
+  const cache = {};
+  return (file) => {
+    if (!cache[file]) {
+      try { cache[file] = crypto.createHash('md5').update(fs.readFileSync(path.join(pub, file))).digest('hex').slice(0, 10); }
+      catch { cache[file] = String(Date.now()); }
+    }
+    return `/${file}?v=${cache[file]}`;
+  };
+})();
 // все HTML-страницы сайта (кроме админки) проходят через типограф
 const typograph = require('./typograph');
 app.use((req, res, next) => {
