@@ -133,6 +133,10 @@
     const vertical = window.matchMedia('(max-width: 960px)');
     let busy = false;
     let last = 0;
+    let target = 0;
+    const entries = [...book.querySelectorAll('.book__content .entry')];
+    // всегда показываем ровно один отзыв — тот, что выбран последним (даже при быстрых кликах)
+    const showOnly = (k) => { entries.forEach((el, n) => { el.hidden = n !== k; }); cur.textContent = k + 1; };
 
     // Перелистывание: поверх правой страницы кладём её копию и переворачиваем вокруг корешка.
     // Вперёд — старая страница уходит влево, под ней уже новая.
@@ -156,7 +160,7 @@
       sheet.append(front, back);
       book.appendChild(sheet);
 
-      if (forward) { from.hidden = true; to.hidden = false; cur.textContent = i + 1; }
+      if (forward) showOnly(i);
       const axis = v ? 'rotateX' : 'rotateY';
       const turned = v ? 'rotateX(180deg)' : 'rotateY(-180deg)';
       const frames = forward ? [{ transform: `${axis}(0deg)` }, { transform: turned }] : [{ transform: turned }, { transform: `${axis}(0deg)` }];
@@ -166,15 +170,15 @@
       shade(front, forward ? 0 : .3, forward ? .3 : 0);
       shade(back, forward ? .3 : 0, forward ? 0 : .3);
       anim.onfinish = () => {
-        if (!forward) { from.hidden = true; to.hidden = false; cur.textContent = i + 1; }
+        showOnly(target);
         sheet.remove(); busy = false;
       };
     }
 
     const ctl = setupTabs(book, '.bookmark', '.entry', (from, to, i) => {
       const forward = dirHint ? dirHint > 0 : i > last;
-      last = i;
-      if (reduced || busy) { from.hidden = true; to.hidden = false; cur.textContent = i + 1; return; }
+      last = i; target = i;
+      if (reduced || busy) { if (!busy) showOnly(i); return; }
       busy = true;
       flip(from, to, i, forward);
     });

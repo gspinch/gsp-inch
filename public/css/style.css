@@ -726,3 +726,9 @@ button { font: inherit; color: inherit; }
 .policy h3 { font-size: 17px; margin: 22px 0 8px; letter-spacing: -.01em; }
 .policy p, .policy li { font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
 .policy__list { margin: 0 0 14px; padding-left: 22px; display: grid; gap: 4px; }
+
+/* книжка отзывов: все записи в одной ячейке — высота по самому длинному отзыву, страница не прыгает */
+.book__content { display: grid; }
+.book__content > .entry { grid-area: 1 / 1; }
+.book__content > .entry[hidden] { display: block !important; visibility: hidden; }
+.entry__text { font-size: clamp(21px, 1.9vw, 25px); line-height: 1.38; }
