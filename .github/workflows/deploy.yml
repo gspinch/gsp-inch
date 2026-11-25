@@ -1,0 +1,31 @@
+# Автообновление: при каждом изменении в ветке main сайт на сервере обновляется сам.
+# Нужны секреты репозитория: SSH_HOST, SSH_USER, SSH_KEY (Settings → Secrets and variables → Actions).
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Обновить сайт на сервере
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          command_timeout: 20m
+          script: |
+            set -e
+            cd ~/gsp-inch
+            git pull --ff-only
+            sudo docker compose up -d --build
+            sudo docker image prune -f
+            sudo docker compose ps
